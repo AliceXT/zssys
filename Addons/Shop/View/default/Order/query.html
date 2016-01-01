@@ -1,0 +1,31 @@
+<extend name="Base/common" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<block name="body">
+<link rel="stylesheet" type="text/css" href="{:ADDON_PUBLIC_PATH}/css/more.css">
+    <div class="span9 page_message">
+        <section id="contents">
+            <include file="Addons/_nav" />
+            <!-- 数据列表 -->
+            <div class="data-table">
+                <div class="table-striped">
+                        <input type="hidden" name="id" value="{$o.id}">
+                        <table class="tb">
+                            <tbody>
+                                <tr>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <volist name="Arr" id="msg">
+                        <h4>&nbsp;</h4>
+                        <dl class="dl-horizontal">
+                            <volist name="msg" id="m">
+                            <dt>{$m.title}</dt><dd><b>{$m.value}</b></dd>
+                            </volist>
+                        </dl>
+                        </volist> 
+                </div>
+            </div>
+            <div class="page"> {$_page|default=''} </div>
+        </section>
+    </div>
+</block>

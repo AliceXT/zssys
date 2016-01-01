@@ -1,0 +1,102 @@
+<include file="Public/mobile_head"/>
+<link href="__ROOT__ /Addons/Diy/View/default/Public/css/diy.css?v={:SITE_VERSION}" rel="stylesheet" type="text/css">
+<script src="__ROOT__ /Addons/Diy/View/default/Public/js/diy.js?v={:SITE_VERSION}" type="text/javascript"></script>
+<style type="text/css">
+html{overflow: hidden;}
+.wrapper em{ width:30px; height:15px;line-height: 15px;border-radius: 3px; float:left; color:#FFF; font-size:10px; font-family:Verdana, Geneva, sans-serif;background:#333; margin:0 0 -20px 10px; padding:2px 5px 2px 5px; z-index:999; position:absolute; top:10px;}
+</style>
+<body id="diyMobile" style="<notempty name="background">background-image:url({$background});</notempty>background-size:100% 100%;max-width:640px;overflow:hidden;">
+    <!--横幅广告-->
+    <div class="wrapper" id="snActive-wrap"> 
+    <em title="关闭广告">Close</em>
+    <a target="_blank" name="redbaby_none_ggw_dt01" title="小图" href="#"></a>
+    <a target="_blank" name="redbaby_none_ggw_dt01" title="大图"   href="#"></a>
+    </div>
+	<div id="container" class="container body">
+    	<div id="phoneArea" class="mobile_show">
+        <volist name="layouts" id="layout">
+                <!-- 每行的布局处理 -->
+            <div class="layout_row" data-type="{$layout.type}">
+               <volist name="layout.widgets" id="widget">
+                 <!-- 每个布局里的模块处理 -->
+                <div class="layout_item" <notempty name="widget.widget_height"> style="height:{$widget.widget_height}px"</notempty>>{$widget.html}</div>
+                </volist>
+            </div>
+            </volist>
+        </div>
+    </div>
+
+</body>
+<script type="text/javascript">
+  	$(function(){
+		$('.layout_row').each(function(index, element) {
+            initItemLayoutAndAction($(this),$(this).data('type'),false);
+        });
+		})
+</script>
+<script src="__ROOT__ /Addons/Diy/View/default/Public/js/jquery-1.8.3.min.js?v={:SITE_VERSION}" type="text/javascript"></script>
+<script src="__ROOT__ /Addons/Diy/View/default/Public/js/jq.snow.js?v={:SITE_VERSION}" type="text/javascript"></script>
+<!--2015.12.15中午3-->
+<script>
+$(function(){
+    $.fn.snow({ 
+        minSize: 3,     //雪花的最小尺寸
+        maxSize: 6,    //雪花的最大尺寸
+        newOn: 300      //雪花出现的频率 这个数值越小雪花越多
+    });
+});
+</script>
+<!--广告横幅2015.12.15晚上6-->
+<script type="text/javascript">
+/*
+* 宽窄屏切换
+* */
+var bigscreen = false;
+if ( screen.width>=1200 ) {
+bigscreen = true;
+var bodyTag = document.getElementsByTagName("body")[0],
+bodyClassName = bodyTag.getAttribute("className") || bodyTag.getAttribute("class");
+bodyClassName = bodyClassName ? bodyClassName+" " : "";
+bodyTag.className = bodyClassName+"root1200";
+}
+
+</script>
+<script type="text/javascript">
+~function (){
+var snActive = window.snActive = document.getElementById("snActive-wrap"),
+a = snActive.getElementsByTagName("a"),
+h = 0, w, imgSrc = [];
+if (bigscreen){
+w = 1190;
+imgSrc[0] = "Addons/Diy/View/default/Public/img/rehui-iocn.png";// 40
+imgSrc[1] = "Addons/Diy/View/default/Public/img/shendan-iocn.png";//  500
+} else {
+w = 990;
+imgSrc[0] = "Addons/Diy/View/default/Public/img/rehui-iocn.png";// 40
+imgSrc[1] = "Addons/Diy/View/default/Public/img/shendan-iocn.png";//  500
+}
+snActive.style.overflow = 'hidden';
+a[0].style.display = "none";
+a[0].innerHTML += '<img width="' + w + '" height="40" src="' + imgSrc[0] + '" style="display:block" />';
+if(a[1]){
+a[1].innerHTML += '<img width="' + w + '" height="240" src="' + imgSrc[1] + '" style="display:block" />';
+}
+}();
+//关闭通栏广告
+var snActive = $(snActive),
+hideImg = snActive.find('a:hidden'),
+em = snActive.find("em");
+timeout = !1;
+if(hideImg[0]) {
+timeout = setTimeout(function(){
+snActive.animate({height:40},600,function(){
+hideImg.siblings('a:visible').hide();
+hideImg.show();
+em.show().live("click",function(){
+snActive.slideUp(300);
+});
+});
+}, 3000)
+}
+</script>
+</html>

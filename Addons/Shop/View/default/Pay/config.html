@@ -1,0 +1,72 @@
+<extend name="Base/common" />
+<block name="body">
+    <div class="span9 page_message">
+        <section id="contents">
+            <include file="Addons/_nav" />
+            <div class="tab-content">
+                <form action="{:U('config')}" class="form-horizontal" method="post">
+                    <div class="form-item cf">
+                        <label class="item-label">
+                            APPID: <span class="check-tips">公众账号的id--wx*****</span> </label>
+                        <div class="controls">
+                            <input type="text" name="config[appid]" class="text input-large" value="{$config[appid]}">
+                        </div>
+                    </div>
+                    <div class="form-item cf">
+                        <label class="item-label">
+                            MCH_ID: <span class="check-tips">微信支付分配的商户号</span> </label>
+                        <div class="controls">
+                            <input type="text" name="config[mch_id]" class="text input-large" value="{$config[mch_id]}">
+                        </div>
+                    </div>
+                    <div class="form-item cf">
+                        <label class="item-label">
+                            SIGNTYPE: <span class="check-tips">method</span> </label>
+                        <div class="controls">
+                            <input type="text" name="config[signtype]" class="text input-large" value="{$config[signtype]}">
+                        </div>
+                    </div>
+                    <div class="form-item cf">
+                        <label class="item-label">
+                            APIKEY: <span class="check-tips">微信支付的API秘钥</span> </label>
+                        <div class="controls">
+                            <input type="text" name="config[api_key]" class="text input-large" value="{$config[api_key]}" id='api_key'>
+                            <button id='randKey' class='btn ajax-post'>随机生成支付密钥</button>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn submit-btn ajax-post" target-form="form-horizontal">确 定</button>
+                </form>
+                <include file="Addons/weixinPreview" />
+            </div>
+        </section>
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript" charset="utf-8">
+    //导航高亮
+    $('.side-sub-menu').find('a[href="{:U('
+        Addons / index ')}"]').closest('li').addClass('current');
+    if ($('ul.tab-nav').length) {
+        //当有tab时，返回按钮不显示
+        $('.btn-return').hide();
+    }
+    $(function() {
+        //支持tab
+        showTab();
+        $('#randKey').click(function (){
+        	$.ajax({
+			url : '/index.php?s=/addon/Shop/Pay/randKey.html',
+			dataType: 'json',
+			type: "GET",
+			success : function(rp){
+				if(rp.state == 1){
+					$('#api_key').val(rp.randKey);
+				}else{
+					alert('没有得到返回数据');
+				}
+			}
+		});
+        })
+    })
+    </script>
+</block>

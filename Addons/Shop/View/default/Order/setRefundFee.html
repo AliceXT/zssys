@@ -1,0 +1,27 @@
+<extend name="Base/common" />
+<block name="body">
+  <div class="span9 page_message">
+    <section id="contents">
+      <include file="Addons/_nav" />
+      <div class="tab-content">
+        <form id="form" action="{$post_url}" method="post" class="form-horizontal form-center">
+          <div class="form-item cf">
+		    <label class="item-label">退款金额(分)
+			  <span class="check-tips">最多{$suggest}</span>
+			</label>
+			<div class="controls">
+			  <input name="refund_fee" type="text" class="text input-middle">
+			</div>
+		  </div>
+		  <div class="form-item cf">
+			<input type="hidden" name="id" value="{$rid}">
+			<div class="controls">
+			<input type="submit" value="确定" class="btn submit-btn">
+			</div>
+		  </div>
+      </form>
+        </div>
+      </div>
+    </section>
+  </div>
+</block>

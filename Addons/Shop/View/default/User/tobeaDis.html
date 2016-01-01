@@ -1,0 +1,96 @@
+<include file="Public/mobile_head"/>
+<style type="text/css">
+
+	.userinfo_detail{
+		margin-top: 10px;
+	}
+
+	.container{
+		overflow: visible;
+	}
+	.header{
+	 background: #fff none repeat scroll 0 0;
+    box-shadow: 0 1px 3px #ccc;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    width: 100%;
+}
+.header .back{
+	background: rgba(0, 0, 0, 0) url("../img/back.png") no-repeat scroll 0 0 / 40px 40px;
+    height: 40px;
+    left: 10px;
+    position: absolute;
+    top: 10px;
+    width: 40px;
+}
+.header .title{
+	 color: #f30;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+</style>
+<link rel="stylesheet" type="text/css" href="{:ADDON_PUBLIC_PATH}/css/myOrder.css">
+<link rel="stylesheet" type="text/css" href="{:ADDON_PUBLIC_PATH}/css/userinfo.css">
+<body id="shop">
+<div class="header">
+  <a class="back" href="javascript:history.go(-1);"></a>
+  <span class="title">分销</span>
+  <a href="javascript:void(0)" onclick="Cart.setCartEmpty()" style="float:right;"><em class="cart_icon" style="padding-right:15px;"></em></a>
+</div>
+<div class="container">
+	<div class="userinfo">
+		<div class="userinfo_detail">
+			<span style="display:inline;">电话号码:</span>
+			<input id="phone" style="display:inline; width:70%;" type='text' value="{$info.phone}" />
+		</div>
+		<div class="userinfo_detail">
+			<span style="display:inline;">验&nbsp;&nbsp;证&nbsp;码:</span>
+			<input style="display:inline; width:70%;" type='text' value="" />
+		</div>
+		<div class="userinfo_detail">
+			<span style="display:inline;">真实姓名:</span>
+			<input id="nickname" style="display:inline; width:70%;" type='text' value="{$info.nickname}" />
+		</div>
+		<div class="userinfo_detail">
+			<span style="display:inline;">常用地址:</span>
+			<input id="address" style="display:inline; width:70%;" type='text' value="{$info.address}" />
+		</div>
+		<div class="userinfo_detail">
+			<button id="tobeDis">成为分销</button>
+		</div>
+	</div>
+
+
+</div>
+<!-- 底部导航 -->
+{$footer_html}
+<!-- 统计代码 -->
+<notempty name="config.code">
+<p class="hide bdtongji">
+{$config.code}
+</p>
+</notempty>
+
+<script type="text/javascript">
+ $(function(){
+ 	$("#tobeDis").click(function(){
+ 		var phone = $('#phone').val();
+ 		var nickname = $('#nickname').val();
+ 		var address = $("#address").val();
+
+ 		$.ajax({
+ 			url : '/index.php?s=/addon/Shop/User/tobeaDis.html',
+ 			data : {phone:phone, username:nickname, address:address},
+ 			dataType : 'json',
+ 			type : 'POST',
+ 			success : function(rp){
+ 				window.location.href = rp.url;
+ 			}
+ 		})
+ 	});
+ });
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<include file="Public/mobile_head"/>
+<link rel="stylesheet" type="text/css" href="{:ADDON_PUBLIC_PATH}/css/plist.css">
+<script type="text/javascript" src="{:ADDON_PUBLIC_PATH}/js/plist.js"></script>
+<body id="weisite">
+<div class="container">
+	<volist name="products" id="vo">
+		<div class="cell" onclick="Product.detail({$vo['id']})">
+			<div class="img">
+				<img src="{$vo['img1']}">
+			</div>
+			<div class="content">
+				<div class="describe">
+					<span>{$vo['describe']}</span>
+				</div>
+				<div class="price">
+					<span class="discount">￥{$vo['price']}元</span>
+				</div>
+			</div>
+		</div>
+	</volist>
+</div>
+<!-- 底部导航 -->
+{$footer_html}
+<!-- 统计代码 -->
+<notempty name="config.code">
+<p class="hide bdtongji">
+{$config.code}
+</p>
+</notempty>
+</body>
+</html>

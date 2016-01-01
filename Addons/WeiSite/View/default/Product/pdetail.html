@@ -1,0 +1,61 @@
+<include file="Public/mobile_head"/>
+<link rel="stylesheet" type="text/css" href="{:ADDON_PUBLIC_PATH}/css/pdetail.css">
+<script type="text/javascript" src="{:ADDON_PUBLIC_PATH}/js/plist.js"></script>
+<body id="weisite">
+<div class="top_navs">
+	<div class="mainpage">
+		<a href="#"><span>首</span></a>
+	</div>
+	<div class="nav_detail">
+		<a href="#"><span>商品详情</span></a>
+	</div>
+	<div class="nav_cart">
+		<a href="/index.php?s=/addon/WeiSite/Product/cartList.html"><span>车</span></a>
+	</div>
+</div>
+<div class="container">
+	<div class="main_photo">
+		<img src="{$detail['img1']}">
+	</div>
+	<div class="price">
+		<div class="discount">
+			<span>热销价格:￥ {$detail['price']}</span>
+		</div>
+		<div class="normal_price">
+			<span>市场价格:￥0</span>
+		</div>
+	</div>
+	<div class="detail">
+		<div class="product_detail"><span>商品详细参数:</span></div>
+		<div class="detail_content">
+			<div class="name">商品名称:{$detail['name']}</div>
+			<div class="detail_describe">商品描述:{$detail['describe']}</div>
+			<div class="stockcount">库存总量:{$detail['stockcount']}</div>
+			<div class="buycount">
+				<span>购买:</span><input id="pcount" style="display:inline; width:8%;" class="countbox" name="buycount" type="text" value="1" />
+				<span>{$detail['unit']}</span>
+				<button style="display:inline; width:20%; float:right; background:#ed145b; margin-right:5px; border-radius: 50px; min-width:90px;">立即购买</button>
+				<button style="display:inline; width:20%; float:right; background:#ff6100; margin-right:5px; border-radius: 50px; min-width:95px;"  onclick="Product.addCart({$detail['id']})">加入购物车 </button>
+			</div>
+		</div>
+	</div>
+	<div class="center_detail">
+		<button class="pddetail check" style="display:inline;">商品详情</button>
+		<button class="pdcomment" style="display:inline; ">用户评论</button>
+	</div>
+	<div class="detail_picture">
+		<img src="{$detail['img1']}">
+		<img src="{$detail['img2']}">
+		<img src="{$detail['img3']}">
+	</div>
+</div>
+<!-- 底部导航 -->
+{$footer_html}
+<!-- 统计代码 -->
+<notempty name="config.code">
+<p class="hide bdtongji">
+{$config.code}
+</p>
+</notempty>
+</body>
+</html>

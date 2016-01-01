@@ -1,0 +1,41 @@
+.cell{
+
+	height: 130px;
+
+	margin-bottom: 7px;
+
+	background: #ffffff;
+
+}
+
+.img{
+
+	float: left;
+
+	margin-right: 15px;
+
+}
+
+.img > img{
+
+	height: 130px;
+
+}
+
+.describe{
+
+	height: 90px;
+
+}
+
+.content{
+
+	padding-top: 10px;
+
+}
+
+.discount{
+
+	color: red;
+
+}

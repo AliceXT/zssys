@@ -1,0 +1,28 @@
+<!--继承的父类模板位于：Application\Home\View\default\Addons\param.html -->
+<extend name="param"/>
+<block name="css">
+<link href="{:ADDON_PUBLIC_PATH}/css/diy.css?v={:SITE_VERSION}" rel="stylesheet" type="text/css">
+</block>
+<!--参数配置模块 一般情况widget里的param.html继承此模板后只需要重写baseSetting代码块即可-->
+<block name="baseSetting">
+<form id="baseSettingForm" class="edit_module_form form-horizontal">
+    <div class="form-item" id="customArea">
+        <label class="item-label">输入公告内容:</label>
+        <div class="controls">
+        <label class="textarea">
+            <input type="text"class="textarea" id="announce_content" name="announce_content" style=" width:700px;" value="{$announce_content}">
+            </label>
+        </div>
+    </div>
+    <div class="form-item cf">
+        <label class="item-label"></label>
+        <div class="textArea">
+           <button type="button" id="confirm" class="btn submit-btn ajax-post" target-form="form-horizontal">确 定</button>
+           <button type="button" class="btn preview_btn">预 览</button>
+        </div>
+    </div>
+</form>
+</block>
+<block name="script">
+<script src="{:ADDON_PUBLIC_PATH}/js/form.js?v={:SITE_VERSION}" type="text/javascript"></script> 
+</block>

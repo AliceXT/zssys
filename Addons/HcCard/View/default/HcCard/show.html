@@ -1,0 +1,447 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="keywords" content="">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<title>{$info.ownername}的微名片</title>
+<link href="{:ADDON_PUBLIC_PATH}/style/mobile.css?v=20150205" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="{:ADDON_PUBLIC_PATH}/style/font-awesome.min.css">
+<!--[if IE 7]>
+<link rel="stylesheet" href="{:ADDON_PUBLIC_PATH}/style/font-awesome-ie7.min.css">
+<![endif]-->
+<script src="{:ADDON_PUBLIC_PATH}/script/hm.js"></script><script type="text/javascript" src="{:ADDON_PUBLIC_PATH}/script/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="{:ADDON_PUBLIC_PATH}/script/jquery.tipMessage.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=TyR2oNfyncX5CZI2esGsjoy8"></script>
+<link type="text/css" rel="stylesheet" href="{:ADDON_PUBLIC_PATH}/style/tips.css">
+<style type="text/css">
+body{
+	background-color:#000000;
+}.scr_con {
+	background: #000000;
+}.contdes,
+.preview_con .box4 h3,
+.preview_con .box5 h3 {
+	background: #CC0000;
+}
+.preview_con .box2 li i,.preview_con .informe h1{
+	color: #CC0000;
+}.inav li {
+	background: #CC0000;
+}.inav li a {
+	color: #000000;
+}.preview_con .box5 h3,
+.preview_con .box4 h3 {
+	color: #FFFFFF;
+}.contdes,
+.preview_con .box4 span,
+.preview_con .box2 li,
+.preview_con .box4 h1,
+.preview_con .box2 li a,
+.preview_con .informe p,
+.preview_con .informe .content,
+.preview_con .box5,
+.preview_con .box5 p{
+	color: #FFFFFF;
+}.preview_con .informe .content a,.preview_con .informe .content a:visited{
+	color: #000000;
+}.remark img{width:100%;}
+</style>
+</head>
+<body>
+<div id="bk_img" class="fluid">
+<div class="preview_con">
+<div class="scr_con">
+  <div class="box4">
+    <h1>{$info.ownername}<span>{$info.post}</span></h1>
+  </div>
+  <ol class="box1 box2">
+    <li><i class="icon-briefcase" style="content:url({:ADDON_PUBLIC_PATH}/image/Company.png);"></i>{$info.company_name}</li>
+    <li>
+      <i class="icon-user" style="content:url({:ADDON_PUBLIC_PATH}/image/Mobile-phone.png);" ></i> 
+      <a href="tel:{$info.phone}">手机：{$info.phone}</a>
+    </li>		
+    <li><i class="icon-comments" style="content:url({:ADDON_PUBLIC_PATH}/image/WeChat.png);" ></i> 微信：{$info.wechat}</li>	
+    <li><i class="icon-envelope" style="content:url({:ADDON_PUBLIC_PATH}/image/Mailbox.png);" ></i> <a href="mailto:{$info.email}" data-ignore="true">邮箱：{$info.email}</a></li>		
+    <!-- <li><i class="icon-comment" style="content:url({:ADDON_PUBLIC_PATH}/image/qq.png);" ></i> <a href="tencent://message/?uin={$info.QQ}&amp;Site=有事Q我&amp;Menu=yes" data-ignore="true">QQ：{$info.QQ}</a></li>    -->
+    <li><i class="icon-comment" style="content:url({:ADDON_PUBLIC_PATH}/image/qq.png);" ></i> <a href="http://wpa.qq.com/msgrd?v=3&uin={$info.QQ}&site=qq&menu=yes" data-ignore="true">QQ：{$info.QQ}</a></li>		
+    <li><i class="icon-phone" style="content:url({:ADDON_PUBLIC_PATH}/image/Number.png);"></i> <a href="tel:{$info.tel}" data-ignore="true">电话：{$info.tel}</a></li>		
+    <li><i class="icon-desktop" style="content:url({:ADDON_PUBLIC_PATH}/image/Website.png);"></i> <a href="{$info.company_url}" target="_blank" data-ignore="true">官网：{$info.company_url}</a></li>		
+    <li style="line-height:100%"><i class="icon-flag" style="content:url({:ADDON_PUBLIC_PATH}/image/Address.png);"></i> 地址：{$info.company_addr}</li>	
+  </ol>
+  <volist name="attrs" id="attr">
+  <div class="informe">
+    <h1>{$attr.title}</h1>
+    <div class="contdes">{$attr.desc}</div>
+    <div class="content"> 
+    <p>
+      <img src="{$attr.pic|get_cover_url}" alt="{$attr.title}"> 
+    </p>
+    <p>
+      <!-- <div class="essay" style="font-size:18px;">{$attr.content}</div> -->
+      <span class="essay" style="font-size:18px;">{$attr.content}</span>
+    </p>  
+    </div>
+  </div>
+  </volist>
+	<div class="inav">
+    <ul>
+      <volist name="links" id="link">
+        <li><a href="{$link.url}">{$link.title}</a></li>
+      </volist>
+    </ul>
+  </div>
+				
+							
+		 
+  <div class="informe">
+    <h1>给我留言</h1>
+    <div class="contdes"></div>
+    <div class="guestbook" style="margin-top:10px;">
+    <form action="{:addons_url('HcCard://Message/add')}" name="poster_form" id="poster_form" method="post">
+      <p>
+       <input type="text" name="name" id="name-t" placeholder="请输入姓名" value="">
+      </p>
+      <p>
+       <input type="text" name="tel" id="mobile-t" placeholder="请输入联系电话" value="">
+      </p>
+      <p>
+        <textarea name="content" id="content-t" placeholder="请输入内容"></textarea>
+      </p>
+      <div class="btn_bao">
+        <input name="hccard_id" type="hidden" value="{$info.id}" id="hccard_id">
+        <input name="submit" type="button" class="msg_btn" id="btn-add" value="提交">
+      </div>
+      <div style="height:40px;"></div>
+    </form>
+    <script type="text/javascript">
+	$(function(){
+          $("#btn-add").bind("click",function() {
+            var name = $("#name-t").val();
+            var mobile  = $("#mobile-t").val();
+            var content  = $("#content-t").val();
+            var hccard_id = $("#hccard_id").val();
+            if (name == '') {
+              $.tipMessage('请输入您的姓名！', 2, 2000);
+              return false;
+            }
+            if (mobile == '') {
+              $.tipMessage('请输入您的手机！', 2, 2000);
+              return false;
+        }
+        if (content == '') {
+                $.tipMessage('请输入内容！', 2, 2000);
+                return false;
+        }
+        var data = {
+                name: name,
+                tel: mobile,
+                content:content,
+                hccard_id:hccard_id
+        };
+        $.post("{:addons_url('HcCard://Message/add')}", data,
+         function(data) {
+          if (data.status == 1) {
+           $.tipMessage(data.info, 3, 3000);
+           $("#name-t").attr("value","");
+           $("#mobile-t").attr("value","");
+           $("#content-t").attr("value","");
+         }else{
+           $.tipMessage(data.info, 2, 2000);
+         }
+        },
+        "json")
+       });
+});
+
+    </script> 
+  </div>
+</div>
+</div>
+</div>
+
+
+<div class="e-sect e-map" id="map">
+    <input class="map-btn" id="map-btn" type="button" value="导航" style="margin-top: 216px;">
+	<div id="allmap"></div>
+</div>
+
+<img src="{:ADDON_PUBLIC_PATH}/image/map_close.gif" class="map-close-img" id="map-close-img">
+<img src="{:ADDON_PUBLIC_PATH}/image/bus_guide.gif" class="bus-guide-img" id="bus-guide-img">
+<img src="{:ADDON_PUBLIC_PATH}/image/self_guide.gif" class="self-guide-img" id="self-guide-img">
+<div id="r-result" class="r-result">
+</div>
+<div id="open-road" class="open-road">
+	<a href="javascript:;" class="open-road-btn" id="open-road-btn">打开路线图</a>
+</div>
+<div id="itude-parent-div" class="itude-parent-div">
+	<div class="itude-div" id="itude-div"></div>
+</div>
+
+			
+<div id="footer">技术支持：昌佳科技微名片系统</div>
+</div>
+<link type="text/css" rel="stylesheet" href="{:ADDON_PUBLIC_PATH}/style/quick1.css">
+<div class="quick-div model1">
+<div id="quick-phone" class="quick-phone">
+<div>
+<a href="{:addons_url('HcCard://Vcf/download?id='.$info['id'])}" style="color:#cc0000;font-size:28px;">
+<i class="icon-edit-sign" style="content:url({:ADDON_PUBLIC_PATH}/image/Business-card.png);"></i>
+<label style="color:#cc0000">保存名片</label>
+</a>
+</div><div>
+<a href="tel:{$info.phone}" style="color:#cc0000;font-size:28px;">
+<i class="icon-phone-sign" style="content:url({:ADDON_PUBLIC_PATH}/image/Telephone.png);"></i>
+<label style="color:#cc0000">电话</label>
+</a>
+</div><div>
+<a href="sms:{$info.phone}" style="color:#cc0000;font-size:28px;">
+<i class="icon-plane" style="content:url({:ADDON_PUBLIC_PATH}/image/Short-message.png);"></i>
+<label style="color:#cc0000">一键短信</label>
+</a>
+</div><div>
+<a href="__SELF__" style="color:#cc0000;font-size:28px;">
+<i class="icon-home" style="content:url({:ADDON_PUBLIC_PATH}/image/home.png);"></i>
+<label style="color:#cc0000">首页</label>
+</a>
+</div>	</div>
+</div><div id="backTop" class="back_top bt_fade_out">
+	<a href="javascript:;" title="返回顶部" class="back_top_btn"></a>
+</div>
+
+<div id="fixed_14420" style="position:fixed;left:0;top:0;;"><img src="{$info.portrait|get_cover_url}" style="width:100%;"><div class="arrow"></div>
+</div>
+<style type="text/css">
+  .icon-edit-sign,.icon-phone-sign,.icon-plane,.icon-home,.icon-briefcase,.icon-user,.icon-comments,.icon-envelope,.icon-comment,.icon-phone,.icon-desktop,.icon-flag{background-position:center;background-repeat:no-repeat;margin-top: 5px;}
+</style>
+<script type="text/javascript">
+var width = $(window).width();
+var right = ( width - 320 ) / 2 + 10;
+var backToTopEle = $("#backTop").click( function() {
+	$("body,html").animate({
+		scrollTop : 0
+	},50);
+	$("#backTop").removeClass("bt_fade_in");
+	$("#backTop").addClass("bt_fade_out");
+});
+var showEle = function(){
+	$(backToTopEle).removeClass("bt_fade_out");
+	$(backToTopEle).addClass("bt_fade_in");
+};
+var backToTopFun = function() {	
+	var docScrollTop = $(document).scrollTop();
+	if(docScrollTop > 0){
+		$("#backTop").removeClass("bt_fade_out");
+		$("#backTop").addClass("bt_fade_in");
+	}else{
+		$("#backTop").removeClass("bt_fade_in");
+		$("#backTop").addClass("bt_fade_out");
+	}
+};
+$(document).bind("scroll", backToTopFun);
+
+$(function(){
+	var _img = new Image();
+	_img.src = '{$info.portrait|get_cover_url}' ;
+	_img.onload = function(){
+		var _imgWidth = this.width, _imgHeight = this.height;
+		setTimeout(function(){
+			var _h = $(window).height(), t_w = $(window).width(), _w = $('#bk_img').width();
+			$('#bk_img').css({
+				width: _w,
+				left : (t_w - _w) /2
+			});
+		},/android 2/i.test(navigator.userAgent) ? 150 : 0);
+	}
+});
+</script>
+<!-- 导航 start -->
+<style type="text/css">
+  #allmap {width: 100%;height: 260px;overflow: hidden;margin:0;font-family:"微软雅黑";}
+</style>
+<script type="text/javascript">
+    // 百度地图API功能
+  var map = new BMap.Map("allmap");
+  var point = new BMap.Point(116.331398,39.897445);
+  var locate_point = new BMap.Point(116.331398,39.897445);
+  map.centerAndZoom(point,12);
+  // 创建地址解析器实例
+  var myGeo = new BMap.Geocoder();
+  // 将地址解析结果显示在地图上,并调整地图视野
+  myGeo.getPoint("{$info.company_addr}", function(point){
+    if (point) {
+      map.centerAndZoom(point, 16);
+      map.addOverlay(new BMap.Marker(point));
+      window.point = point;
+    }else{
+      alert("您选择地址没有解析到结果!");
+    }
+  }, "北京市");
+  $("#map-btn").click(function(){
+    
+    // 显示三个主要按钮、地图面板
+    $("#map-close-img").attr('style','display:block');
+    $("#bus-guide-img").attr('style','display:block');
+    $("#self-guide-img").attr('style','display:block');
+    $("#allmap").attr("style","position:fixed;left:0;top:0;height:"+$(window).height()+"px;");
+    $(".preview_con").attr('style','display:none');
+    $("#map-btn").attr('style','display:none');
+    var map = new BMap.Map("allmap");
+  var point = new BMap.Point(116.331398,39.897445);
+  var locate_point = new BMap.Point(116.331398,39.897445);
+  map.centerAndZoom(point,12);
+  // 创建地址解析器实例
+  var myGeo = new BMap.Geocoder();
+  // 将地址解析结果显示在地图上,并调整地图视野
+  myGeo.getPoint("{$info.company_addr}", function(point){
+    if (point) {
+      map.centerAndZoom(point, 16);
+      map.addOverlay(new BMap.Marker(point));
+      window.point = point;
+    }else{
+      alert("您选择地址没有解析到结果!");
+    }
+  }, "北京市");
+  })
+
+  $("#map-close-img").click(function(){
+    location.reload();
+  })
+  // 给浏览器定位地址
+  function find_locate(flag){
+    var geolocation = new BMap.Geolocation();
+    geolocation.getCurrentPosition(function(r){
+      if(this.getStatus() == BMAP_STATUS_SUCCESS){
+        window.locate_point = r.point;
+        if(flag){
+          find_bus_road();
+        }else{
+          find_self_road();
+        }
+      }
+      else {
+        alert('failed'+this.getStatus());
+      }        
+    },{enableHighAccuracy: true})
+  }
+
+  function find_bus_road(){
+    var transit = new BMap.TransitRoute(map, {
+    renderOptions: {map: map, panel: "r-result"}
+    });
+    transit.search(locate_point,point);
+    $("#r-result").attr("style","display:block");
+  }
+
+  function find_self_road(){
+    var driving = new BMap.DrivingRoute(map, {renderOptions: {map: map, panel: "r-result", autoViewport: true}});
+    driving.search(locate_point,point);
+    $("#r-result").attr("style","display:block");
+  }
+  $("#bus-guide-img").click(function(){
+    find_locate(true);//参数为true表示为公交路线
+  })
+  $("#self-guide-img").click(function(){
+    find_locate(false);//参数为false表示自驾路线
+  })
+</script>
+<!-- 导航 end  -->
+<script type="text/javascript" src="{:ADDON_PUBLIC_PATH}/script/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+wx.ready(function () {
+  wx.onMenuShareAppMessage({
+	  title: '{$info.ownername}的微名片',
+	  desc: '{$info.description}',
+	  link: '__SELF__',
+	  imgUrl: '{$info.portrait|get_cover_url}',
+	  trigger: function (res) {
+	  },
+	  success: function (res) {
+		$.get("/Home/share_count.html?id=36");
+		$.tipMessage('分享成功！', 3, 3000);
+	  },
+	  cancel: function (res) {
+		$.tipMessage('不小心取消分享了？再分享试试', 1, 2000);
+	  },
+	  fail: function (res) {
+		$.tipMessage('不要紧，可能是网络问题，一会儿再试试？', 2, 2000);
+	  }
+  });
+
+   wx.onMenuShareTimeline({
+      title: '{$info.ownername}的微名片',
+      link: '__SELF__',
+      imgUrl: '{$info.portrait|get_cover_url}',
+      trigger: function (res) {
+      },
+      success: function (res) {
+        $.get("/Home/share_count.html?id=36");
+		$.tipMessage('分享成功！', 3, 3000);
+      },
+      cancel: function (res) {
+        $.tipMessage('不小心取消分享了？再分享试试', 1, 2000);
+      },
+      fail: function (res) {
+        $.tipMessage('不要紧，可能是网络问题，一会儿再试试？', 2, 2000);
+      }
+    });
+
+  wx.onMenuShareQQ({
+      title: '{$info.ownername}的微名片',
+      desc: '{$info.description}',
+      link: '__SELF__',
+      imgUrl: '{$info.portrait|get_cover_url}',
+      trigger: function (res) {
+      },
+      complete: function (res) {
+      },
+      success: function (res) {
+        $.get("/Home/share_count.html?id=36");
+		$.tipMessage('分享成功！', 3, 3000);
+      },
+      cancel: function (res) {
+        $.tipMessage('不小心取消分享了？再分享试试', 1, 2000);
+      },
+      fail: function (res) {
+        $.tipMessage('不要紧，可能是网络问题，一会儿再试试？', 2, 2000);
+      }
+    });
+  
+  wx.onMenuShareWeibo({
+      title: '{$info.ownername}的微名片',
+      desc: '{$info.description}',
+      link: '__SELF__',
+      imgUrl: '{$info.portrait|get_cover_url}',
+      trigger: function (res) {
+      },
+      complete: function (res) {
+      },
+      success: function (res) {
+        $.get("/Home/share_count.html?id=36");
+		$.tipMessage('分享成功！', 3, 3000);
+      },
+      cancel: function (res) {
+        $.tipMessage('不小心取消分享了？再分享试试', 1, 2000);
+      },
+      fail: function (res) {
+        $.tipMessage('不要紧，可能是网络问题，一会儿再试试？', 2, 2000);
+      }
+    });
+});
+
+wx.error(function (res) {
+  alert(res.errMsg);
+});
+
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e9734796f9e1a090f270f66045e51917";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+ </body></html>

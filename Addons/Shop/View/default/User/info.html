@@ -1,0 +1,206 @@
+<include file="Public/mobile_head" />
+<link rel="stylesheet" type="text/css" href="{:ADDON_PUBLIC_PATH}/css/myOrder.css">
+<link rel="stylesheet" type="text/css" href="{:ADDON_PUBLIC_PATH}/css/userinfo.css">
+<script type="text/javascript" src="{:ADDON_PUBLIC_PATH}/js/userinfo.js"></script>
+<script type="text/javascript" src="{:ADDON_PUBLIC_PATH}/js/new.js"></script>
+<script type="text/javascript">
+var zjhy = 0;
+var jjhy = 0;
+var zjhyxd = 0;
+var jjhyxd = 0;
+var page_count = 100;
+var pages = null;
+var jj_num = 0; 
+var canClose = false;
+var openid = "{$info.openid}";
+$(document).ready(function() {
+    Info.initIndex();
+})
+</script>
+
+<body id="shop">
+    <div class="header">
+        <a class="back" href="javascript:history.go(-1);"></a>
+        <span class="title">个人信息</span>
+        <a href="javascript:void(0)" onclick="Cart.setCartEmpty()" style="float:right;">
+            <em class="cart_icon" style="padding-right:15px;"></em>
+        </a>
+    </div>
+    <span style="width:100%;height:1px;background-color:#fff;float:left;display;block;filter:alpha(opacity=2);-moz-opacity:0.2;opacity: 0.2;z-index:100;">
+  </span>
+    <div class="container">
+        <div class="userinfo">
+            <div class="photo">
+                <img src="{$info.headimgurl}">
+            </div>
+            <div class="userinfo_detail">
+                <span>真实姓名:{$info.nickname}</span>
+                <span>微信昵称:{$info.wxnickname}</span>
+                <span>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别:{$info.sex}</span>
+                <span>上&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;线:{$sx}</span>
+            </div>
+        </div>
+        <div class="bannetu-png"></div>
+        <div class="asset">
+            <div class="asset_cell">
+                <span class="asset_title" style="width:2.5em;">电话:</span>
+                <span class="asset_val" style="width:85%;">{$info.phone}</span>
+            </div>
+            <div class="asset_cell">
+                <span class="asset_title" style="width:2.5em;">地址:</span>
+                <span class="asset_val" style="width:85%;">{$info.address}</span>
+            </div>
+        </div>
+        <div class="asset">
+            <div class="asset_cell">
+                <span class="asset_title" style="width:2.5em;">余额:</span>
+                <span class="asset_val">{$info.remain_money}元</span>&nbsp;&nbsp;<a href="/index.php?s=/addon/Shop/User/getCasherReport.html">提现</a>
+            </div>
+            <!-- <div class="asset_cell">
+			<span class="asset_title">积分:</span> <span class="asset_val">3分</span>
+		</div> -->
+        </div>
+        <div class="asset">
+            <div class="asset_cell">
+                <!-- <a href="/index.php?s=/addon/Shop/User/zjUser.html"> -->
+                <a href="{:addons_url('Shop://User/zjUser',array('id'=>$info['openid']))}">
+                    <span class="asset_title" style="width:4.5em;">直接会员:</span>
+                    <span class="asset_val" id="zjhy" style="text-decoration:underline;">{$sub_count|default="0"}</span>人</a>
+            </div>
+            <div class="asset_cell">
+                <!-- <a href="/index.php?s=/addon/Shop/User/jjUser.html"> -->
+                <a href="{:addons_url('Shop://User/jjUser',array('id'=>$info['openid']))}">
+                    <span class="asset_title" style="width:4.5em;">间接会员:</span>
+                    <span class="asset_val" id="jjhy" style="text-decoration:underline;">{$not_im_sub_count|default="0"}</span>人</a>
+            </div>
+        </div>
+        <div class="asset">
+            <div class="asset_cell">
+                <a href="{:addons_url('Shop://User/zjOrder',array('id'=>$info['openid']))}">
+                    <span class="asset_title">直接会员下单:</span> 
+                    <span class="asset_val" id="zjhyxd">{$count_order|default="0"}</span>单
+                </a>
+            </div>
+            <div class="asset_cell">
+                <a href="{:addons_url('Shop://User/jjOrder',array('id'=>$info['openid']))}">
+                    <span class="asset_title">间接会员下单:</span> 
+                    <span class="asset_val" id="jjhyxd">{$im_order_count|default="0"}</span>单
+                </a>
+            </div>
+        </div>
+        <div style="margin-top: 15px;">
+            <button onclick="User.leapToEdit()">修改/完善信息</button>
+        </div>
+    </div>
+    <block name="widget_content">
+        <!-- 底部导航最多能添加4个选项 -->
+        <style>
+        /* 底部菜单 */
+        
+        .bottom_nav_blank {
+            height: 50px;
+            width: 100%;
+        }
+        
+        .bottom_nav {
+            height: 50px;
+            width: 100%;
+            background:#2e393f url({:SITE_URL}/Addons/Diy/Widget/Footer/bg.png);
+            background-size: 100% 100%;
+            display: -webkit-box;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        
+        .bottom_nav .item {
+            color: #fff;
+            display: block;
+            padding: 5px 0;
+            font-weight: bold;
+            text-align: center;
+            -webkit-box-flex: 1;
+            line-height: 40px;
+            font-size: 16px;
+        }
+        
+        .bottom_nav .item.cur {
+            background-color: #111
+        }
+        
+        .bottom_nav .has_nav {
+            position: relative;
+        }
+        
+        .more_nav {
+            position: absolute;
+            right: 5%;
+            left: 5%;
+            bottom: 60px;
+            width: 90%;
+            height: auto;
+            background: #3b3d40;
+            display: none;
+        }
+        
+        .more_nav em {
+            width: 10px;
+            height: 10px;
+            background: #2e393f;
+            position: absolute;
+            left: 50%;
+            margin-left: -5px;
+            bottom: -3px;
+            -webkit-transform: rotate(45deg);
+        }
+        
+        .bottom_nav .more_nav a {
+            padding: 0;
+            line-height: 40px;
+            font-size: 13px;
+            border-bottom: 1px solid #555
+        }
+        
+        .arrow_up {
+            background:url({:SITE_URL}/Addons/Diy/Widget/Footer/arrow_up.png) no-repeat center center;
+            background-size: 15px auto;
+            padding: 10px;
+            margin-left: 5px
+        }
+        
+        #actionLayoutBody .bottom_nav,
+        #diyPreviewBody .bottom_nav {
+            position: static
+        }
+        </style>
+        <nav class="bottom_nav">
+            <volist name="footer" id="vo">
+                <if condition="empty($vo['child'])">
+                    <a class="item" href="{$vo.url}">{$vo.title}</a>
+                    <else />
+                    <div class="item has_nav" href="javascript:;" onClick="$(this).find('#more_nav_{$vo.id}').toggle();">
+                        {$vo.title}<em class="arrow_up"></em>
+                        <div class="more_nav" id="more_nav_{$vo.id}">
+                            <em></em>
+                            <volist name="vo.child" id="vv">
+                                <a href="{$vv.url}">{$vv.title}</a>
+                            </volist>
+                        </div>
+                    </div>
+                </if>
+            </volist>
+        </nav>
+    </block>
+    <!-- 底部导航 -->
+    {$footer_html}
+    <!-- 统计代码 -->
+    <notempty name="config.code">
+        <p class="hide bdtongji">
+            {$config.code}
+        </p>
+    </notempty>
+</body>
+
+</html>

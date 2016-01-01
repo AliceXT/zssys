@@ -1,0 +1,120 @@
+body {
+	background-color: transparent;
+	overflow: hidden;
+	background-image: url(../image/pc/bg3.jpg);
+	background-size: cover;
+	background-position: 50% 50%;
+	color: #FFF;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+}
+body {
+	background-color: #000;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	min-height: 100%;
+	font-family: 'Microsoft Yahei', Tahoma, Helvetica, Arial, sans-serif;
+	font-size: 62.5%;
+	line-height: 1.231;
+	-webkit-touch-callout: none;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-box-align: stretch;
+	position: relative;
+}
+a:link, a:visited {
+	text-decoration: none;
+	color: #FFF;
+}
+a:hover, a:active {
+	color: #27ae60;
+}
+.old-error{
+	font-size:18px;
+	line-height:40px;
+	background-color:#000;
+	color:#FFF;
+	text-align:center;
+}
+#main {
+	width: 800px;
+	margin-right: auto;
+	margin-left: auto;
+	position: relative;
+}
+#powered-by {
+	position: fixed;
+	right: 0px;
+	bottom: 0px;
+	height: 40px;
+	line-height: 40px;
+	text-align: right;
+	padding-right: 10px;
+}
+#powered-by a{
+	text-decoration:underline;
+}
+#phone {
+	background-image: url(../image/pc/mx3.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	height: 630px;
+	width: 350px;
+	position: absolute;
+	left: 0px;
+	top: 50%;
+	margin-top:-315px;
+}
+#qrcode {
+	width: 230px;
+	position: absolute;
+	top: 50%;
+	right: 0px;
+	margin-top:-250px;
+}
+#qrcode h1 {
+	font-size: 16px;
+	line-height: 40px;
+}
+#qrcode p{
+	line-height:30px;
+	font-size:14px;
+}
+.qrimg {
+	background-color: #FFF;
+	padding: 15px;
+}
+.share{
+	padding:15px 0;
+}
+.iwant {
+	font-size: 15px;
+	border: 1px solid #fff;
+	border-radius: 5px;
+	height: 42px;
+	line-height: 42px;
+	text-align: center;
+}
+.iwant a{
+	color:#27ae60;
+	text-decoration:underline;
+}
+#phone .frame {
+	height: 516px;
+	width: 334px;
+	padding-top: 60px;
+	padding-left: 8px;
+}
+#phone .frame iframe {
+	height: 516px;
+	width: 334px;
+}
+#phone .frame .layout {
+	height: 516px;
+	width: 320px;
+	position: absolute;
+	left: 8px;
+	top: 60px;
+	z-index: 1000;
+}

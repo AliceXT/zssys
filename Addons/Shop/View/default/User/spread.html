@@ -1,0 +1,111 @@
+<extend name="Base/common" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<block name="body">
+<script type="text/javascript" src="{:ADDON_PUBLIC_PATH}/js/userinfo.js"></script>
+<script type="text/javascript" src="{:ADDON_PUBLIC_PATH}/js/new.js"></script>
+<script type="text/javascript" src="{:ADDON_PUBLIC_PATH}/js/spread.js"></script>
+<script type="text/javascript">
+var page = 1;
+var zjhy = 0;
+var jjhy = 0;
+var zjpage_sum = 0;
+var page_count = 100;
+var hy_count = 0;
+var container;
+// var type = "{$hyType}";
+var openid = "{$openid}";
+$(function(){
+	$("#firbtn").click(function(){
+		Spread.init("#zjcontainer");
+		$("#firbtn").attr("disabled", "disabled");
+	})
+	$("#secbtn").click(function(){
+		Spread.init("#jjcontainer");
+		$("#secbtn").attr("disabled", "disabled");
+
+	})
+})
+</script>
+<style type="text/css">
+/*right正文*/
+.right-text {
+	float:left;
+	width:960px;
+	width: 95%;
+	margin-left: 20px;
+}
+.right-text .Big_title{
+	font-size:16px;
+	font-weight:bold;
+	float:left;
+	margin:10px;
+}
+.right-text ul {
+	float:left;
+	width:960px;
+	width: 95%;
+	display:block;
+	border-bottom:solid 2px #dddddd;
+}
+.right-text ul li {
+	float:left;
+	width:25%;
+	height:50px;
+	line-height:50px;
+	font-size:14px;
+	font-weight:bold;
+}
+.right-text dl {
+	float:left;
+	width:960px;
+	width: 95%;
+	display:block;
+	border-bottom:solid 1px #dddddd;
+	padding:8px 0px;
+	color:#333333;
+}
+.right-text dl dt{
+	width:25%;
+	float:left;
+
+}
+.right-text dl dt img {
+	width:50px;
+	height:50px;
+	border:solid 1px #dddddd;
+	border-radius:4px;
+	border-top-right-radius:4px;
+	border-top-left-radius:4px;
+	border-bottom-right-radius:4px;
+	border-bottom-left-radius:4px;
+}
+.right-text dl dd{
+	width:25%;
+	float:left;
+	height:50px;
+	line-height:50px;
+	font-size:14px;
+}
+</style>
+<div class="span9 page_message">
+	<section id="contents">
+    <include file="Addons/_nav" />
+<div class="right-text">
+   <button class="Big_title" id="firbtn">一级下线(点击刷新)</button>
+    <ul>
+     <li>用户：</li>
+     <li>昵称：</li>
+     <li>OpenID：</li>
+    </ul>
+    <div id="zjcontainer">
+    </div>
+     <button class="Big_title" id="secbtn">二级下线(点击刷新)</button>
+    <ul>
+     <li>用户：</li>
+     <li>昵称：</li>
+     <li>OpenID：</li>
+    </ul>
+    <div id="jjcontainer">
+    </div>
+</div>
+</block>

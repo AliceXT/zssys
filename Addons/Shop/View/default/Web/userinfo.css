@@ -1,0 +1,83 @@
+﻿.header{
+    background: #fff none repeat scroll 0 0;
+    box-shadow: 0 1px 3px #ccc;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    width: 100%;
+    background-color:#fff4ba;
+}
+.header .back{
+    background: rgba(0, 0, 0, 0) url("../img/back.png") no-repeat scroll 0 0 / 35px 35px;
+    height: 35px;
+    left: 10px;
+    position: absolute;
+    top: 8px;
+    width: 35px;
+}
+.header .title{
+    color: #f00;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.container{
+	padding-bottom: 6rem;
+	width:100%;
+    background:url("../img/bgtu.png");
+}
+.userinfo{
+    width: 100%;
+	min-height: 7.5rem;
+    background:url("../img/bannetu.png") no-repeat;
+    padding-top:1rem;
+}
+.photo{
+    margin-left:0.8rem;
+} 
+.photo img{
+    width:5rem;
+	height: 5rem;
+    border:solid 2px #cbccc8;
+    -webkit-box-shadow: 0px 0px 3px #cbccc8;
+　　-moz-box-shadow: 0px 0px 3px #cbccc8;
+　　box-shadow: 0px 0px 3px #cbccc8;
+	border-radius: 2px;
+    border-top-left-radius:2px;
+    border-top-right-radius:2px;
+    border-bottom-left-radius:2px;
+    border-bottom-right-radius:2px;
+    
+}
+.userinfo_detail span{
+    font-size:1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+}
+.userinfo_detail > span{
+	height: 26px;
+}
+.asset{
+	border-top: 2px solid #dcdcdc;
+    border-bottom:solid 2px #dcdcdc;
+	padding:1rem;
+	clear: both;
+    background-color:#fff;
+    font-size:1rem;
+    margin: 10px 0px;
+}
+.asset_val{
+	margin-left: 10px;
+}
+.asset_title{
+	display: block;
+	float: left;
+	width: 50%;
+}
+.asset_val{
+	width: 70%;
+}

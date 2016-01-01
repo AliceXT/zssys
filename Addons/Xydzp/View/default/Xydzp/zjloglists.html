@@ -1,0 +1,56 @@
+<extend name="Base/common" />
+<block name="body">
+  <div class="span9 page_message">
+    <section id="contents"> 
+      <ul class="tab-nav nav">
+		<li class=""><a href="{:U('lists')}">活动管理</a></li>
+        <li><a href="{:U('jpoplists')}">奖品库管理</a></li>
+		<li class="current"><a href="{:U('zjloglists?id='.$xydzp_id)}">编号为({$xydzp_id})的中奖记录</a></li>
+
+<form action="{:U('zjloglists?id='.$xydzp_id)}" method="POST">
+        <li>
+            <select class="proname" name="proname">
+                <option value="全部">全   部</option>
+                <volist name='typename' id="xlssql">
+                	<option value="{$xlssql.title}">{$xlssql.title}</option>
+                </volist>
+
+            </select>
+       </li>
+        <li><input name="btnlyf" type="submit" value="提 交" /></li>
+</form>
+       <li><a href="{:U('printxls?ptype='.$ptype.'&id='.$xydzp_id)}">导 出</a></li> 
+      </ul>
+      <!-- 数据列表 -->
+      <div class="data-table">
+        <div class="data-table table-striped">
+          <table>
+            <!-- 表头 -->
+            <thead>
+              <tr>
+                <th class="row-selected row-selected"> <input class="check-all" type="checkbox">
+                </th>
+                <volist name="list_grids" id="field">
+                  <th>{$field.title}</th>
+                </volist>
+              </tr>
+            </thead>
+            
+            <!-- 列表 -->
+            <tbody>
+              <volist name="list_data" id="data">
+                <tr>
+                  <td><input class="ids" type="checkbox" value="{$data['id']}" name="ids[]"></td>
+                  <volist name="list_grids" id="grid">
+                    <td>{:get_list_field($data,$grid,$model)}</td>
+                  </volist>
+                </tr>
+              </volist>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="page"> {$_page|default=''} </div>
+    </section>
+  </div>
+</block>

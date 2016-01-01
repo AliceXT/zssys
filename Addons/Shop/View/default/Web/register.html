@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html style="font-size: 40px;">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="{:ADDON_PUBLIC_PATH}/template/register/hm.js"></script>
+<title>{$web.title}</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=2.0, user-scalable=1"> -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="layoutmode" content="standard">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="renderer" content="webkit">
+<!--uc浏览器判断到页面上文字居多时，会自动放大字体优化移动用户体验。添加以下头部可以禁用掉该优化-->
+<meta name="wap-font-scale" content="no">
+<meta content="telephone=no" name="format-detection">
+<meta http-equiv="Pragma" content="no-cache">
+<script type="text/javascript">
+//html root的字体计算应该放在最前面，这样计算就不会有误差了/
+var _htmlFontSize = (function(){
+    var clientWidth = document.documentElement ? document.documentElement.clientWidth : document.body.clientWidth;
+    if(clientWidth > 640) clientWidth = 640;
+    document.documentElement.style.fontSize = clientWidth * 1/16+"px";
+    return clientWidth * 1/16;
+})();
+</script>
+<script type="text/javascript" src="Public/static/jquery-1.10.2.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{:ADDON_PUBLIC_PATH}/template/register/base.min.css" title="default">
+<link rel="stylesheet" id="mobiStyleTemplateCss" type="text/css" href="{:ADDON_PUBLIC_PATH}/template/register/308.min.css">
+<link rel="shortcut icon" href="{$web.icon|get_picture_url}">
+<meta name="keywords" content="{$web.keywords}">
+<meta name="description" content="{$web.decription}">
+<!-- //输出模块样式css -->
+<style id="mobiStyleNav" type="text/css">
+.open .navItem:nth-child(2) {transition-delay: 160ms;} 
+.open .navItem:nth-child(4) {transition-delay: 240ms;} 
+.open .navItem:nth-child(6) {transition-delay: 320ms;} 
+.open .navItem:nth-child(8) {transition-delay: 400ms;} 
+.open .navItem:nth-child(10) {transition-delay: 480ms;} 
+.open .navItem:nth-child(12) {transition-delay: 560ms;} 
+.open .navItem:nth-child(14) {transition-delay: 640ms;} 
+.open .navItem:nth-child(16) {transition-delay: 720ms;} 
+#navbar_101 .icon-navItemIcon{background-image: url(http://3702375.s21i-3.faiusr.com/4/ABUIABAEGAAglrvOqAUo2-3DnwcwgAE4gAE!100x100.png);background-size:contain;background-position:50% 50%;} 
+#navbar_101 .icon-navItemIcon:before{content:none;} 
+.open .navItem:nth-child(18) {transition-delay: 800ms;} 
+.open .navItem:nth-child(20) {transition-delay: 880ms;} 
+.open .navItem:nth-child(22) {transition-delay: 960ms;} 
+#navbar_104 .icon-navItemIcon{background-image: url(http://3702375.s21i-3.faiusr.com/4/ABUIABAEGAAgy7rOqAUovNigIDCAAjiAAg!100x100.png);background-size:contain;background-position:50% 50%;} 
+#navbar_104 .icon-navItemIcon:before{content:none;} 
+.open .navItem:nth-child(24) {transition-delay: 1040ms;} 
+#navbar_105 .icon-navItemIcon{background-image: url(http://3702375.s21i-3.faiusr.com/4/ABUIABAEGAAg9bLOqAUo9Ob2ngMwMDgw.png);background-size:contain;background-position:50% 50%;} 
+#navbar_105 .icon-navItemIcon:before{content:none;} 
+.open .navItem:nth-child(26) {transition-delay: 1120ms;} 
+#navbar_106 .icon-navItemIcon{background-image: url(http://3702375.s21i-3.faiusr.com/4/ABUIABAEGAAgmLnOqAUo1JSI-AIwgAQ4gAQ!100x100.png);background-size:contain;background-position:50% 50%;} 
+#navbar_106 .icon-navItemIcon:before{content:none;} 
+.open .navItem:nth-child(28) {transition-delay: 1200ms;} 
+#navbar_107 .icon-navItemIcon{background-image: url(http://3702375.s21i-3.faiusr.com/4/ABUIABAEGAAg87jOqAUoqfms6AYwgAI4gAI!100x100.png);background-size:contain;background-position:50% 50%;} 
+#navbar_107 .icon-navItemIcon:before{content:none;} 
+.open .navItem:nth-child(30) {transition-delay: 1280ms;} 
+#navbar_108 .icon-navItemIcon{background-image: url(http://3702375.s21i-3.faiusr.com/4/ABUIABAEGAAgrrrOqAUoycLirwMwgAE4gAE!100x100.png);background-size:contain;background-position:50% 50%;} 
+#navbar_108 .icon-navItemIcon:before{content:none;} 
+.open .navItem:nth-child(32) {transition-delay: 1360ms;} 
+#navbar_109 .icon-navItemIcon{background-image: url(http://3702375.s21i-3.faiusr.com/4/ABUIABAEGAAgv7nOqAUo_J6dvQQw2AQ42AQ!100x100.png);background-size:contain;background-position:50% 50%;} 
+#navbar_109 .icon-navItemIcon:before{content:none;} 
+.open .navItem:nth-child(34) {transition-delay: 1440ms;} 
+#navbar_110 .icon-navItemIcon{background-image: url(http://3702375.s21i-3.faiusr.com/4/ABUIABAEGAAg8brOqAUo9Lr97AUwgAE4gAE!100x100.png);background-size:contain;background-position:50% 50%;} 
+#navbar_110 .icon-navItemIcon:before{content:none;} 
+.open .navItem:nth-child(36) {transition-delay: 1520ms;} 
+#navbar_111 .icon-navItemIcon{background-image: url(http://3702375.s21i-3.faiusr.com/4/ABUIABAEGAAgu6rPqAUo3rOztQMwgAE4gAE!100x100.png);background-size:contain;background-position:50% 50%;} 
+#navbar_111 .icon-navItemIcon:before{content:none;} 
+.open .navItem:nth-child(38) {transition-delay: 1600ms;} 
+#navbar_112 .icon-navItemIcon:before{content:'';} 
+#navbar_112 .icon-navItemIcon{background-image:none;} 
+.open .navItem:nth-child(40) {transition-delay: 1680ms;} 
+#navbar_113 .icon-navItemIcon:before{content:'';} 
+#navbar_113 .icon-navItemIcon{background-image:none;} 
+.open .navItem:nth-child(42) {transition-delay: 1760ms;} 
+#navbar_114 .icon-navItemIcon{background-image: url(http://3702375.s21i-3.faiusr.com/4/ABUIABAEGAAglKvPqAUo6Ivm7AMwgAQ4gAQ!100x100.png);background-size:contain;background-position:50% 50%;} 
+#navbar_114 .icon-navItemIcon:before{content:none;} 
+.open .navItem:nth-child(44) {transition-delay: 1840ms;} 
+</style>
+<style id="mobiCubeStyleModule">
+</style>
+<style id="mobiSearchStyleModule">
+</style>
+<!-- 系统特殊隐藏栏目隐藏头部、banner -->
+<style type="text/css">
+.g_web{ overflow-x: auto;}
+.webContainerBox{ position: static;}
+.form{ position: static;}
+#webHeaderBox {display:none;}
+#webBannerBox {display:none;}
+.form.Handle{margin:0px;padding:0px;}
+.form .formBannerTitle{display:none;}
+.formMiddle{padding:0px;background:none;border:none;box-shadow:none;box-sizing:border-box;margin-top: 0 !important;}
+</style>
+</head>
+<body faiscomobi="true" id="g_body" class="g_locale2052 mobiCol11">
+<div id="webContainerBox" class="webContainerBox moveAnimation">
+  <div id="webModuleContainer" class="webModuleContainer">
+	<div id="module9" class="form Handle  formStyle14 " _autoheight="1">
+	  <div class="formBannerTitle formBannerTitle9">
+	    <div class="titleLeft titleLeft9"></div>
+        <div class="titleCenter titleCenter9">
+	      <div class="titleText titleText9">
+	        <div class="titleTextIcon icon-titleText">&nbsp;</div>
+	        <div class="textContent">会员注册</div>
+	      </div>
+	      <div class="formBannerMore formBannerMore9"></div>
+	    </div>
+		<div class="titleRight titleRight9">
+		</div>
+	  </div>
+	  <div class="formMiddle formMiddle9">
+	  	<div class="middleLeft middleLeft9">
+	  	</div>
+	  	<div class="middleCenter middleCenter9">
+	  		<div class="formMiddleContent formMiddleContent9 moduleContent">
+	  			<div id="signupPage">
+	  				<div class="loginHeader webHeaderBg">
+	  					<a href="芳芳庄园10000.htm" class="g_close icon-gClose"></a>
+	  					<span class="title pageTitle">会员注册</span>
+	  				</div>
+	  				<div class="signUpContent">
+	  					<div id="profileArea">
+	  						<div class="g_globalLine ">
+	  							<input type="text" maxlength="50" id="memberSignupAcct" class="mustItem itemEdit userAddItem g_input" placeholder="请输入注册邮箱(必填)">
+	  							<span class="icon-userIcon g_mainColor"></span>
+	  							<span class="mustIcon">&nbsp;*</span>
+	  						</div>
+	  						<div class="g_globalLine ">
+	  							<input type="password" maxlength="20" id="memberSignupPwd" class="mustItem itemEdit icon-pswIcon userAddItem g_input" placeholder="请输入密码(必填)">
+	  							<span class="icon-pswIcon g_mainColor"></span>
+	  							<span class="mustIcon">&nbsp;*</span>
+	  						</div>
+	  						<div class="g_globalLine ">
+	  							<input type="password" maxlength="20" id="memberSignupRepwd" class="mustItem itemEdit icon-pswIcon userAddItem g_input" placeholder="请输入确认密码(必填)">
+	  							<span class="icon-pswIcon g_mainColor"></span>
+	  							<span class="mustIcon">&nbsp;*</span>
+	  						</div>
+	  						<div class="g_globalLine ">
+	  							<input type="text" maxlength="50" id="name"  class="mustItem itemEdit userAddItem isCheckUAI g_input" placeholder="请输入昵称(必填)">
+	  							<span class="icon-nameIcon g_mainColor"></span>
+	  						</div>
+	  						<!-- <div class="g_globalLine ">
+	  							<input type="text" maxlength="50" id="email" name="电子邮件" class="mustItem itemEdit userAddItem isCheckUAI g_input" placeholder="请输入电子邮件(必填)">
+	  							<span class="icon-emailIcon g_mainColor"></span>
+	  						</div> -->
+	  						<div class="g_globalLine ">
+	  							<input type="text" maxlength="50" id="phone" name="联系电话" class="itemEdit userAddItem g_input" placeholder="请输入联系电话">
+	  							<span class="icon-phoneIcon g_mainColor"></span>
+	  						</div>
+	  						<!-- <div class="g_globalLine ">
+	  							<input type="text" class="itemEdit g_input userAddItem" id="memberSignupRemark" maxlength="200" placeholder="请输入留言" style="color: rgb(51, 51, 51);">
+	  							<span class="icon-msgIcon g_mainColor"></span>
+	  						</div> -->
+	  						<div class="g_globalLine">
+	  							<input id="memberSignupCaptcha" type="text" class="captchaText g_input" maxlength="5" placeholder="请输入验证码" style="color: rgb(51, 51, 51);">
+	  							<img id="signupCaptchaImg" class="captchaImg" src="{:U('User/verify')}" onclick="changeAttr()" style="cursor:pointer;">
+	  							<div style="clear:both"></div>
+	  						</div>
+	  						<!-- <div class="ProtocolLineCtrl g_globalLine">
+	  							<input style="position:relative;" type="checkbox" id="memberAgreePro" class="memberAgreeProCheck">
+	  							<label for="memberAgreePro" class="memberAgreeProLabel" onclick="Mobi.checkLabel(this)">
+	  								<span class="icon-checkIcon g_mainColor"></span>
+	  								我已经阅读并同意
+	  							</label>
+	  							<a hidefocus="true" onclick="Mobi.getMProtocol()" class="memberProtocol">《会员注册协议》</a>
+	  						</div> -->
+	  						<div class="signupSubmitCtrl g_globalLine">
+	  							<input type="button" class="g_button sendIcon signupSubmit submitIcon" onclick="checkVerify()" value="注册">
+	  						</div>
+
+	  		  <script type="text/javascript">
+	  		  function empty(exp){
+	  		  	if (!exp && typeof(exp)!="undefined" && exp!=0)
+	  		  	{
+	  		  		return true;
+	  		  	}
+	  		  	return false;
+	  		  }
+              function checkVerify(){
+              	if($("#memberSignupPwd").val() != $("#memberSignupRepwd").val()){
+              		alert("两次输入的密码不一致");
+              		return ;
+              	}
+
+              	var username = $("#name").val();
+              	var email = $("#memberSignupAcct").val();
+              	var password = $("#memberSignupPwd").val();
+              	var mobile = $("#phone").val();
+              	var verify = $("#memberSignupCaptcha").val();
+
+
+              	$.ajax({
+              		url		: window.location.href,
+              		data 	: 
+              		{
+              			username:username,
+              			password:password,
+              			email:email,
+              			mobile:mobile,
+              			verify:verify
+              		},
+              		type 	: 'post',
+              		dataType: 'json',
+              		success : function(rp){
+              			data = eval(rp);
+              			alert(data.state);
+              			if(data.success){
+              				window.location = data.url;
+              			}else{
+              				changeAttr();
+              			}
+              		},
+              		error	: function(){
+              			alert("服务器没有反应");
+              		}
+              	});
+              }
+              function changeAttr(){
+               // var verifyURL = "{:U('User/verify')}";
+               var verifyURL = "__APP__"+"/Home/User/verify";
+               // alert(verifyURL);
+               var time = new Date().getTime();
+               $("#signupCaptchaImg").attr({
+                "src" : verifyURL + "/" + time
+                });
+
+              }
+              </script>
+	  					</div>
+	  					
+	  				</div>
+	  			</div>
+	  			<div id="mProPage">
+	  				<div class="loginHeader webHeaderBg">
+	  					<a onclick="javascript:jm(&quot;#mProPage&quot;).hide();jm(&quot;#signupPage&quot;).show();" class="g_close icon-gClose"></a>
+	  					<span class="title pageTitle"></span>
+	  				</div>
+	  				<div class="mProContent">
+	  					<div class="set-line"></div>
+	  				</div>
+	  			</div>
+	  		</div>
+	  	</div>
+	  	<div class="middleRight middleRight9">
+	  	</div>
+	  </div>
+	</div>
+  </div>
+</div>
+
+</body></html>

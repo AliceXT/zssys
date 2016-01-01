@@ -1,0 +1,143 @@
+<include file="Public/mobile_head"/>
+<link rel="stylesheet" type="text/css" href="{:ADDON_PUBLIC_PATH}/css/cartList.css">
+<script type="text/javascript" src="{:ADDON_PUBLIC_PATH}/js/cartList.js"></script>
+<script type="text/javascript" src="{:ADDON_PUBLIC_PATH}/js/jquery-1.7.min.js"></script>
+<script type="text/javascript" src="{:ADDON_PUBLIC_PATH}/js/address.js"></script>
+<body id="shop">
+<div class="header">
+  <a class="back" href="javascript:history.go(-1);"></a>
+  <span class="title">购物车</span>
+  <a href="javascript:void(0)" onclick="Cart.setCartEmpty()" style="float:right;"><em class="cart_icon" style="padding-right:15px;">清空</em></a>
+</div>
+<div class="container">
+	<div class="user_detail" style="display: none;" id="user_detail">
+		<div class="userinfo">
+			<span>联&nbsp;系&nbsp;人&nbsp;:</span><input id="username" class="username" type='text' value="{$user.nickname}" /><br />
+			<span>联系电话:</span></span><input id="phone" class="phone" type='text' value="{$user.phone}" /><br />
+			<span>详细地址:</span></span><input id="address" class="address" type='text' value="{$user.address}" placeholder="省-市-区-详细地址"/><br />
+            <span>其它备注:</span>
+                    <textarea id="note" class="note" value="" name="note" rows="6" onfocus="if(this.value=='带*号的必须填写') {this.value='';}this.style.color='#333';" onblur="if(this.value=='') {this.value='带*号的必须填写';this.style.color='#333';}"></textarea>
+            <input type="hidden" id="sn" value="">
+		</div>
+	</div>
+	<button id='addressbtn'>选择收货地址</button>
+	<volist name="list.goods" id="vo">
+		<div class="list cell_{$vo['id']}">
+			<div class="title">
+				<span>
+					单价:￥{$vo['total_price']}元
+				</span>
+				<!-- <a href="#" onclick="Cart.removeGoods({$vo['id']})">删除</a> -->
+			</div>
+			<div class="content">
+				<div class="image">
+					<img src="{$vo['cover']}">
+				</div>
+				<div class="describe">
+					<div class="head">
+						<span>{$vo['intro']}</span>
+					</div>
+					<div class="count">
+						<!-- <span>运费:</span>{$vo['express_fee']}元<br /> -->
+						<span>数量:</span>{$vo['count']}
+                        <if condition="$vo['multi_string']">
+                            <br ><span>规格:</span>{$vo['multi_string']}
+                        </if>
+					</div>
+				</div>
+			</div>
+		</div>
+	</volist>
+
+	<div class="sum">
+		<span>总数量:{$list.count}件</span>&nbsp;&nbsp;
+		<span>总金额:{$list.total_fee}元</span>
+		<button class="jiesuan" id="jiesuan" style="min-width:75px;">提交订单</button>
+	</div>
+<script type="text/javascript" src="{:ADDON_PUBLIC_PATH}/js/jquery-1.7.min.js"></script>
+
+    <script type="text/javascript">
+    function toshare(){
+        $(".am-share").addClass("am-modal-active"); 
+        if($(".sharebg").length>0){
+            $(".sharebg").addClass("sharebg-active");
+        }else{
+            $("body").append('<div class="sharebg"></div>');
+            $(".sharebg").addClass("sharebg-active");
+        }
+        $(".sharebg-active,.share_btn").click(function(){
+            $(".am-share").removeClass("am-modal-active");  
+            setTimeout(function(){
+                $(".sharebg-active").removeClass("sharebg-active"); 
+                $(".sharebg").remove(); 
+            },1000);
+        })
+    } 
+    function SetSn(sn){
+        $("#sn").val(sn);
+        removeMaster();
+    }
+    function removeMaster(){
+        $(".am-share").removeClass("am-modal-active");  
+        setTimeout(function(){
+            $(".sharebg-active").removeClass("sharebg-active"); 
+            $(".sharebg").remove(); 
+        },300);
+    }  
+</script>
+
+<span onClick="toshare()" id="Discount-box">优惠券</span>
+
+<div class="am-share">
+  <h3 class="am-share-title">优惠券</h3>
+  <ul class="am-share-sns">
+    <notempty name="CouponList">
+    <volist name="CouponList" id="sn">
+    <li><a href="#" onclick="SetSn('{$sn.sn}')">
+        <h2><sup>￥</sup>{:number_format($sn['discount']/100, 2)}</h2>
+        <span>
+            <h3>{$sn.title}优惠券:</h3>
+            <p>购买满{:number_format($sn['discount']/100, 2)}即可使用{$sn.title}优惠券</p>
+        </span>
+         <i class="share-icon-weibo">立即使用</i>
+        </a> 
+    </li>
+    </volist>
+    <else />
+    您还没有优惠券哦~
+    </notempty>
+
+  </ul>
+  <div class="am-share-footer"><button class="share_btn">取消</button></div>
+</div>
+<!-- 底部导航 -->
+{$footer_html}
+<!-- 统计代码 -->
+<notempty name="config.code">
+<p class="hide bdtongji">
+{$config.code}
+</p>
+</notempty>
+</body>
+<script type="text/javascript">
+	document.addEventListener('WeixinJSBridgeReady', function () {
+        WeixinJSBridge.call('hideToolbar');
+    });
+    $(function(){
+        Addr.init();
+        $('#jiesuan').click(function(){
+
+	        if(Addr.addressReg()){
+	            //提示是测试号，已不提供购物，请关注芳芳庄园10000号购买商品
+	            // alert("这是测试号，已不提供购物，请关注芳芳庄园10000号购买商品");
+	            Cart.jiesuan();
+	    
+	            $("#jiesuan").attr("disabled", "disabled");
+	    
+	            $("#jiesuan").css("background-color", "#666");
+	        }
+        })
+    })
+
+</script>
+</html>

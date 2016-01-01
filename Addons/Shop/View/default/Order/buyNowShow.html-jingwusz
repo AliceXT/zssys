@@ -1,0 +1,59 @@
+<include file="Public/mobile_head"/>
+<link rel="stylesheet" type="text/css" href="{:ADDON_PUBLIC_PATH}/css/cartList.css">
+<script type="text/javascript" src="{:ADDON_PUBLIC_PATH}/js/cartList.js"></script>
+<body id="shop">
+<div class="header">
+  <a class="back" href="javascript:history.go(-1);"></a>
+  <span class="title">结算</span>
+  <a href="javascript:void(0)" onclick="Cart.setCartEmpty()" style="float:right;"><em class="cart_icon" style="padding-right:15px;">清空</em></a>
+</div>
+<div class="container">
+	<div class="user_detail">
+		<div class="userinfo">
+			<span>联&nbsp;系&nbsp;人&nbsp;:</span><input id="username" class="username" type='text' value="{$user.nickname}" /><br />
+			<span>联系电话:</span></span><input id="phone" class="phone" type='text' value="{$user.phone}" /><br />
+			<span>详细地址:</span></span><input id="address" class="address" type='text' value="{$user.address}" placeholder="省-市-区-详细地址"/><br />
+		</div>
+	</div>
+		<input type='hidden' id="count" value="{$info.count}">
+		<input type='hidden' id="id" value="{$info.id}">
+		<input type='hidden' id="express_fee" value="{$info.express_fee}">
+		<div class="list cell_{$info['id']}">
+			<div class="title">
+				<span>
+					单价:￥{$info['discount_price']}元
+				</span>
+				<!-- <a href="#" onclick="Cart.removeGoods({$vo['id']})">删除</a> -->
+			</div>
+			<div class="content">
+				<div class="image">
+					<img src="{$info['cover']}">
+				</div>
+				<div class="describe">
+					<div class="head">
+						<span>{$info.intro}</span>
+					</div>
+					<div class="count">
+						<span>运费:</span>{$info.express_fee}元<br />
+						<span>数量:</span>{$info.count}
+					</div>
+				</div>
+			</div>
+		</div>
+
+	<div class="sum">
+		<span>总数量:{$info.count}件</span>&nbsp;&nbsp;
+		<span>总金额:{$info.total_fee}元</span>
+		<button class="jiesuan" onclick="Cart.jiesuan()" style="min-width:75px;">提交订单</button>
+	</div>
+</div>
+<!-- 底部导航 -->
+{$footer_html}
+<!-- 统计代码 -->
+<notempty name="config.code">
+<p class="hide bdtongji">
+{$config.code}
+</p>
+</notempty>
+</body>
+</html>

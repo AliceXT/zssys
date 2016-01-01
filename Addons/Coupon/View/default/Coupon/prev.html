@@ -1,0 +1,201 @@
+<include file="Public/mobile_head" />
+<if condition="$notfan">
+<link href="{:ADDON_PUBLIC_PATH}/xydzp.css?v={:SITE_VERSION}" rel="stylesheet"  type="text/css">
+<body>
+    <h1>亲，您还未关注该公众号，请关注后再使用优惠券</h1>
+</body>
+<else />
+<link href="{:ADDON_PUBLIC_PATH}/Coupon.css?v={:SITE_VERSION}" rel="stylesheet" type="text/css">
+
+<body id="scratch">
+    <div class="container body" style="position:relative">
+        <div class="prev_get">
+            <div class="top"></div>
+            <div class="mid">
+                    <div class="get_text">
+                        <h6>已获得的优惠券</h6>
+                        <p class="list" id="CouponList">
+                            <notempty name="my_sn_list">
+                            <volist name="my_sn_list" id="sn">
+                                <div>
+                                    标题&nbsp;&nbsp;：{$sn['title']} 
+                                    <br/> SN码&nbsp;&nbsp;：{$sn.sn}
+                                    <br/> 状 态&nbsp;&nbsp;：
+                                    <eq name="sn.is_use" value="1">已使用
+                                        <else />未使用</eq>
+                                    <br/>
+                                    <if condition="!empty($sn['start_time']) && !empty($sn['end_time'])">
+                                        有效期：{$sn.start_time|time_format} 至 {$sn.end_time|time_format}
+                                    </if>
+                                    <if condition="!empty($sn['start_time']) && empty($sn['end_time'])">
+                                        开始时间：{$sn.start_time|time_format}
+                                    </if>
+                                    <if condition="empty($sn['start_time']) && !empty($sn['end_time'])">
+                                        截止时间：{$sn.end_time|time_format}
+                                    </if>
+                                    <br/>
+                                </div>
+                            </volist>
+                            </notempty>
+                        </p>
+                    </div>
+            </div>
+            <div class="btm">
+                <center>
+                    <input type="text" name="sn" id="sn" class="text input-mini">
+                    <a href="#" id="bindingBtn"><img class="get_btn" src="{:ADDON_PUBLIC_PATH}/get_btn.jpg" /></a>
+                </center>
+            </div>
+        </div>
+        <p class="copyright">{$system_copy_right}</p>
+    </div>
+    </div>
+</body>
+<script type="text/javascript">
+var h = $(document).height();
+var flag = false;
+
+$('.container').css("min-height", h);
+
+$('#bindingBtn').click(function() {
+    var sn = $.trim($("#sn").val());
+    $.ajax({
+        url: '/index.php?s=/addon/Coupon/Coupon/set_sn_code',
+        type: 'post',
+        dataType: 'json',
+        data: {
+            sn: sn
+        },
+        success: function(rp) {
+            alert(rp.info);
+            if (rp.state == 1) {
+                showCoupon(rp.sn);
+            }
+        },
+        error: function() {
+            alert('没有返回');
+        }
+    })
+})
+function adddiv(){
+    var my_sn_list = "{$my_sn_list}";
+    if(my_sn_list || flag){
+        alert("adddiv");
+        flag = true;
+        return true;
+    }else{
+        // var old = $(".mid").html();
+        $(".mid").html('<div class="get_text"><h6>已获得的优惠券</h6><p class="list" id="CouponList"></p></div>');
+        return true;
+    }
+}
+function showCoupon(sn){
+    // if(adddiv()){
+
+        var html = "<div>"
+        html += "标题&nbsp;&nbsp;："+sn['title'];
+        html += "<br/> SN码&nbsp;&nbsp;："+sn.sn;
+        html += "<br/> 状 态&nbsp;&nbsp;：";
+        if(sn.is_use == 1){
+            html += "已使用";
+        }else{
+            html += "未使用";
+        }
+        html += "<br/>";
+        if(sn['start_time'] && sn['end_time']){
+            html += "有效期："+ sn.start_time + " 至 " + sn.end_time;
+        }else if(sn['start_time'] && !sn['end_time']){
+            html += "开始时间：" + sn.start_time;
+        }else{
+            html += "截止时间：" + sn.end_time;
+        }
+        html += "<br/>";
+        html += "</div>";
+        var old = $("#CouponList").html();
+        $("#CouponList").html(old + html);
+    // }else{
+    //     alert("加载失败");
+    // }
+}
+</script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>    
+<script>    
+/*    
+* 注意：    
+* 1. 所有的JS接口只能在公众号绑定的域名下调用，公众号开发者需要先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。    
+* 2. 如果发现在 Android 不能分享自定义内容，请到官网下载最新的包覆盖安装，Android 自定义分享接口需升级至 6.0.2.58 版本及以上。    
+* 3. 完整 JS-SDK 文档地址：http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html    
+*    
+* 如有问题请通过以下渠道反馈：    
+* 邮箱地址：weixin-open@qq.com    
+* 邮件主题：【微信JS-SDK反馈】具体问题    
+* 邮件内容说明：用简明的语言描述问题所在，并交代清楚遇到该问题的场景，可附上截屏图片，微信团队会尽快处理你的反馈。    
+*/    
+wx.config({    
+debug: false,    
+appId: '{$config.appid}',    
+timestamp: {$config.timestamp},    
+nonceStr: '{$config.noncestr}',    
+signature: '{$config.signature}',    
+jsApiList: [    
+'checkJsApi',    
+'onMenuShareTimeline',    
+'onMenuShareAppMessage',    
+'onMenuShareQQ',    
+'onMenuShareWeibo',    
+]    
+}); 
+wx.ready(function () {
+    wx.onMenuShareAppMessage({
+      title: '{$share.title}',
+      desc: '{$share.desc}',
+      link: '{$share.link}',
+      imgUrl: '{$share.pic|get_picture_url}',
+      success: function (res) {
+        // $.ajax({
+        //     url :'/index.php?s=/addon/Xydzp/Share/share_success.html',
+        //     type: 'get',
+        //     dataType:'json',
+        //     success  : function(rp){
+        //         alert(rp.errmsg);
+        //         if(rp.errcode == 0){
+        //             location.reload();
+        //         }
+        //     }
+        // });
+      },
+      cancel: function (res) {
+        // alert('已取消');
+      },
+      fail: function (res) {
+        alert(JSON.stringify(res));
+      }
+    });  
+    wx.onMenuShareTimeline({
+      title: '{$share.title}',
+      link: '{$share.link}',
+      imgUrl: '{$share.pic|get_picture_url}',
+      success: function (res) {
+        // $.ajax({
+        //     url :'/index.php?s=/addon/Xydzp/Share/share_success.html',
+        //     type: 'get',
+        //     dataType:'json',
+        //     success  : function(rp){
+        //         alert(rp.errmsg);
+        //         if(rp.errcode == 0){
+        //             location.reload();
+        //         }
+        //     }
+        // });
+      },
+      cancel: function (res) {
+        // alert('已取消');
+      },
+      fail: function (res) {
+        alert(JSON.stringify(res));
+      }
+    }); 
+});
+</script>
+</if>
+</html>

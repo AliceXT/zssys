@@ -1,0 +1,89 @@
+<extend name="Base/common" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<block name="body">
+<link rel="stylesheet" type="text/css" href="{:ADDON_PUBLIC_PATH}/css/more.css">
+    <div class="span9 page_message">
+        <section id="contents">
+            <include file="Addons/_nav" />
+            <!-- 数据列表 -->
+            <div class="data-table">
+                <div class="table-striped">
+                    <form class="form-horizontal form" action="{$post_url}" method="post" enctype="multipart/form-data" onsubmit="return formcheck(this)">
+                        <!-- <volist name=":parse_config_attr($model['field_group'])" id="group"> -->
+                        <!-- <volist name="fields[$key]" id="field"> -->
+                        <input type="hidden" name="id" value="{$o.id}">
+                        <table class="tb">
+                            <tbody>
+                                <tr>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h4>&nbsp;</h4>
+                        <dl class="dl-horizontal">
+                            <dt>给一级上线{$disUser['seller']|default="排长"}返利</dt>
+                            <dd><b></b> {$deduct['seller']|default="0.00"}元</dd>
+                            <dt>给二级上线{$disUser['manager']|default="连长"}返利</dt>
+                            <dd><b></b> {$deduct['manager']|default="0.00"}元</dd>
+                            <dt>给合伙人{$disUser['partner']|default="团长"}返利</dt>
+                            <dd><b></b> {$deduct['partner']|default="0.00"}元</dd>
+                        </dl>
+                        <h4>&nbsp;</h4>
+                        <dl class="dl-horizontal">
+                            <dt>订单状态</dt>
+                            <dd>
+                                <p style="background-color:#f5b65d;border-radius:4px;color:#fff;font-weight:bold;float:left;padding:0px 5px;">{$o.order_status}</p>
+                            </dd>
+                            <dt>订单号</dt>
+                            <dd>{$o.id}</dd>
+                            <dt>价钱</dt>
+                            <dd>
+                                实付{$o.total_fee|default="0.00"} 元（商品: {$p.discount_price|default="0.00"} 元 运费: {$p.express_fee|default="0.00"} 元 折扣：{$p.discount|default="0.00"} 元)
+                            </dd>
+                            <dt></dt>
+                            <dd></dd>
+                            <dt>OpenID</dt>
+                            <dd style="color:#428bca;">
+                                <a href="{:addons_url('Shop://User/more',array('id'=>$u['openid']))}">{$u.openid}</a>
+                            </dd>
+                            <dt>姓名</dt>
+                            <dd>{$o.receiver}</dd>
+                            <dt>手机</dt>
+                            <dd>{$o.phone}</dd>
+                            <dt>地址</dt>
+                            <dd>{$o.address}</dd>
+                            <dt>微信信息</dt>
+                            <dd>
+                                {$u.nickname}
+                                <br> <img style="width:64px;height:64px;border:solid 1px #ccc;" src="{$u.headimgurl}"> </dd>
+                            <dt></dt>
+                            <dd></dd>
+                            <dt>第三方交易号</dt>
+                            <dd><a href="{:addons_url('Shop://Order/orderQuery',array('no'=>$o['out_trade_no']))}">{$o.out_trade_no}</a> <!-- <span class="help-block">通过交易号可以在<a href="https://pay.weixin.qq.com" target="_blank">商户平台</a>查询对应交易记录。</span> -->
+                            </dd>
+                            <dt>下单日期</dt>
+                            <dd>
+                                {$o.timestamp} </dd>
+                            <dt>快递公司</dt>
+                            <dd>
+                                {$l.type|default='暂无'} </dd>
+                            <dt>快递单号</dt>
+                            <dd>
+                                {$l.postid|default='暂无'} </dd>
+                            <dt>备注</dt>
+                            <dd>
+                                <div>
+                                    <textarea style="height:150px;" class="span7" name="note" cols="70">{$o.note}</textarea>
+                                </div>
+                                <div>
+                                    <button type="submit" class="btn btn-primary span2" name="addremark" value="yes">更新备注</button>
+                                </div>
+                            </dd>
+                        </dl>
+                        </volist>
+                    </form>
+                </div>
+            </div>
+            <div class="page"> {$_page|default=''} </div>
+        </section>
+    </div>
+</block>

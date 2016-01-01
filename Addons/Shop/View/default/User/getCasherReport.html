@@ -1,0 +1,51 @@
+<include file="Public/mobile_head"/>
+<style type="text/css">
+
+	.userinfo_detail{
+		margin: 10px;
+	}
+
+	.container{
+		overflow: visible;
+	}
+</style>
+<link rel="stylesheet" type="text/css" href="{:ADDON_PUBLIC_PATH}/css/myOrder.css">
+<link rel="stylesheet" type="text/css" href="{:ADDON_PUBLIC_PATH}/css/userinfo.css">
+<script type="text/javascript" src="{:ADDON_PUBLIC_PATH}/js/userinfo.js"></script>
+<body id="shop">
+<div class="top_navs">
+	<div class="mainpage">
+		<a href="/index.php?s=/addon/Shop/Shop/index.html"><span class="Home-box"></span></a>
+	</div>
+	<div class="nav_detail">
+		<a href="#"><span>金额提现</span></a>
+	</div>
+</div>
+<div class="container">
+	<div class="userinfo" style="padding-bottom:1rem;">
+		<div class="userinfo_detail">
+			<input id="remain_money" type="hidden" value="{$remain_money}" />
+			<span>提示：</span>
+			<span style="display:block; height:110px;">（1）、目前只支持微信支付取现，取出的金额，在管理员审核后将会转账到您的微信零钱中，请注意查收
+		     <br />（2）、每一笔金额最少1元，最多200元<if condition="times egt 0">，每日最多可提现[{$times}次]</if>
+			</span>
+		</div>
+		<div class="userinfo_detail">
+			<span style="display:inline;">提取:</span>
+			<input id="fee" style="display:inline; width:70%;" type='number' min="1" max="200" value="" placeholder="您的余额{$info.remain_money}元 " /> 元
+		</div>
+		<div class="userinfo_detail">
+			<button onclick="User.getCashRep()" id='getCashRep'>提交取现请求</button>
+		</div>
+	</div>
+</div>
+<!-- 底部导航 -->
+{$footer_html}
+<!-- 统计代码 -->
+<notempty name="config.code">
+<p class="hide bdtongji">
+{$config.code}
+</p>
+</notempty>
+</body>
+</html>

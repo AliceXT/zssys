@@ -1,0 +1,77 @@
+.top_navs {
+    height: 50px;
+    font-size: 15px;
+    background: #ed145b;
+    color: #ffffff;
+}
+
+.mainpage {
+    float: left;
+    width: 15%;
+    min-width: 30px;
+    text-align: right;
+    line-height: 50px;
+}
+
+.nav_detail {
+    float: left;
+    width: 70%;
+    text-align: center;
+    line-height: 50px;
+    font-weight: bold;
+}
+
+.Home-box{
+	width: 35px;
+	height:35px;
+	display: block;
+	background: url("../img/home.png") no-repeat scroll 0 0 / 25px 20px; 
+	background-position: left;
+	margin-top: 8px;
+	margin-left: 16px;
+}
+.nav_cart {
+    /*width: 15%;*/
+    /*min-width: 70px;*/
+    line-height: 50px;
+}
+
+.top_navs a {
+    color: #fff;
+}
+
+img {
+    float: left;
+    margin-right: 20px;
+}
+
+.container {
+    background: #ffffff;
+}
+
+.order_cell {
+    margin: 0px 15px;
+    border-bottom: 3px solid #9c9c9c;
+}
+
+.user_edit {
+    clear: both;
+    padding: 15px;
+}
+
+.order_status {
+    padding: 12px;
+    border-bottom: solid 1px #f2f2f2;
+    margin-bottom: 2px;
+}
+
+.title {
+    /*2015.10.28/dong
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+      border:solid 1px #f00;*/
+}

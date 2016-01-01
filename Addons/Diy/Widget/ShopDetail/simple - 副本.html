@@ -1,0 +1,405 @@
+<!--继承的父类模板位于：Application\Home\View\default\Addons\widget.html -->
+<extend name="widget" />
+<block name="css">
+    <!--<link href="/Addons/Shop/View/default/Public/css/default.css" rel="stylesheet" type="text/css">
+
+<link href="/Addons/Shop/View/default/Public/css/demo-1.css" rel="stylesheet" type="text/css">-->
+</block>
+<block name="widget_content">
+    <script type="text/javascript" src="/Addons/Shop/View/default/Public/js/cartList.js"></script>
+
+    <style type="text/css">
+
+    .express {
+        border: 1px solid gray;
+        padding: 5px;
+    }
+    
+    .check {
+        border: 2px solid red;
+    }
+    
+    #picSlideShow ul li img {
+        height: 300px;
+    }
+    
+    .kefu_close {
+        background-image: url(/Addons/Shop/View/default/Public/img/anniu.png);
+        background-repeat: no-repeat;
+        display: block;
+        width: 32px;
+        height: 32px;
+        background-color: #fff;
+        position: absolute;
+        right: 10px;
+        top: 1em;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        border-radius: 20px;
+        z-index: 999;
+    }
+    
+    .kefu_block .Link-box {
+        width: 100%;
+        height: 100%;
+        display: block;
+        background-image: url(/Addons/Shop/View/default/Public/img/weixin.jpg);
+        background-repeat: no-repeat;
+        background-size: 100% 470px;
+        position: relative;
+        z-index: 200;
+    }
+    
+    #buyCount {
+        display: inline;
+        width: 50px;
+        color: #000;
+        margin: 0px 2px;
+        padding: 2px 2px 0px;
+        text-align: center;
+        float: left;
+    }
+    
+    #Location-box {
+        position: relative;
+    }
+    
+    #Location-box span {
+        position: absolute;
+        top: -1px;
+        left: 4.5rem;
+    }
+    
+    #Location-box img {
+        display: block;
+        width: 22px;
+        height: 22px;
+    }
+    /*2015.11.2*/
+    
+    .text-Description {
+        font-size: 16px;
+        color: #282828;
+        font-family: "微软雅黑";
+    }
+
+    .text-style{
+      font-size: 12px;
+      color: #666;
+    } 
+    .text-style del{
+      font-size: 12px;
+    }
+    .price_p {
+      margin-bottom:8px;
+    }
+    .price{
+      font-size: 15px;
+      color: #e4393c;
+    }
+    </style>
+    <div class="diy_shop shopdetail_wrap">
+        <div class="header" style="border-bottom:solid 1px #ccc;">
+            <a class="back" href="javascript:history.go(-1);"></a>
+            <span class="title">宝贝详情</span>
+            <a href="/index.php?s=/addon/Shop/Shop/cartList.html" style="float:right;">
+                <em class="cart_icon" style="padding-right:15px;">购物车</em>
+            </a>
+        </div>
+        <!-- 商品头图 -->
+        <div class="goods_detail_top">
+            <section class="banner square_slide_banner" id="picSlideShow">
+                <ul>
+                    <notempty name="product.img_1">
+                        <li style="height:300px;">{$product.img_1|get_img_html}</li>
+                    </notempty>
+                    <notempty name="product.img_2">
+                        <li style="height:300px;">{$product.img_2|get_img_html}</li>
+                    </notempty>
+                    <notempty name="product.img_3">
+                        <li style="height:300px;">{$product.img_3|get_img_html}</li>
+                    </notempty>
+                    <notempty name="product.img_4">
+                        <li style="height:300px;">{$product.img_4|get_img_html}</li>
+                    </notempty>
+                    <notempty name="product.img_5">
+                        <li style="height:300px;">{$product.img_5|get_img_html}</li>
+                    </notempty>
+                    <!--<li><a href="#"><img src="http://gd4.alicdn.com/bao/uploaded/i4/T1CYpUFcpbXXXXXXXX_!!0-item_pic.jpg_460x460.jpg_.webp"/></a><span class="title">2014春装新款韩版女装宽松休闲打底显瘦长袖雪纺衬衫上衣衬衣</span></li>-->
+                </ul>
+                <span class="identify">
+
+          <notempty name="product.img_1"><em></em></notempty>
+
+          <notempty name="product.img_2"><em></em></notempty>
+
+          <notempty name="product.img_3"><em></em></notempty>
+
+          <notempty name="product.img_4"><em></em></notempty>
+
+          <notempty name="product.img_5"><em></em></notempty>
+          
+        </span>
+            </section>
+            <!-- <a class="prevBtn" href="javascript:;"></a> <a class="nextBtn" href="javascript:;"></a> </section> -->
+        </div>
+        <div class="goods_detail_content">
+            <!-- 商品内容在此 -->
+            <script type="text/javascript">
+            function $id(element) {
+                return document.getElementById(element);
+            }
+            //切屏--是按钮，_v是内容平台，_h是内容库
+            function reg(str) {
+                var bt = $id(str + "_b").getElementsByTagName("h3");
+                for (var i = 0; i < bt.length; i++) {
+                    bt[i].subj = str;
+                    bt[i].pai = i;
+                    bt[i].style.cursor = "pointer";
+                    bt[i].onclick = function() {
+                        $id(this.subj + "_v").innerHTML = $id(this.subj + "_h").getElementsByTagName("blockquote")[this.pai].innerHTML;
+                        for (var j = 0; j < $id(this.subj + "_b").getElementsByTagName("h3").length; j++) {
+                            var _bt = $id(this.subj + "_b").getElementsByTagName("h3")[j];
+                            var ison = j == this.pai;
+                            _bt.className = (ison ? "" : "h2bg");
+                        }
+                    }
+                }
+                $id(str + "_h").className = "none";
+                $id(str + "_v").innerHTML = $id(str + "_h").getElementsByTagName("blockquote")[0].innerHTML;
+            }
+
+            function del() {
+                var num = document.getElementById("buyCount");
+
+                var n = parseInt(num.value);
+
+                if (n - 1 <= 0) {
+                    alert("必须选择一个商品");
+                } else {
+                    num.value = n - 1;
+                }
+            }
+
+            function add() {
+
+                var num = document.getElementById("buyCount");
+
+                var n = parseInt(num.value);
+
+                num.value = n + 1;
+
+            }
+
+            function number() {
+                var char = String.fromCharCode(event.keyCode)
+                var re = /[0-9]/g
+                event.returnValue = char.match(re) != null ? true : false
+            }
+
+            function filterInput() {
+                if (event.type.indexOf("key") != -1) {
+                    var re = /37|38|39|40/g
+                    if (event.keyCode.toString().match(re)) return false
+                }
+                event.srcElement.value = event.srcElement.value.replace(/[^0-9]/g, "")
+            }
+
+            function filterPaste() {
+                var oTR = this.document.selection.createRange()
+                var text = window.clipboardData.getData("text")
+                oTR.text = text.replace(/[^0-9]/g, "")
+            }
+            </script>
+            
+            <h3 class="text-Description">{$product.title}</h3>
+            <p class="price_p" id="Location-box">请购数量:
+                <span>
+      <img src="/Addons/Shop/View/default/Public/img/jian.gif" style="float:left;" onclick="del()" />
+      <input name="number" maxlength=4  type="text" id="buyCount" value="1" onkeypress="number()" onkeyup="filterInput()" onchange="filterInput()" onbeforepaste="filterPaste()" onpaste="return false" style="ime-mode: disabled" size="4">
+      <img src="/Addons/Shop/View/default/Public/img/jia.gif" style="float:right;" onclick="add()" />
+      </span>
+            </p>
+        
+            <p class="price_p">折扣价：<span class="price">￥{$product.discount_price}</span>
+                <span class="text-style">市场价:<del>￥{$product.market_price}</del></span>
+            </p>
+       
+            <p class="price_p">库存数量：<span>{$product.stock_count}件</span></p>
+         
+            <!-- <p class="price_p">快递费：<span >{$product.express_fee}元</span></p> -->
+            <div>
+                <a class="express check" href="javascript:void(0)" data-express='in'>省内价格</a>&nbsp;&nbsp;
+                <a class="express" href="javascript:void(0)" data-express='out'>广东省外</a>
+            </div>
+            <br/> {$product.param}
+            <div class="goods_desc"> {$product.content} </div>
+        </div>
+        <!-- 购买按钮 -->
+        <div class="goods_action">
+            <span class="left-Bigbox">
+            <a href="#" class="home-box">
+              <img src="/Addons/Diy/View/default/Public/img/home-iocn.png">
+              <p>首页</p>
+            </a>
+            <a id="to_cart" href="javascript:void(0)" onclick="addCart({$product['id']})">
+            <em class="cart_icon"></em>加入购物车</a>
+            </span>
+            <span class="right-Bigbox">
+            <a id="to_buy" href="javascript:void(0)" onclick="Detail.buyNow({$product.id})" style="margin:0; margin-top:10px; margin-left:10px;"><em class="buy_icon"></em>立即购买</a> 
+            <a href="#" id="Shopping-Cart"><img src="/Addons/Diy/View/default/Public/img/shopp-iocn.png"><p>购物车</p></a>
+            </span>
+        </div>
+    </div>
+    <!-- 客服按钮 -->
+    <!--
+  <div class="kefu_block" style="display:none;width:100%;height:100%;z-index:100;position: absolute;top:0px;right:0px;">
+       <span class="kefu_close"></span>
+       <p class="Link-box"></p>
+  </div>  
+<div style="position:fixed;bottom:25%;right:0px;z-index:88;">
+ <div class="htmleaf-container">
+  <div id="wrapper">
+    <div class="menu">       
+      <img id="menu-bg" src="img/golden-gate-lights.jpg" />
+      <ul>
+        <li><a href="http://wxfx.cjt-cn.com/index.php?s=/addon/Diy/Diy/show/id/9/token/gh_cbbb34605e84.html">首页</a></li>
+        <li><a href="http://wpa.qq.com/msgrd?v=3&uin=827687608&site=qq&menu=yes">在线客服</a></li>
+        <li><a href="#" class="kefu_flag">扫描微信</a></li>
+       <!--  <li><a href="http://wxfx.cjt-cn.com/index.php?s=/addon/Shop/Shop/myOrder/token/gh_cbbb34605e84.html">我的订单</a></li> -->
+    <!--  <li><a href="http://wxfx.cjt-cn.com/index.php?s=/addon/Shop/User/info/token/gh_cbbb34605e84.html">个人中心</a></li>
+      </ul>                
+    </div>                           
+   </div> 
+</div>
+<div class="burger" style="z-index:60;">
+      <div class="x"></div>
+      <div class="y"></div>
+      <div class="z"></div>
+</div>  
+</div>
+
+<block name="script">     
+
+<script>
+  if ('ontouchstart' in window) {
+    var click = 'touchstart';
+  } else {
+    var click = 'click';
+  }
+  $('div.burger').on(click, function () {
+    if (!$(this).hasClass('open')) {
+      openMenu();
+    } else {
+      closeMenu();
+    }
+  });
+  $('div.menu ul li a').on(click, function () {
+    closeMenu();
+  });
+  function openMenu() {
+    $('div.burger').addClass('open');
+    $('div.y').fadeOut(100);
+    $('div.screen').addClass('animate');
+    setTimeout(function () {
+      $('div.x').addClass('rotate30');
+      $('div.z').addClass('rotate150');
+      $('.menu').addClass('animate');
+      setTimeout(function () {
+        $('div.x').addClass('rotate45');
+        $('div.z').addClass('rotate135');
+      }, 100);
+    }, 10);
+  }
+  function closeMenu() {
+    $('div.screen, .menu').removeClass('animate');
+    $('div.y').fadeIn(150);
+    $('div.burger').removeClass('open');
+    $('div.x').removeClass('rotate45').addClass('rotate30');
+    $('div.z').removeClass('rotate135').addClass('rotate150');
+    setTimeout(function () {
+      $('div.x').removeClass('rotate30');
+      $('div.z').removeClass('rotate150');
+    }, 50);
+    setTimeout(function () {
+      $('div.x, div.z').removeClass('collapse');
+    }, 70);
+  }
+  $(".kefu_close").click(function(){
+    $(".kefu_block").hide();
+  
+  })
+  $(".kefu_flag").click(function(){
+  $(".kefu_block").show();
+  
+  })
+  
+</script>
+
+</block>-->
+</block>
+<block name="script">
+    <script type="text/javascript">
+    setTimeout(function() {
+
+        $.WeiPHP.squarePicSlide(false, 0, $('.layout_item').width(), 300, '#picSlideShow .prevBtn', '#picSlideShow .nextBtn');
+
+    }, 300);
+
+    function addCart(id) {
+
+        var count;
+
+        var express = $('.check').attr('data-express');
+
+        count = document.getElementById('buyCount').value;
+
+        if (count == 0) {
+
+            alert('对不起，购买数量不可为 0');
+
+        }
+
+        var data = {};
+
+        data['goods_id'] = id;
+
+        data['goods_count'] = count;
+
+        data['express'] = express;
+
+        $.ajax({
+
+            url: '/index.php?s=/addon/Shop/Shop/addCart.html',
+
+            type: 'post',
+
+            data: data,
+
+            dataType: 'json',
+
+            success: function(rp) {
+
+                alert(rp.info);
+
+            }
+
+        });
+
+    }
+
+    $(document).ready(function() {
+
+        $('.express').click(function() {
+
+            $('.check').removeClass('check');
+
+            $(this).addClass('check');
+
+        })
+
+    });
+    </script>
+</block>

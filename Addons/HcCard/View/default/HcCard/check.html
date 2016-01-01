@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0124)http://121.201.110.152/index.php -->
+<HTML><HEAD><TITLE></TITLE>
+<META charset=utf-8><LINK rel=stylesheet type=text/css 
+href="{:ADDON_PUBLIC_PATH}/template/check/font-awesome.css" media=all><LINK rel=stylesheet type=text/css 
+href="{:ADDON_PUBLIC_PATH}/template/check/mobile_module.css" media=all>
+<SCRIPT type=text/javascript src="{:ADDON_PUBLIC_PATH}/template/check/jquery-2.0.3.min.js"></SCRIPT>
+
+<SCRIPT type=text/javascript src="{:ADDON_PUBLIC_PATH}/template/check/prefixfree.min.js"></SCRIPT>
+
+<SCRIPT type=text/javascript src="{:ADDON_PUBLIC_PATH}/template/check/dialog.js"></SCRIPT>
+
+<SCRIPT type=text/javascript src="{:ADDON_PUBLIC_PATH}/template/check/flipsnap.min.js"></SCRIPT>
+
+<SCRIPT type=text/javascript src="{:ADDON_PUBLIC_PATH}/template/check/mobile_module.js"></SCRIPT>
+
+<SCRIPT type=text/javascript src="{:ADDON_PUBLIC_PATH}/template/check/admin_common.js"></SCRIPT>
+
+<META name=viewport 
+content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<META content=no-cache,must-revalidate http-equiv=Cache-Control>
+<META content=no-cache http-equiv=pragma>
+<META content=0 http-equiv=expires>
+<META name=format-detection content="telephone=no, address=no">
+<META name=apple-mobile-web-app-capable content=yes>
+<META name=apple-mobile-web-app-status-bar-style content=black-translucent><LINK 
+rel="shortcut icon" href="http://121.201.110.152/favicon.ico">
+<META name=GENERATOR content="MSHTML 9.00.8112.16684"></HEAD>
+<BODY>
+<DIV id=container class="container body">
+<DIV class="Inner-box">
+    <notempty name="company_info">
+<DIV>
+<H3>公司介绍</H3>
+<UL>
+  <volist name="company_info" id="info">
+  <LI>
+    <A href="{$info.url}">{$info.title}</A> 
+    <A href="{$info.del_url}" class="right-anniu">删除</A><BR>
+  </LI>
+  </volist>
+ </UL>
+  </DIV>
+  </notempty>
+  <notempty name="company_link">
+<DIV>
+<H3>公司链接</H3>
+<UL>
+  <volist name="company_link" id="info">
+  <LI>
+    <A href="{$info.url}">{$info.title}</A> 
+    <A href="{$info.del_url}" class="right-anniu">删除</A><BR>
+  </LI>
+  </volist>
+ </UL>
+ </DIV>
+ </notempty>
+ <notempty name="message">
+<DIV>
+<H3>公司链接</H3>
+<UL>
+  <volist name="message" id="info">
+  <LI>
+    <A href="{$info.url}">{$info.name}给你留言</A> 
+  </LI>
+  </volist>
+ </UL>
+ </DIV>
+ </notempty>
+ <if condition="empty($company_info) and empty($company_link) and empty($message)">
+  <h3>暂无公司信息及留言</h3>
+ </if>
+</DIV>
+
+ <DIV id="next-step-out">
+  <A href="{:addons_url('HcCard://HcCard/addCard')}" id="next-step">编辑个人及添加公司信息</A> 
+ </DIV>
+ <section class="footer"><span class="logo">Copyright 2008-2015 昌佳科技 版权所有</span></section>
+</DIV>
+  
+</BODY>
+</HTML>

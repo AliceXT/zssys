@@ -1,0 +1,134 @@
+﻿.header{
+    background: #fff none repeat scroll 0 0;
+    box-shadow: 0 1px 3px #ccc;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    width: 100%;
+    background-color:#ff9801;
+}
+.header .back{
+    background: rgba(0, 0, 0, 0) url("../img/back.png") no-repeat scroll 0 0 / 35px 35px;
+    height: 35px;
+    left: 10px;
+    position: absolute;
+    top: 8px;
+    width: 35px;
+    background-color: #fff;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-top-left-radius:20px;
+    border-radius: 20px;
+}
+.header .title{
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.Line-box{
+    width:100%;
+    height:1px;
+    background-color:#fff;
+    float:left;
+    display;block;
+    filter:alpha(opacity=2);
+    -moz-opacity:0.2;
+    opacity: 0.2;
+    z-index:100;
+}
+
+.Box-Layout{
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.Click-box{
+    width:95%;
+    border-radius:4px;
+    font-size:14px;
+    text-align:center; 
+    display:block;
+    margin:0 auto;
+    background-color:#ff860f;
+    border:solid 1px #fc7f07;
+    padding:6px;
+    color:#fff;
+    cursor: pointer;
+}
+
+.container{
+	padding-bottom: 6rem;
+	width:100%;
+    height:100%;
+    background:url("../img/bgtu.png");
+}
+.userinfo{
+    width: 100%;
+	min-height: 7.2rem;
+    padding-top:1rem;
+    background-color: #ff9801;
+    /*background:url("../img/bannetu.png") no-repeat;*/
+}
+.bannetu-png {
+    width: 100%;
+    height:10px;
+    float: left;
+    background: url("../img/Round.png") scroll 0 0 / 20px 10px;
+    border:none;
+    background-repeat: repeat-x;
+    margin-bottom: 1rem;
+}
+.photo{
+    margin-left:0.8rem;
+} 
+.photo img{
+    width:5.2rem;
+	height: 5.2rem;
+    border:solid 2px #cbccc8;
+    -webkit-box-shadow: 0px 0px 3px #cbccc8;
+　　-moz-box-shadow: 0px 0px 3px #cbccc8;
+　　box-shadow: 0px 0px 3px #cbccc8;
+	-moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius:50%;  
+}
+.userinfo_detail span{
+    font-size:1rem;
+    color: #fff;
+    font-family: "微软雅黑";
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+}
+.userinfo_detail > span{
+	height: 24px;
+}
+.asset{
+	border:solid 1px #ff9801;
+	padding:1rem;
+	clear: both;
+    background-color:#fff;
+    font-size:1rem;
+    margin: 10px 5px;
+    border-top-left-radius:0.5em;
+    border-top-right-radius:0.5em;
+    border-bottom-left-radius: 0.5em;
+    border-bottom-right-radius: 0.5em; 
+    border-radius:0.5em;
+}
+.asset_val{
+	margin-left: 10px;
+}
+.asset_title{
+	display: block;
+	float: left;
+	width: 7em;
+}
+.asset_val{
+	width: 55%;
+}

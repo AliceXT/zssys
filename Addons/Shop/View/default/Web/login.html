@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html style="font-size: 40px;">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$web.title}</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=2.0, user-scalable=1"> -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="layoutmode" content="standard">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="renderer" content="webkit">
+<!--uc浏览器判断到页面上文字居多时，会自动放大字体优化移动用户体验。添加以下头部可以禁用掉该优化-->
+<meta name="wap-font-scale" content="no">
+<meta content="telephone=no" name="format-detection">
+<meta http-equiv="Pragma" content="no-cache">
+<script src="{:ADDON_PUBLIC_PATH}/template/login/hm.js"></script>
+<script type="text/javascript" src="Public/static/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+//html root的字体计算应该放在最前面，这样计算就不会有误差了/
+var _htmlFontSize = (function(){
+	var clientWidth = document.documentElement ? document.documentElement.clientWidth : document.body.clientWidth;
+	if(clientWidth > 640) clientWidth = 640;
+	document.documentElement.style.fontSize = clientWidth * 1/16+"px";
+	return clientWidth * 1/16;
+})();
+</script>
+<link rel="stylesheet" type="text/css" href="{:ADDON_PUBLIC_PATH}/template/login/base.min.css" title="default">
+<link rel="stylesheet" id="mobiStyleTemplateCss" type="text/css" href="{:ADDON_PUBLIC_PATH}/template/login/308.min.css">
+<link rel="shortcut icon" href="{$web.icon|get_picture_url}">
+<!-- <link rel="shortcut icon" href="{:ADDON_PUBLIC_PATH}/template/login/images/www.ico.la_28eb0bcf86b4aca232b6853fa40b3dd1_48X48.ico"> -->
+<meta name="keywords" content="{$web.keywords}">
+<meta name="description" content="{$web.decription}">
+<!-- //输出模块样式css -->
+<style id="mobiStyleNav" type="text/css">
+.open .navItem:nth-child(2) {transition-delay: 160ms;} 
+.open .navItem:nth-child(4) {transition-delay: 240ms;} 
+.open .navItem:nth-child(6) {transition-delay: 320ms;} 
+.open .navItem:nth-child(8) {transition-delay: 400ms;} 
+.open .navItem:nth-child(10) {transition-delay: 480ms;} 
+.open .navItem:nth-child(12) {transition-delay: 560ms;} 
+.open .navItem:nth-child(14) {transition-delay: 640ms;} 
+.open .navItem:nth-child(16) {transition-delay: 720ms;} 
+#navbar_101 .icon-navItemIcon{background-image: url(http://3702375.s21i-3.faiusr.com/4/ABUIABAEGAAglrvOqAUo2-3DnwcwgAE4gAE!100x100.png);background-size:contain;background-position:50% 50%;} 
+#navbar_101 .icon-navItemIcon:before{content:none;} 
+.open .navItem:nth-child(18) {transition-delay: 800ms;} 
+.open .navItem:nth-child(20) {transition-delay: 880ms;} 
+.open .navItem:nth-child(22) {transition-delay: 960ms;} 
+#navbar_104 .icon-navItemIcon{background-image: url(http://3702375.s21i-3.faiusr.com/4/ABUIABAEGAAgy7rOqAUovNigIDCAAjiAAg!100x100.png);background-size:contain;background-position:50% 50%;} 
+#navbar_104 .icon-navItemIcon:before{content:none;} 
+.open .navItem:nth-child(24) {transition-delay: 1040ms;} 
+#navbar_105 .icon-navItemIcon{background-image: url(http://3702375.s21i-3.faiusr.com/4/ABUIABAEGAAg9bLOqAUo9Ob2ngMwMDgw.png);background-size:contain;background-position:50% 50%;} 
+#navbar_105 .icon-navItemIcon:before{content:none;} 
+.open .navItem:nth-child(26) {transition-delay: 1120ms;} 
+#navbar_106 .icon-navItemIcon{background-image: url(http://3702375.s21i-3.faiusr.com/4/ABUIABAEGAAgmLnOqAUo1JSI-AIwgAQ4gAQ!100x100.png);background-size:contain;background-position:50% 50%;} 
+#navbar_106 .icon-navItemIcon:before{content:none;} 
+.open .navItem:nth-child(28) {transition-delay: 1200ms;} 
+#navbar_107 .icon-navItemIcon{background-image: url(http://3702375.s21i-3.faiusr.com/4/ABUIABAEGAAg87jOqAUoqfms6AYwgAI4gAI!100x100.png);background-size:contain;background-position:50% 50%;} 
+#navbar_107 .icon-navItemIcon:before{content:none;} 
+.open .navItem:nth-child(30) {transition-delay: 1280ms;} 
+#navbar_108 .icon-navItemIcon{background-image: url(http://3702375.s21i-3.faiusr.com/4/ABUIABAEGAAgrrrOqAUoycLirwMwgAE4gAE!100x100.png);background-size:contain;background-position:50% 50%;} 
+#navbar_108 .icon-navItemIcon:before{content:none;} 
+.open .navItem:nth-child(32) {transition-delay: 1360ms;} 
+#navbar_109 .icon-navItemIcon{background-image: url(http://3702375.s21i-3.faiusr.com/4/ABUIABAEGAAgv7nOqAUo_J6dvQQw2AQ42AQ!100x100.png);background-size:contain;background-position:50% 50%;} 
+#navbar_109 .icon-navItemIcon:before{content:none;} 
+.open .navItem:nth-child(34) {transition-delay: 1440ms;} 
+#navbar_110 .icon-navItemIcon{background-image: url(http://3702375.s21i-3.faiusr.com/4/ABUIABAEGAAg8brOqAUo9Lr97AUwgAE4gAE!100x100.png);background-size:contain;background-position:50% 50%;} 
+#navbar_110 .icon-navItemIcon:before{content:none;} 
+.open .navItem:nth-child(36) {transition-delay: 1520ms;} 
+#navbar_111 .icon-navItemIcon{background-image: url(http://3702375.s21i-3.faiusr.com/4/ABUIABAEGAAgu6rPqAUo3rOztQMwgAE4gAE!100x100.png);background-size:contain;background-position:50% 50%;} 
+#navbar_111 .icon-navItemIcon:before{content:none;} 
+.open .navItem:nth-child(38) {transition-delay: 1600ms;} 
+#navbar_112 .icon-navItemIcon:before{content:'';} 
+#navbar_112 .icon-navItemIcon{background-image:none;} 
+.open .navItem:nth-child(40) {transition-delay: 1680ms;} 
+#navbar_113 .icon-navItemIcon:before{content:'';} 
+#navbar_113 .icon-navItemIcon{background-image:none;} 
+.open .navItem:nth-child(42) {transition-delay: 1760ms;} 
+#navbar_114 .icon-navItemIcon{background-image: url(http://3702375.s21i-3.faiusr.com/4/ABUIABAEGAAglKvPqAUo6Ivm7AMwgAQ4gAQ!100x100.png);background-size:contain;background-position:50% 50%;} 
+#navbar_114 .icon-navItemIcon:before{content:none;} 
+.open .navItem:nth-child(44) {transition-delay: 1840ms;} 
+</style>
+<style id="mobiCubeStyleModule">
+</style>
+<style id="mobiSearchStyleModule">
+</style>
+<!-- 系统特殊隐藏栏目隐藏头部、banner -->
+<style type="text/css">
+.g_web{ overflow-x: auto;}
+.webContainerBox{ position: static;}
+.form{ position: static;}
+#webHeaderBox {display:none;}
+#webBannerBox {display:none;}
+.form.Handle{margin:0px;padding:0px;}
+.form .formBannerTitle{display:none;}
+.formMiddle{padding:0px;background:none;border:none;box-shadow:none;box-sizing:border-box;margin-top: 0 !important;}
+</style>
+</head>
+<body faiscomobi="true" id="g_body" class="g_locale2052 mobiCol10">
+  <div class="middleCenter middleCenter8">
+    <div class="formMiddleContent formMiddleContent8 moduleContent">
+      <div class="loginHeader webHeaderBg">
+      	<a href="{$web.index}" class="g_close icon-gClose"></a>
+      	<span class="title  pageTitle">会员登录</span>
+      </div>
+      <div class="loginContent">
+      	<div class="g_globalLine">
+      	  <input type="text" maxlength="50" id="user" class="itemEdit g_input mustItem" placeholder="请输入登录邮箱" >
+      	  <span class="icon-userIcon g_mainColor"></span>
+      	</div>
+      	<div class="g_globalLine">
+      		<input type="password" maxlength="20" id="password" class="itemEdit g_input  mustItem" placeholder="请输入密码" >
+      		<span class="icon-pswIcon g_mainColor"></span>
+      	</div>
+      	<!-- <div class="loginCaptchaCtrl g_globalLine">
+      	  <input id="loginCaptcha" type="text" class="captchaText g_input" maxlength="4" placeholder="请输入验证码">
+      	  <img id="loginCaptchaImg" class="captchaImg" src="{:ADDON_PUBLIC_PATH}/template/login/validateCode.jsp" onclick="Mobi.changeValidateCode(jm(&quot;#loginCaptchaImg&quot;))">
+      	</div>
+      	<div class="autoLoginCtrl g_globalLine" style="text-align: left;">
+      	  <input type="checkBox" id="autoLogin" class="autoLoginCheck">
+      	  <label for="autoLogin" class="autoLoginLabel" onclick="">
+      	    <span class="icon-uncheckIcon g_mainColor"></span>
+      	  	记住我（两周内免登录）
+      	  </label>
+      	</div> -->
+      	<div class="g_globalLine">
+      	  <input type="button" class=" g_button sendIcon" id="loginBtn" value="登录" >
+      	</div>
+      	<div class="loginBottom g_globalLine">
+      	  <a class="g_mainColor freeRegister" href="{$register_url}">免费注册</a>
+      	</div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+  function empty(exp){
+    if (!exp && typeof(exp)!="undefined" && exp!=0)
+    {
+      return true;
+    }
+      return false;
+  }
+  $("#loginBtn").click(function (){
+  	var username = $("#user").val();
+  	var password = $("#password").val();
+    if(empty(username)){
+      alert("用户名不能为空");
+      return;
+    }
+    if(empty(password)){
+      alert("密码不能为空");
+    }
+    　
+  	$.ajax({
+			url		: window.location.href,
+			data 	: {username:username,password:password},
+			type 	: 'post',
+			dataType: 'json',
+			success : function(rp){
+				data = eval(rp);
+				// Mobi.ing(data.state);
+        alert(data.state);
+				if(data.success){
+					// sleep(1000);
+					window.location = data.url;
+				}
+			},
+			error	: function(){
+				// Mobi.ing("服务器没有反应");
+        alert("服务器没有反应");
+			}
+		});
+  })
+  </script>
+</body></html>

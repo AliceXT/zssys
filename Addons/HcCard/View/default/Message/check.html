@@ -1,0 +1,10 @@
+<include file="Public/mobile_head"/>	
+<body>
+<div id="container" class="container body">
+	<volist name="msgs" id="msg">
+		<!-- <a href="{:addons_url('HcCard://Message/single?id='.$msg.id)}">{$msg.name}给你留言</a> -->
+		<a href="{$msg.url}">{$msg.name}给你留言</a>
+	</volist>
+</div>
+</body>
+</html>

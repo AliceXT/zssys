@@ -1,0 +1,183 @@
+<div>
+    <include file="Public/mobile_head" />
+    <link rel="stylesheet" type="text/css" href="{:ADDON_PUBLIC_PATH}/css/myOrder.css">
+    <style type="text/css">
+    .header {
+        background: #fff none repeat scroll 0 0;
+        box-shadow: 0 1px 3px #ccc;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        width: 100%;
+        background-color: #ff9801;
+        border-bottom: solid 1px #ccc;
+    }
+    
+    .header .back {
+        background: rgba(0, 0, 0, 0) url("{:ADDON_PUBLIC_PATH}/img/back.png") no-repeat scroll 0 0 / 35px 35px;
+        height: 35px;
+        left: 10px;
+        position: absolute;
+        top: 8px;
+        width: 35px;
+        background-color: #fff;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+        border-radius: 20px;
+    }
+    
+    .header .title {
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+
+    }
+    
+    .orderid span {
+        color: #282828;
+        font-size: 0.8rem;
+    }
+    
+    .ordertime span {
+        color: #282828;
+        font-size: 0.8rem;
+        line-height: 12px;
+    }
+    
+    .ordertime p {
+        color: #282828;
+        font-size: 0.9rem;
+        line-height: 14px;
+    }
+    /*2015.10.29-dong*/
+    #Product-text{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+    line-height: 1.2rem;
+    color: #3d4245;
+    height:56px;
+    margin-bottom: 6px;
+    }
+    .Slide-line{
+       padding-bottom: 0.5rem;
+       border-bottom:dashed 1px #ccc;  
+    }
+    .order_content{
+        margin-top: 0.5rem;
+    }
+    .user_edit input{
+        border:solid 1px #82868f;
+        color: #82868f;
+        background-color: #fff;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+    </style>
+    <script type="text/javascript" src="{:ADDON_PUBLIC_PATH}/js/myorder.js"></script>
+    <script type="text/javascript" src="{:ADDON_PUBLIC_PATH}/js/cartList.js"></script>
+
+    <body id="shop">
+        <!-- <div class="top_navs">
+	
+		<div class="mainpage">
+	
+			<a href="/index.php?s=/addon/Shop/Shop/index.html"><span>首页</span></a>
+	
+		</div>
+	
+		<div class="nav_detail">
+	
+			<a href="#"><span>我的订单</span></a>
+	
+		</div>
+	
+	</div> -->
+        <div class="header">
+            <a class="back" href="javascript:history.go(-1);"></a>
+            <span class="title">我的订单</span>
+            <a href="javascript:void(0)" onclick="Cart.setCartEmpty()" style="float:right;">
+                <em class="cart_icon" style="padding-right:15px;"></em>
+            </a>
+        </div>
+        <div class="container">
+            <volist name="list" id="vo">
+                <div class="order_cell order_{$vo['id']}">
+                    <div class="order_status">状态：
+                        <span style="color:#ff421c;">
+                        <if condition="$vo['order_status'] == 1 ">
+                            订单未支付
+                            <elseif condition="$vo['order_status'] == 2" /> 已经支付成功，卖家尚未发货
+                            <elseif condition="$vo['order_status'] == 4" /> 订单已经取消
+                            <elseif condition="$vo['order_status'] == 5" /> 正在申请退货
+                            <elseif condition="$vo['order_status'] == 6" /> 同意退货
+                            <elseif condition="$vo['order_status'] == 8" /> 拒绝退货
+                            <elseif condition="$vo['order_status'] == 7" /> 已经确认收货
+                        </if>
+                        </span>
+                    </div>
+                    <div class="order_content">
+                        <img src="{$vo['img']}" style="float:left;height:100px;width:100px;">
+                        <div class="title" id="Product-text">
+                            {$vo['title']}
+                        </div>
+                        <h6 style="color:#ef2845;">￥{$vo['total_fee']}元</h6>
+                       
+                        <div class="Slide-line">
+                            <div style="font-size:0.8rem;"> 数量：{$vo['count']}
+                                <!--, 单价{$vo['unit_price']}&nbsp;  -->
+                                <em style="margin-left:2rem;">运费 {$vo['express_fee']}元&nbsp; <span></span></em>
+                            </div>
+                        </div>
+                         <div class="orderid">
+                            <span>编号:</span>
+                            <span>{$vo['id']}</span>
+                        </div>
+                        <div class="ordertime">
+                            <span>时间:</span>
+                            <span>{$vo['time']}</span>
+                            <!--<a href="#" onclick="Cart.removeGoods({$vo['id']})">删除订单</a>-->
+                        </div>
+                    </div>
+                    <div class="user_edit">
+                        <if condition="$vo['order_status'] == 1">
+                            <!-- 已经下单 -->
+                            <input type="button" value="取消订单" onclick="Order.cancel({$vo['id']})">
+                            <input type="button" value="立即支付" onclick="Order.jiesuan({$vo['id']})">
+                            <elseif condition="$vo['order_status'] == 4" />
+                            <!-- 订单取消 -->
+                            <span>&nbsp;</span>
+                            <elseif condition="$vo['order_status'] == 5" />
+                            <!-- 订单取消 -->
+                            <span>退货审核中,请耐心等待!</span>
+                            <elseif condition="$vo['order_status'] == 7" />
+                            <!-- 订单成交 -->
+                            <!--
+                            <a href="/index.php?s=/addon/Shop/Comment/addComments/oid/{$vo['id']}/id/{$vo['pid']}.html">去评论</a>
+                            -->
+                            <else />
+                            <input type="button" onclick="Order.returnGoods({$vo['id']})" value="申请退货">
+                            <input style="border:solid 1px #ff6a26;color:#ff6a26;border-radius:4px;" type="button" onclick="Order.affirm({$vo['id']})" value="确认收货">
+                        </if>
+                    </div>
+                </div>
+            </volist>
+        </div>
+        <!-- 底部导航 -->
+        {$footer_html}
+        <!-- 统计代码 -->
+        <notempty name="config.code">
+            <p class="hide bdtongji">
+                {$config.code}
+            </p>
+        </notempty>
+    </body>
+
+    </html>
+</div>

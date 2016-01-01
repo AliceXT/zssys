@@ -1,0 +1,60 @@
+<include file="Public/mobile_head" />
+<link rel="stylesheet" type="text/css" href="{:ADDON_PUBLIC_PATH}/css/myOrder.css">
+<link rel="stylesheet" type="text/css" href="{:ADDON_PUBLIC_PATH}/css/userinfo.css">
+<script type="text/javascript" src="{:ADDON_PUBLIC_PATH}/js/new.js"></script>
+<script type="text/javascript" src="{:ADDON_PUBLIC_PATH}/js/count.js"></script>
+<script type="text/javascript">
+var zjhy = 0;
+var jjhy = 0;
+var zjhyxd = 0;
+var jjhyxd = 0;
+var page_count = 100;
+var order_sum = 0;
+var fee_sum = 0;
+var barnch_id = "{$branch.id}";
+var branch_openids = "{$branch.openids}";
+$(document).ready(function() {
+    Count.init();
+})
+</script>
+
+<body id="branch">
+    <div class="header">
+        <a class="back" href="javascript:history.go(-1);"></a>
+        <span class="title">分公司信息</span>
+    </div>
+    <span style="width:100%;height:1px;background-color:#fff;float:left;display;block;filter:alpha(opacity=2);-moz-opacity:0.2;opacity: 0.2;z-index:100;">
+  </span>
+    <div class="container">
+        <div class="userinfo">
+            <div class="photo">
+                <img src="{$info.headimgurl}">
+            </div>
+            <div class="userinfo_detail">
+                <span>昵称:{$info.nickname}</span>
+                <span>分公司名称:{$branch.keyword}</span>
+                <span>公司负责人:{$branch.ceo_openids}</span>
+            </div>
+        </div>
+        <div class="bannetu-png"></div>
+        <div class="asset">
+            <div class="asset_cell">
+                <a href="{:addons_url('Branch://Branch/partner',array('id'=>$info['openid']))}">
+                    <span class="asset_title" style="width:4.5em;">合伙人:</span>
+                    <span class="asset_val" id="partner" style="text-decoration:underline;">{$partner|default="0"}</span>人</a>
+            </div>
+        </div>
+        <div class="asset">
+            <div class="asset_cell">
+                <span class="asset_title">订单数量:</span> 
+                <span class="asset_val" id="orderCount">0</span>单
+            </div>
+            <div class="asset_cell">
+                <span class="asset_title">营业额:</span> 
+                <span class="asset_val" id="trunover">0</span>元
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

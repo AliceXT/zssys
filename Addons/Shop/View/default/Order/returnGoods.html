@@ -1,0 +1,56 @@
+<include file="Public/mobile_head"/>
+<link rel="stylesheet" type="text/css" href="{:ADDON_PUBLIC_PATH}/css/myOrder.css">
+<link rel="stylesheet" type="text/css" href="{:ADDON_PUBLIC_PATH}/css/userinfo.css">
+<script type="text/javascript" src="{:ADDON_PUBLIC_PATH}/js/myorder.js"></script>
+<style type="text/css">
+	.rgdetail {
+		margin-top: 20px;
+	}
+	.Order-text {
+	 width: 85%;
+	 margin: 6px auto;
+	}
+</style>
+<body id="shop">
+<div class="top_navs">
+	<div class="mainpage">
+		<a href="/index.php?s=/addon/Shop/Shop/index.html"><span class="Home-box"></span></a>
+	</div>
+	<div class="nav_detail">
+		<a href="#"><span>退单详情</span></a>
+	</div>
+</div>
+<div class="container">
+	<div class="rgdetail">
+		<if condition="$info.id != null">
+		<div class="Order-text">
+			<span >退单单号:&nbsp;&nbsp;</span> {$info.id}
+		</div>
+		</if>
+		<div class="Order-text">
+			<span >原订单单号:&nbsp;&nbsp;</span> {$info.orderdetail.id}
+		</div>
+		<div class="Order-text">
+			<span>商品名称：&nbsp; </span>{$info.orderdetail.title}
+		</div>
+		<div class="Order-text">
+			<span>商品数量：</span>{$info.orderdetail.count}件
+		</div>
+		<div style="padding:20px;">
+			<textarea id="return_reason">{$info.reason}</textarea>
+		</div>
+	</div>
+	<div style="margin-top: 15px;">
+		<button onclick="Order.returnGD({$info.orderdetail.id})">完成/填写退单原因</button>
+	</div>
+</div>
+<!-- 底部导航 -->
+{$footer_html}
+<!-- 统计代码 -->
+<notempty name="config.code">
+<p class="hide bdtongji">
+{$config.code}
+</p>
+</notempty>
+</body>
+</html>

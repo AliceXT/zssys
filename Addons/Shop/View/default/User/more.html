@@ -1,0 +1,647 @@
+<extend name="Base/common" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<block name="body">
+<!-- <link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px)，only screen and (max-device-width: 480px)" href="link.css"/> -->
+    <style type="text/css">
+  /*css初始化*/
+/*right*/
+@media (min-device-width:1024px) and (max-width:989px)，screen and (max-device-width:480px)，(max-device-width:480px) and (orientation:landscape)，(min-device-width:480px) and (max-device-width:1024px) and (orientation:portrait) 
+input:focus {
+    outline:#F00;
+}
+input {
+  display: inline-block;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  transition: border linear 0.2s, box-shadow linear 0.2s;
+}
+input:focus {
+  border-color: rgba(82, 168, 236, 0.8);
+  outline: thin dotted \9;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+}
+select:focus {
+    outline:#F00;
+}
+select {
+  display: inline-block;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  transition: border linear 0.2s, box-shadow linear 0.2s;
+}
+select:focus {
+  border-color: rgba(82, 168, 236, 0.8);
+  outline: thin dotted \9;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+}
+.right_Text {
+    float:left;
+    width:1245px;
+    margin-right:15px;
+}
+.User_name {
+    float:left;
+    width:1210px;
+    margin-top:20px;
+    margin-left:16px;
+    margin-bottom:10px;
+}
+.User_name .Membership {
+    float:left;
+    width:1210px;
+}
+.User_name .Membership .Good_karma {
+    float:right;
+    width:500px;
+    margin-right:450px;
+}
+.User_name .Membership .Good_karma img {
+    width:170px;
+    height:170px;
+    margin-left:170px;
+    border-radius:100px;
+    border:solid 3px #bce8f1;
+    float:left;
+}
+.User_name .Membership .Good_karma a {
+    float:left;
+    width:500px;
+    font-weight:bold;
+    font-size:20px;
+    color:#428bca;
+    text-align:center;
+    margin-top:18px;
+}
+.User_name .Membership .Good_karma a:hover {
+    color:#2a6496;
+}
+
+.User_name .Bill_lading {
+    float:left;
+    width:1210px;
+    margin-top:10px;
+}
+.User_name .Bill_lading .You_are {
+    font-size:14px;
+    color:#333;
+}
+.User_name .Bill_lading .You_are em {
+    font-style:normal;
+    cursor:pointer;
+    padding-right:16px;
+    background-image:url("{:ADDON_PUBLIC_PATH}/img/weixin.png");
+    background-position:center;
+    background-repeat:no-repeat;
+}
+.User_name .Bill_lading .You_are .Profit {
+    background-image:url("{:ADDON_PUBLIC_PATH}/img/nojidr.png");
+    background-position:left;
+    background-repeat:no-repeat;
+    padding-left:14px;
+    font-size:14px;
+    color:#428bca;
+}
+.User_name .Bill_lading .You_are .Profit:hover {
+    color:#2a6496;
+    background-image:url("{:ADDON_PUBLIC_PATH}/img/nokla.png");
+}
+.User_name .Bill_lading .You_are .The_child {
+    font-size:14px;
+    color:#428bca;
+}
+.User_name .Bill_lading .You_are .The_child i {
+    font-weight:bold;
+    font-size:16px;
+    font-style:normal;
+}
+.User_name .Bill_lading .You_are .The_child:hover{
+    color:#2a6496;
+}
+.User_name .Bill_lading .You_are .System {
+    background-image:url("{:ADDON_PUBLIC_PATH}/img/nihen.png");
+    background-repeat:no-repeat;
+    background-position:center;
+    padding-left:18px;
+}
+.Answerui {
+    float:left;
+    width:1210px;
+    border-radius:4px;
+    border:solid 1px #dddddd;
+    margin-top:20px;
+    border-top:none;
+    margin-left:16px;
+    margin-bottom:10px;
+}
+.Answerui .Fuck {
+    float:left;
+    width:1210px;
+    border-radius:4px 4px 0px 0px;
+    background-color:#f5f5f5;
+    border:solid 1px #dddddd;
+    border-left:none;
+    border-right:none;
+}
+.Answerui .Fuck p {
+    float:left;
+    color:#333;
+    height:40px;
+    line-height:40px;
+    font-size:16px;
+    margin-left:15px;
+}
+.url_box {
+    width:1210px;
+    float:left;
+    margin-top:15px;
+    margin-left:36px;
+    margin-bottom:18px;
+}
+.url_box li {
+    float:left;
+}
+.url_box .The_first {
+    float:left;
+    width:238px;
+    margin-right:54px;
+}
+.url_box .The_first .haveenough {
+    float:left;
+    width:238px;
+    margin-bottom:4px;
+}
+.url_box .The_first .haveenough b {
+    font-size:14px;
+    color:#333;
+}
+.url_box .The_first .Ruthless {
+    float:left;
+    width:238px;
+}
+.url_box li .Full_name {
+    border-radius:4px;
+    width:238px;
+    height:34px;
+    padding:6px 12px;
+    color:#555555;
+    font-size:14px;
+    margin-top:1px;
+    margin-right:30px;
+}
+.url_box li .baomu:hover{
+    border:solid 1px #285e8e;
+    background-color:#3071a9;
+}
+.url_box .Your_mom {
+    float:left;
+    width:238px;
+    margin-right:54px;
+}
+.url_box .Your_mom .Integral {
+    float:left;
+    width:238px;
+    margin-bottom:4px;
+}
+.url_box .Your_mom .Integral b {
+    color:#333;
+    font-size:14px;
+}
+.url_box .Your_mom .You_cao {
+    float:left;
+    width:238px;
+}
+.url_box .Your_mom .You_cao .Read {
+    width:224px;
+    height:18px;
+    float:left;
+    color:#555555;
+    border-radius:4px;
+    font-size:14px;
+    padding-left:12px;
+}
+.url_box .Garbage {
+    float:left;
+    width:238px;
+    margin-top:23px;
+}
+.url_box .Garbage .baomu {
+    float:left;
+    width:238px;
+    height:36px;
+    font-size:14px;
+    margin-left:20px;
+    border:solid 1px #357ebd;
+    background-color:#428bca;
+    border-radius:4px;
+    text-align:center;
+    line-height:14px;
+    color:#FFF;
+    margin-right:5px;
+    cursor:pointer;
+}
+<!--积分&余额-->
+.Be_dying {
+    width:1210px;
+    float:left;
+    margin-top:15px;
+    margin-left:36px;
+    margin-bottom:18px;
+}
+.Be_dying .Dont_you {
+    float:left;
+    width:340px;
+    margin:15px 200px 15px 30px;
+}
+.Be_dying .Increase_New {
+    float:left;
+    width:340px;
+}
+.Be_dying .Increase_New .Standard {
+    float:left;
+    width:298px;
+}
+.Be_dying .Increase_New .Standard .Cruel {
+    float:left;
+    padding:0px 13px;
+    height:34px;
+    line-height:34px;
+    bordeR:solid 1px #ccc;
+    background-color:#eeeeee;
+    border-radius:4px 0px 0px 4px;
+    font-size:14px;
+    color:#333;
+    border-right:none;
+    text-align:center;
+}
+.Be_dying .Increase_New .Standard .Waste {
+    width:152px;
+    padding-left:12px;
+    font-size:14px;
+    color:#333;
+    height:18px;
+    line-height:14px;
+    float:left;
+}
+.Be_dying .Increase_New .Standard .Violence {
+    float:left;
+    height:34px;
+    line-height:34px;
+    text-align:center;
+    padding:0px 13px;
+    bordeR:solid 1px #ccc;
+    border-radius:0px 4px 4px 0px;
+    font-size:14px;
+    color:#333;
+    background-color:#eeeeee;
+    border-left:none;
+}         
+.Be_dying .Increase_New .Add_money {
+    float:left;
+    width:38px;
+    height:34px;
+    border:solid 1px #357ebd;
+    background-color:#428bca;
+    border-radius:4px;
+    cursor:pointer;
+    margin-left:2px;
+}  
+.Be_dying .Increase_New .Add_money:hover {
+    border:solid 1px #285e8e;
+    background-color:#3071a9;
+}
+.Be_dying .Increase_New .Add_money img {
+    width:14px;
+    height:12px;
+    margin-top:11px;
+    margin-left:12px;
+    
+}     
+.Be_dying .Increase_New .Tonight {
+    float:left;
+    width:38px;
+    height:34px;
+    border:solid 1px #ccc;
+    background-color:#fff;
+    border-radius:4px;
+    cursor:pointer;
+    margin-left:2px;
+}  
+.Be_dying .Increase_New .Tonight:hover {
+    border:solid 1px #adadad;
+    background-color:#e6e6e6;
+}
+.Be_dying .Increase_New .Tonight img {
+    width:14px;
+    height:12px;
+    margin-top:11px;
+    margin-left:12px;
+    
+}     
+<!--数字导航-->
+.Noodles_nav {
+    float:left;
+    width:1230px;
+    margin-left:15px;
+}
+.Well_you {
+    width:1200px;
+    float:left;
+    border-top:solid 1px #dddddd;
+    padding:8px;
+    margin-left:14px;
+}
+.Well_you:hover {
+    background-color:#f5f5f5;
+}
+.Well_you .topno_nav {
+    float:left;
+    width:225px;
+    border:solid 1px #00bbec;
+    margin-right:16px;
+}
+.Well_you #Again_box {
+    margin:0;
+}
+.Well_you .topno_nav .Here_box {
+    width:225px;
+    float:left;
+}
+.Well_you .topno_nav .Here_box .Pista_box {
+    width:154px;
+    height:154px;
+    float:left;
+    border:solid 1px #0ebeec;
+    border-radius:100px;
+    background-color:#fff;
+    margin:0px 33px;
+    margin-top:13px;
+}
+.Well_you .topno_nav .Here_box .Pista_box img {
+    width:138px;
+    height:138px;
+    border-radius:100px;
+    border:solid 3px #00bbec;
+    margin:5px;
+    float:left;
+}
+.Well_you .topno_nav .Here_box .Whisper {
+    float:left;
+    width:225px;
+    margin-top:26px;
+}
+.Well_you .topno_nav .Here_box .Whisper a {
+    float:left;
+    width:100px;
+    height:32px;
+    line-height:32px;
+    font-size:14px;
+    color:#fff;
+    text-align:center;
+    border-radius:13px;
+    background-color:#00bbec;
+    margin-left:63px;
+}
+.Well_you .topno_nav .Here_box .Whisper a:hover {
+    text-decoration:underline;
+}
+.Well_you .topno_nav .Give_Way {
+    width:225px;
+    height:62px;
+    margin-top:33px;
+    border-top:solid 1px #00bbec;
+    float:left;
+}
+.Well_you .topno_nav .Give_Way .boubi {
+    width:225px;
+    margin-top:10px;
+    float:left;
+}
+.Well_you .topno_nav .Give_Way .boubi p {
+    font-size:14px;
+    color:#000;
+    text-align:center;
+}
+<!--底部链接-->
+.Scan_code {
+    border:solid 1px #fff;
+}
+.Float_left {
+    float:left;
+    width:1212px;
+    margin-top:27px;
+    margin-left:15px;
+    border-bottom:solid 1px #428bca;
+}
+.Float_left li {
+    float:left;
+    cursor:pointer;
+}
+.Float_left .One_box {
+    float:left;
+    padding:0px 17px;
+    height:42px;
+    line-height:42px;
+    text-align:center;
+    color:#fff;
+    margin-right:1px;
+    font-size:14px;
+    background-color:#428bca;
+    border-radius:6px 6px 0px 0px;
+}
+.Float_left li{
+    float:left;
+    padding:0px 17px;
+    height:42px;
+    line-height:42px;
+    text-align:center;
+    color:#428bca;
+    margin-right:1px;
+    font-size:14px;
+    border-radius:6px 6px 0px 0px;
+}
+Float_left .One_boxko:hover {
+    background-color:#eeeeee;
+    color:#2a6496;
+}
+<!--第一节内容-->
+.hit{
+    border-bottom:1px solid #fff;
+    cursor:pointer;
+    color:black;
+    text-shadow:0 1px 0 #fff;
+    background:#fff;
+    background:-webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#fff));
+    background:-moz-linear-gradient(top, #e1e1e1, #fff);
+}
+.pane {
+    border-top:0;
+    min-height:100px;
+    background-color:#fff;
+    display:none;
+}
+.Sma_box {
+    width:1210px;
+    overflow:hidden;
+    margin-left:15px;
+}
+.Sma_box .pane .Customer {
+    width:1208px;
+    float:left;
+    border:solid 1px #bce8f1;
+    border-radius:4px;
+    margin-top:20px;
+    padding-bottom:30px;
+}
+.Sma_box .pane .Customer .service {
+    width:1208px;
+    float:left;
+}
+.Sma_box .pane .Customer .service .Chat_nav {
+    width:1208px;
+    float:left;
+    height:39px;
+    line-height:39px;
+    border-bottom:solid 1px #bce8f1;
+    color:#31708f;
+    background-color:#d9edf7;
+    text-indent:15px;
+    font-size:16px;
+    margin-bottom:20px;
+}
+.Sma_box .Chat_nav:hover {
+    background-color:#eeeeee;
+}
+.Sma_box .pane .Customer .No_hard {
+    float:left;
+    width:1200;
+}
+.Sma_box .pane .Customer .No_hard p {
+    font-size:14px;
+    color:#333;
+    text-indent:15px;
+    margin-bottom:5px;
+}
+    </style>
+    <div class="span9 page_message">
+        <section id="contents">
+            <include file="Addons/_nav" />
+            <!-- 数据列表 -->
+            <!--right_标题-->
+<div class="right_Text">
+   <div class="User_name">
+      <span class="Membership">
+        <label class="Good_karma">
+        <img src="{$follow.headimgurl}">
+        <a href="#">{$info.wxnickname}</a>
+        </label>
+      </span>    
+      <span class="Bill_lading">
+        <p class="You_are">系统编号:{$info.id} OpenID: {$info.openid}, 已关注, 关注时间{$follow.subscribe_time|time_format} <a href="{:addons_url('Shop://User/spread',array('id'=>$follow['openid']))}l" class="Profit">推广记录</a> 上线: {$sx|default="系统"
+        } [<a href="{:addons_url('Shop://User/sell',array('openid'=>$follow['openid']))}" class="System" title="修改上线"></a>]</p>
+      </span> 
+   </div>
+   <div class="Answerui">
+      <span class="Fuck">
+        <p>快捷操作</p>
+      </span>
+      <form id="form" action="{:$post_url}" method="post" class="form-horizontal">
+      <input type="hidden" name="id" value="{$info['id']}">
+      <ul class="url_box"> 
+        <li class="The_first">
+          <!-- 用户类型 -->
+          <span class="haveenough"><b>{$fields['user_cat']['title']}</b></span>
+          <span class="Ruthless">
+            <select name="{$fields['user_cat']['name']}">
+              <volist name=":parse_field_attr($fields['user_cat']['extra'])" id="vo"> 
+              <option value="{$key}" class="toggle-data" toggle-data="{$vo|get_hide_attr}"
+                <eq name="info[$fields['user_cat']['name']]" value="$key">selected</eq>
+              >{$vo|clean_hide_attr}
+              </option>
+            </volist>
+            </select>
+          </span>
+          <!-- 用户类型 -->
+        </li>
+        <li class="Your_mom">
+          <!-- 积分 -->
+          <span class="Integral"><b>{$fields['credit']['title']}</b></span>
+          <span class="You_cao">
+        <input type="number" class="text input-medium" name="{$fields['credit']['name']}" value="{$info[$fields['credit']['name']]}">
+           </span>
+           <!-- 积分 -->
+       </li>
+        <li class="Your_mom" style="border:solid 1xp #254;">
+          <!-- 余额 -->
+          <span class="Integral"><b>{$fields['remain_money']['title']}</b></span>
+          <span class="You_cao">
+           <input type="number" class="text input-medium" name="{$fields['remain_money']['name']}" value="{$info[$fields['remain_money']['name']]*100}">
+           </span>
+           <!-- 余额 -->
+       </li>
+       <li class="Garbage">
+       <input type="submit" value="提交" class="baomu">
+       </li>
+      </ul>
+      </form>
+   </div>
+  <div class="Scan_code">
+        <ul class="Float_left">
+            <!-- <li>客服聊天记录</li> -->
+            <li class="One_box">商城订单记录</li>
+            <!-- <li>积分历史记录</li> -->
+        </ul>
+        <div class="Sma_box">
+         <!-- <div class="pane">
+              <ul class="Customer">
+                <li class="service">
+                 <span class="Chat_nav">客服聊天记录</span>
+               </li>
+               <li class="No_hard">
+                 <p>还没有TA的聊天记录。</p>
+               </li>
+              </ul>
+            </div> -->
+           <!--第二段7.25-->
+            <div class="pane" style="display:block;">
+                <ul class="Customer">
+                <li class="service">
+                 <span class="Chat_nav">商城订单记录</span>
+               </li>
+               <li class="No_hard">
+                <if condition="$order.num gt 0">
+                  <p>
+                  <a href="{:addons_url('Shop://Select/lists')}">有{$order.num}个相关订单，查看购买记录</a>
+                  </p>
+                 <else />
+                 <p>还没有TA的购买记录。</p>
+                 </if>
+               </li>
+              </ul>
+            </div>
+            <!--第三段7.25-->
+            <!-- <div class="pane">
+              <ul class="Customer">
+                <li class="service">
+                 <span class="Chat_nav">积分历史记录</span>
+               </li>
+               <li class="No_hard">
+                 <p>还没有TA的积分记录。小提示：商城、分销、余额取现、积分兑换模块之外的积分变化我们没有记录哦。</p>
+               </li>
+              </ul>
+            </div> -->
+        </div>
+       </div>
+   <!--数字导航-->
+</div>
+<script type="text/javascript">
+$(function(){
+    $('.Float_left li').click(function(){
+        $(this).addClass('One_box').siblings().removeClass('One_box');
+        $('.Sma_box>div:eq('+$(this).index()+')').show().siblings().hide();
+    })
+})
+</script>
+            <div class="page"> {$_page|default=''} </div>
+        </section>
+    </div>
+</block>

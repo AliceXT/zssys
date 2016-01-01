@@ -1,0 +1,37 @@
+<extend name="Base/common" />
+<block name="body">
+  <div class="span9 page_message">
+    <section id="contents"> 
+      <include file="Addons/_nav" /> 
+      <!-- 数据列表 -->
+      <div class="data-table">
+        <div class="table-striped">
+          <table cellspacing="1">
+            <!-- 表头 -->
+            <thead>
+              <tr>
+                <!-- <if condition="$check_all"><th class="row-selected row-selected"> <input type="checkbox" id="checkAll" class="check-all regular-checkbox"><label for="checkAll"></label></th></if> -->
+                <volist name="list_grids" id="field">
+                  <th <notempty name="field.width">width="{$field.width}%"</notempty> >{$field.title}</th>
+                </volist>
+              </tr>
+            </thead>
+            
+            <!-- 列表 -->
+            <tbody>
+              <volist name="list_data" id="data">
+                <tr>
+                  <!-- <if condition="$check_all"><td><input class="ids regular-checkbox" type="checkbox" value="{$data['id']}" name="ids[]" id="check_{$data['id']}"><label for="check_{$data['id']}"></label></td></if> -->
+                  <volist name="list_grids" id="grid">
+                    <td>{:get_list_field($data,$grid,$model)}</td>
+                  </volist>
+                </tr>
+              </volist>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="page"> {$_page|default=''} </div>
+    </section>
+  </div>
+</block>

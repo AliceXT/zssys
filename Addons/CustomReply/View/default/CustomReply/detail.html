@@ -1,0 +1,144 @@
+<include file="Public/mobile_head"/>
+<link href="{:ADDON_PUBLIC_PATH}/detail.css?v={:SITE_VERSION}" rel="stylesheet" type="text/css">
+<body id="weisite">
+<div class="container">
+	<header style="background:#2e393f; display:none">
+    	<img class="logo" height="40" src="__IMG__/logo.jpg"/>
+    </header>
+    <div class="detail top_line">
+    	<h6 class="title">{$info.title}</h6>
+        <p class="info"><span class="colorless">{$info.cTime|time_format}</span></p>
+        <section class="content">
+            <notempty name="info.cover"><p><img src="{$info.cover|get_cover_url}"/></p></notempty>
+            <notempty name="info.jump_url"><iframe src="{$info.jump_url}" width="100%" id="jump_url"></iframe></notempty>
+            {$info.content|htmlspecialchars_decode}
+        </section>
+		<div>
+			<p>阅读量：{$info.view_count}</p>
+			<p id="like_count">点赞数：{$info.like_count}</p>
+			<button id="likeBtn">赞</button>
+		</div>
+		<div>
+			<img src="{$qrcode_img}">
+		</div>
+    </div>
+</div>
+<div class="bottom_nav_blank"/>
+</body>
+</html>
+<script type="text/javascript">
+$(function(){
+	var imgArray = new Array();
+	var img_base = "{:SITE_URL}";
+	$(".detail img").each(function(){
+	     var src = $(this).attr("src");
+	     var key1 = src.indexOf('http') ;
+		 var key2 = src.indexOf('Uploads/') ;
+		 if(key1=='-1' && key2>0){
+			 src = img_base + src;
+			 $(this).attr("src", src);
+		 }
+		 imgArray.push( src );//数组,网页里面所有要查看大图的图片地址列表
+	})
+	console.log(imgArray);
+	$(".detail img").bind("click",function(){
+		var currentImg = $(this).attr("src");//当前图片的地址
+		  if(typeof WeixinJSBridge !=="undefined"){
+			WeixinJSBridge.invoke("imagePreview", {
+			  current: currentImg,//查看的当前图片的地址
+			  urls:imgArray,//数组,网页里面所有要查看大图的图片地址列表
+			});
+		   }
+	});
+	var url = '{:addons_url("CustomReply://CustomReply/addLike")}';
+	var id = "{$info.id}";
+	var like_count = {$info.like_count};
+	$("#likeBtn").click(function(){
+		$.ajax({
+			url	:url,
+			type: 'post',
+			dataType : 'json',
+			data : {
+				id:id
+			},
+			success  : function(rp){
+				if(rp.status == 1){
+					alert(rp.info);
+					like_count = like_count + 1;
+					$("#like_count").text("点赞数："+like_count);
+				}
+			},
+			error: function (){
+				alert('没有返回');
+			}
+		});
+		$("#likeBtn").attr("disabled", "disabled");
+	    
+	    $("#likeBtn").css("background-color", "#666");
+	});
+	$("#jump_url").load(function(){
+		var main = $(window.parent.document).find("#jump_url"); 
+		var thisheight = $(document).height()+30; 
+		main.height(thisheight); 
+	});
+});
+</script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>    
+<script>    
+/*    
+* 注意：    
+* 1. 所有的JS接口只能在公众号绑定的域名下调用，公众号开发者需要先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。    
+* 2. 如果发现在 Android 不能分享自定义内容，请到官网下载最新的包覆盖安装，Android 自定义分享接口需升级至 6.0.2.58 版本及以上。    
+* 3. 完整 JS-SDK 文档地址：http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html    
+*    
+* 如有问题请通过以下渠道反馈：    
+* 邮箱地址：weixin-open@qq.com    
+* 邮件主题：【微信JS-SDK反馈】具体问题    
+* 邮件内容说明：用简明的语言描述问题所在，并交代清楚遇到该问题的场景，可附上截屏图片，微信团队会尽快处理你的反馈。    
+*/    
+wx.config({    
+debug: false,    
+appId: '{$config.appid}',    
+timestamp: {$config.timestamp},    
+nonceStr: '{$config.noncestr}',    
+signature: '{$config.signature}',    
+jsApiList: [    
+'checkJsApi',    
+'onMenuShareTimeline',    
+'onMenuShareAppMessage',    
+'onMenuShareQQ',    
+'onMenuShareWeibo',    
+]    
+}); 
+wx.ready(function () {
+    wx.onMenuShareAppMessage({
+      title: '{$share.title}',
+      desc: '{$share.desc}',
+      link: '{$share.link}',
+      imgUrl: '{$share.pic|get_picture_url}',
+      success: function (res) {
+        alert("分享成功");
+      },
+      cancel: function (res) {
+        // alert('已取消');
+      },
+      fail: function (res) {
+        alert(JSON.stringify(res));
+      }
+    });  
+    wx.onMenuShareTimeline({
+      title: '{$share.title}',
+      link: '{$share.link}',
+      imgUrl: '{$share.pic|get_picture_url}',
+      success: function (res) {
+        alert("分享成功");
+      },
+      cancel: function (res) {
+        // alert('已取消');
+      },
+      fail: function (res) {
+        alert(JSON.stringify(res));
+      }
+    }); 
+});
+</script>

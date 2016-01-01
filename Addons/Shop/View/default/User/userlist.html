@@ -1,0 +1,44 @@
+<include file="Public/mobile_head"/>
+<link rel="stylesheet" type="text/css" href="{:ADDON_PUBLIC_PATH}/css/myOrder.css">
+<link rel="stylesheet" type="text/css" href="{:ADDON_PUBLIC_PATH}/css/userinfo.css">
+<script type="text/javascript" src="{:ADDON_PUBLIC_PATH}/js/userinfo.js"></script>
+<script type="text/javascript" src="{:ADDON_PUBLIC_PATH}/js/new.js"></script>
+<body id="shop">
+<div class="header">
+  <a class="back" href="javascript:history.go(-1);"></a>
+  <span class="title">会员列表</span>
+  <a href="javascript:void(0)" onclick="Cart.setCartEmpty()" style="float:right;"><em class="cart_icon" style="padding-right:15px;"></em></a>
+</div>
+ <span style="width:100%;height:1px;background-color:#fff;float:left;display;block;filter:alpha(opacity=2);-moz-opacity:0.2;opacity: 0.2;z-index:100;"></span>
+<div class="container" id="container">
+	<!-- <volist  name='list' id="vo">
+		<div class='user_list' style="display:block; line-height:30px; margin-bottom:10px;">
+			<img src="{$vo.headimgurl}" style="height:30px;"><span style="margin-right:20px;">{$vo.nickname}</span>
+		</div>
+	</volist> -->
+</div>
+<!-- <div class="Box-Layout" id="more" onclick="getPassFlag()">
+   <a class="Click-box">点击更多</a>
+</div> -->
+<!-- 底部导航 -->
+{$footer_html}
+<!-- 统计代码 -->
+<notempty name="config.code">
+<p class="hide bdtongji">
+{$config.code}
+</p>
+</notempty>
+<script type="text/javascript">
+  var page = 1;
+  var zjhy = 0;
+  var zjpage_sum = 0;
+  var page_count = 100;
+  var hy_count = 0;
+  var type = "{$hyType}";
+  var openid = "{$openid}";
+  $(function(){
+    Info.initInfo();
+  });
+</script>
+</body>
+</html>

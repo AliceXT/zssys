@@ -1,0 +1,54 @@
+<include file="Public/mobile_head"/>
+<link rel="stylesheet" type="text/css" href="{:ADDON_PUBLIC_PATH}/css/cartList.css">
+<script type="text/javascript" src="{:ADDON_PUBLIC_PATH}/js/cartList.js"></script>
+<body id="weisite">
+<div class="top_navs">
+	<div class="mainpage">
+		<a href="/index.php?s=/addon/Shop/Shop/index.html"><span>首页</span></a>
+	</div>
+	<div class="nav_detail">
+		<a href="#"><span>购物车</span></a>
+	</div>
+	<div class="nav_cart" onclick="Cart.setCartEmpty()">
+		<a href="#"><span>清空</span></a>
+	</div>
+</div>
+<div class="container">
+	<volist name="cartList" id="vo">
+		<div class="list cell_{$vo['id']}">
+			<div class="title">
+				<span>
+					￥{$vo['price']}元/{$vo['unit']}
+				</span>
+				<a href="#" onclick="Cart.removeGoods({$vo['id']})">删除</a>
+			</div>
+			<div class="content">
+				<div class="image">
+					<img src="{$vo['img1']}">
+				</div>
+				<div class="describe">
+					<div class="head">
+						<span>{$vo['describe']}</span>
+					</div>
+					<div class="count">
+						<span>数量:</span>{$vo['count']}{$vo['unit']}
+					</div>
+				</div>
+			</div>
+		</div>
+	</volist>
+	<div class="sum">
+		<span>总金额:{$sum}元</span>
+		<button class="jiesuan">结算</button>
+	</div>
+</div>
+<!-- 底部导航 -->
+{$footer_html}
+<!-- 统计代码 -->
+<notempty name="config.code">
+<p class="hide bdtongji">
+{$config.code}
+</p>
+</notempty>
+</body>
+</html>

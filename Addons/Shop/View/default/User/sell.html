@@ -1,0 +1,45 @@
+<extend name="Base/common" />
+<block name="body">
+    <div class="span9 page_message">
+        <section id="contents">
+            <include file="Addons/_nav" />
+            <!-- 数据列表 -->
+            <div class="data-table">
+                <div class="table-striped">
+                    <dl class="dl-horizontal">
+                        <dt>用户</dt>
+                        <dt>OpenID</dt>
+                        <dd>
+                            {$u.openid}
+                        </dd>
+                        <dt>微信信息</dt>
+                        <dd>
+                            {$u.nickname}
+                            <br> <img style="width:64px;height:64px" src="{$u.headimgurl}"> </dd>
+                        <dt></dt>
+                        <dd></dd>
+                        <dt>上线</dt>
+                        <dd><a href="{$jump_url}">修改上线</a></dd>
+                        <if condition='$f'>
+                            <dt>OpenID</dt>
+                            <dd>
+                                {$f.openid}
+                            </dd>
+                            <dt>微信信息</dt>
+                            <dd>
+                                {$f.nickname}
+                                <br> <img style="width:64px;height:64px" src="{$f.headimgurl}"> </dd>
+                            <dt></dt>
+                            <dd></dd>
+                            <else />
+                            <dd>该用户无上线</dd>
+                        </if>
+                    </dl>
+                    </volist>
+                    </form>
+                </div>
+            </div>
+            <div class="page"> {$_page|default=''} </div>
+        </section>
+    </div>
+</block>
