@@ -1,0 +1,96 @@
+
+    .multi {
+      margin-bottom: 15px;
+    }
+  
+    .express {
+        border: 1px solid gray;
+        padding: 5px;
+        margin-right: 5px;
+    }
+    
+    .check {
+        border: 2px solid red;
+    }
+    
+    #picSlideShow ul li img {
+        height: 300px;
+    }
+    
+    .kefu_close {
+        background-image: url(/Addons/Shop/View/default/Public/img/anniu.png);
+        background-repeat: no-repeat;
+        display: block;
+        width: 32px;
+        height: 32px;
+        background-color: #fff;
+        position: absolute;
+        right: 10px;
+        top: 1em;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        border-radius: 20px;
+        z-index: 999;
+    }
+    
+    .kefu_block .Link-box {
+        width: 100%;
+        height: 100%;
+        display: block;
+        background-image: url(/Addons/Shop/View/default/Public/img/weixin.jpg);
+        background-repeat: no-repeat;
+        background-size: 100% 470px;
+        position: relative;
+        z-index: 200;
+    }
+    
+    #buyCount {
+        display: inline;
+        width: 50px;
+        color: #000;
+        margin: 0px 2px;
+        padding: 2px 2px 0px;
+        text-align: center;
+        float: left;
+    }
+    
+    #Location-box {
+        position: relative;
+    }
+    
+    #Location-box span {
+        position: absolute;
+        top: -1px;
+        left: 4.5rem;
+    }
+    
+    #Location-box img {
+        display: block;
+        width: 22px;
+        height: 22px;
+    }
+    /*2015.11.2*/
+    
+    .text-Description {
+        font-size: 16px;
+        color: #282828;
+        font-family:"微软雅黑";
+    }
+    .text-style{
+      font-size: 12px;
+      color: #666;
+    } 
+    .text-style del{
+      font-size: 12px;
+    }
+    .price_p {
+      margin-bottom:8px;
+    }
+    .price{
+      font-size: 15px;
+      color: #e4393c;
+    }
+    /*2015.11.04*/
+    

@@ -1,0 +1,61 @@
+<!--继承的父类模板位于：Application\Home\View\default\Addons\widget.html -->
+<extend name="widget" />
+<block name="css">
+    <link href="/Addons/Diy/Widget/BookDetail/detail.css" rel="stylesheet" type="text/css">
+</block>
+<block name="widget_content">
+    <div class="diy_shop shopdetail_wrap">
+        <div class="header" style="border-bottom:solid 1px #ccc;">
+            <a class="back" href="javascript:history.go(-1);"></a>
+            <span class="title">宝贝详情</span>
+            <a href="/index.php?s=/addon/Shop/Shop/cartList.html" style="float:right;">
+                <em class="cart_icon" style="padding-right:15px;">收藏夹</em>
+            </a>
+        </div>
+        <!-- 商品头图 -->
+        <div class="goods_detail_top">
+            <section class="banner square_slide_banner" id="picSlideShow">
+                <ul>
+                    <li style="height:300px;">{$course.cover|get_img_html}</li>
+                </ul>
+            </section>
+        </div>
+        <div  class="goods_detail_content">
+        <p class="price_p">书名：<span class="price">{$course.name|default="暂无"}</span></p>
+        <if condition='$jsuser'>
+            <p class="price_p">借书人：<span class="price">{$jsuser.nickname|default="暂无"}</span></p>
+        </if>
+        <if condition='$zsuser'>
+            <p class="price_p">赠书人：<span class="price">{$zsuser.nickname|default="暂无"}</span></p>
+            <p class="price_p">所在学校：<span class="price">{$zsuser.school|default="暂无"}</span></p>
+        </if>
+        </div>
+        <!-- 购买按钮 -->
+        <div class="goods_action">
+            <span class="left-Bigbox">
+            <a href="javascript:history.go(-1);" class="home-box">
+              <img src="/Addons/Diy/View/default/Public/img/home-iocn.png">
+              <p>首页</p>
+            </a>
+            <a id="to_cart" href="javascript:void(0)" class="add_cart_small btnCart" onclick="addCart({$product['id']})">
+            <em class="cart_icon"></em>加入收藏夹</a>
+            <style type="text/css">
+            .fly_item{width:38px;height:38px;overflow:hidden;position:absolute;visibility:hidden;opacity:.5;filter:alpha(opacity=50);}
+            .Shopping-Cart{position:relative;}
+            .cart_num{max-width:14px;overflow: hidden; font-size:10px;border-radius:5px;color:#e4393c;background-color:#eee;padding:0px 2px;font-family: "微软雅黑";position: absolute;right:6px;top:18px;}
+            </style>
+            <div id="flyItem" class="fly_item">
+             <img src="/Addons/Diy/View/default/Public/img/shopp-iocn.png" width="40" height="40">
+             </div>
+            </span>
+            <span class="right-Bigbox">
+            <a id="to_buy" href="javascript:void(0)" onclick="Detail.buyNow({$product.id})" style="margin:0; margin-top:10px; margin-left:10px;"><em class="heart_icon"></em>立即联系</a> 
+            <a href="/index.php?s=/addon/Shop/Shop/cartList.html" id="Shopping-Cart" class="shopCart">
+            <img src="/Addons/Diy/View/default/Public/img/shopp-iocn.png">
+            <p>收藏夹</p>
+            <span class="cart_num">0</span>
+            </a>
+            </span>
+        </div>
+    </div>
+</block>

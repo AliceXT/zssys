@@ -15,4 +15,7 @@ class BookController extends BaseController{
 	public function index(){
 		echo diyPage( '赠书' );
 	}
+	public function detail(){
+		echo diyPage( '赠书详情' );
+	}
 }

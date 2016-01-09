@@ -21,8 +21,11 @@ class DealController extends WidgetController {
 		$books = M("book")->where($map)->select();
 		foreach($books as &$book){
 			$course_map['bookid'] = $book['course_id'];
-			$course = M('book_course')->field('cover,name,verson,major')->where($course_map)->find();
-			array_merge(array1)
+			$course = M('book_course')->field('cover,name,version,major')->where($course_map)->find();
+			$book['cover'] = $course['cover'];
+			$book['name'] = $course['name'];
+			$book['version'] = $course['version'];
+			$book['major'] = $course['major'];
 		}
 		$this->assign ( 'list', $books );
 		return $this->getWidgetHtml ( $widget );
