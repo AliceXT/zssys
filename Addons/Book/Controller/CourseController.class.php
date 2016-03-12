@@ -27,14 +27,6 @@ class CourseController extends BaseController{
 			$Model = D ( parse_name ( get_table_name ( $model ['id'] ), 1 ) );
 			// 获取模型的字段信息
 			$Model = $this->checkAttr ( $Model, $model ['id'] );
-			// $map['bookid'] = I('post.course_id');
-			// $course = M('book_course')->where($map)->find();
-			// if(empty($course)){
-			// 	$param['token'] = get_token();
-			// 	$param['openid'] = get_openid();
-			// 	$url = addons_url("Book://Course/mobileForm",$param);
-			// 	$this->error("该教材还没被录入，你将成为第一个录入的人~",$url);
-			// }
 			if ($Model->create () && $Model->add ()) {
 				$this->success ( '保存' . $model ['title'] . '成功！', U ( 'lists?model=' . $model ['name'] ) );
 			} else {
