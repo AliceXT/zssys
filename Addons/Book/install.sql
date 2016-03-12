@@ -1,0 +1,44 @@
+CREATE TABLE IF NOT EXISTS `wp_book` (
+`id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+`token`  varchar(255) NOT NULL  COMMENT 'Token',
+`zs_openid`  varchar(255) NOT NULL  COMMENT '赠送用户的OPENID',
+`js_openid`  varchar(255) NOT NULL  COMMENT '借书用户的OPENID',
+`give_time`  int(10) NOT NULL  COMMENT '给予时间',
+`ctime`  int(10) NOT NULL  COMMENT '创建时间',
+`note`  text NOT NULL  COMMENT '备注',
+`course_id`  varchar(255) NOT NULL  COMMENT 'ISBN码',
+PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci CHECKSUM=0 ROW_FORMAT=DYNAMIC DELAY_KEY_WRITE=0;
+INSERT INTO `wp_book` (`id`,`token`,`zs_openid`,`js_openid`,`give_time`,`ctime`,`note`,`course_id`) VALUES ('1','gh_acf8ed38291a','oeD7Qt082_k1CC36ywLYbVIWybjs','oeD7Qt17qewuJXCyNen1O8LCyGTw','1451601000','1451604900','','9787111401926');
+INSERT INTO `wp_book` (`id`,`token`,`zs_openid`,`js_openid`,`give_time`,`ctime`,`note`,`course_id`) VALUES ('8','gh_acf8ed38291a','oeD7Qt17qewuJXCyNen1O8LCyGTw','','0','1452119400','','9787111401926');
+INSERT INTO `wp_book` (`id`,`token`,`zs_openid`,`js_openid`,`give_time`,`ctime`,`note`,`course_id`) VALUES ('9','gh_acf8ed38291a','','oeD7Qt17qewuJXCyNen1O8LCyGTw','0','0','','9787111401926');
+INSERT INTO `wp_book` (`id`,`token`,`zs_openid`,`js_openid`,`give_time`,`ctime`,`note`,`course_id`) VALUES ('10','gh_acf8ed38291a','oeD7Qt17qewuJXCyNen1O8LCyGTw','','0','1452253725','','9787111401926');
+INSERT INTO `wp_model` (`name`,`title`,`extend`,`relation`,`need_pk`,`field_sort`,`field_group`,`attribute_list`,`template_list`,`template_add`,`template_edit`,`list_grid`,`list_row`,`search_key`,`search_list`,`create_time`,`update_time`,`status`,`engine_type`) VALUES ('book','书','0','','1','{"1":["zs_openid","js_openid","give_time","ctime","note","course_id"]}','1:基础','','','','','id:ID\r\nzs_openid:捐赠用户\r\njs_openid:借书用户\r\nctime|time_format:创建时间\r\ngive_time|time_format:给予时间\r\ncourse_id:ISBN码\r\nnote:备注\r\nid:操作:[EDIT]|编辑,[DELETE]|删除','10','course_id','','1451652789','1452171203','1','MyISAM');
+INSERT INTO `wp_attribute` (`name`,`title`,`field`,`type`,`value`,`remark`,`is_show`,`extra`,`model_id`,`is_must`,`status`,`update_time`,`create_time`,`validate_rule`,`validate_time`,`error_info`,`validate_type`,`auto_rule`,`auto_time`,`auto_type`) VALUES ('token','Token','varchar(255) NOT NULL','string','','','0','','0','0','1','1451652865','1451652858','','3','','regex','get_token','3','function');
+INSERT INTO `wp_attribute` (`name`,`title`,`field`,`type`,`value`,`remark`,`is_show`,`extra`,`model_id`,`is_must`,`status`,`update_time`,`create_time`,`validate_rule`,`validate_time`,`error_info`,`validate_type`,`auto_rule`,`auto_time`,`auto_type`) VALUES ('zs_openid','赠送用户的OPENID','varchar(255) NOT NULL','string','','','1','','0','0','1','1451652963','1451652963','','3','','regex','','3','function');
+INSERT INTO `wp_attribute` (`name`,`title`,`field`,`type`,`value`,`remark`,`is_show`,`extra`,`model_id`,`is_must`,`status`,`update_time`,`create_time`,`validate_rule`,`validate_time`,`error_info`,`validate_type`,`auto_rule`,`auto_time`,`auto_type`) VALUES ('js_openid','借书用户的OPENID','varchar(255) NOT NULL','string','','','1','','0','0','1','1451652990','1451652990','','3','','regex','','3','function');
+INSERT INTO `wp_attribute` (`name`,`title`,`field`,`type`,`value`,`remark`,`is_show`,`extra`,`model_id`,`is_must`,`status`,`update_time`,`create_time`,`validate_rule`,`validate_time`,`error_info`,`validate_type`,`auto_rule`,`auto_time`,`auto_type`) VALUES ('give_time','给予时间','int(10) NOT NULL','datetime','','','3','','0','0','1','1452253745','1451653084','','3','','regex','','3','function');
+INSERT INTO `wp_attribute` (`name`,`title`,`field`,`type`,`value`,`remark`,`is_show`,`extra`,`model_id`,`is_must`,`status`,`update_time`,`create_time`,`validate_rule`,`validate_time`,`error_info`,`validate_type`,`auto_rule`,`auto_time`,`auto_type`) VALUES ('ctime','创建时间','int(10) NOT NULL','datetime','','','0','','0','0','1','1452253688','1451653114','','1','','regex','time','3','function');
+INSERT INTO `wp_attribute` (`name`,`title`,`field`,`type`,`value`,`remark`,`is_show`,`extra`,`model_id`,`is_must`,`status`,`update_time`,`create_time`,`validate_rule`,`validate_time`,`error_info`,`validate_type`,`auto_rule`,`auto_time`,`auto_type`) VALUES ('note','备注','text NOT NULL','textarea','','','1','','0','0','1','1451653144','1451653144','','3','','regex','','3','function');
+INSERT INTO `wp_attribute` (`name`,`title`,`field`,`type`,`value`,`remark`,`is_show`,`extra`,`model_id`,`is_must`,`status`,`update_time`,`create_time`,`validate_rule`,`validate_time`,`error_info`,`validate_type`,`auto_rule`,`auto_time`,`auto_type`) VALUES ('course_id','ISBN码','varchar(255) NOT NULL','string','','','1','','0','0','1','1452253410','1451653172','','3','','regex','','3','function');
+UPDATE `wp_attribute` SET model_id= (SELECT MAX(id) FROM `wp_model`) WHERE model_id=0;
+CREATE TABLE IF NOT EXISTS `wp_book_course` (
+`id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+`name`  varchar(255) NOT NULL  COMMENT '教材名字',
+`version`  varchar(255) NOT NULL  COMMENT '教材版本',
+`major`  varchar(255) NOT NULL  COMMENT '相关专业',
+`bookid`  varchar(255) NOT NULL  COMMENT 'ISBN码',
+`cover`  int(10) UNSIGNED NOT NULL  COMMENT '封面',
+`token`  varchar(255) NOT NULL  COMMENT 'Token',
+PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci CHECKSUM=0 ROW_FORMAT=DYNAMIC DELAY_KEY_WRITE=0;
+INSERT INTO `wp_book_course` (`id`,`name`,`version`,`major`,`bookid`,`cover`,`token`) VALUES ('1','PHP核心技术与最佳实践','','计算机','9787111401926','3233','gh_acf8ed38291a');
+INSERT INTO `wp_book_course` (`id`,`name`,`version`,`major`,`bookid`,`cover`,`token`) VALUES ('2','PHP核心技术与最佳实践','','计算机','9787111401926','3233','gh_acf8ed38291a');
+INSERT INTO `wp_model` (`name`,`title`,`extend`,`relation`,`need_pk`,`field_sort`,`field_group`,`attribute_list`,`template_list`,`template_add`,`template_edit`,`list_grid`,`list_row`,`search_key`,`search_list`,`create_time`,`update_time`,`status`,`engine_type`) VALUES ('book_course','教材','0','','1','{"1":["name","version","major","bookid","cover"]}','1:基础','','','','','id:ID\r\nbookid:ISBN码\r\nname:名称\r\ncover|list_cover:封面\r\nversion:版本\r\nmajor:相关专业\r\nid:操作:[EDIT]|编辑,[DELETE]|删除','10','name','','1451653836','1452170668','1','MyISAM');
+INSERT INTO `wp_attribute` (`name`,`title`,`field`,`type`,`value`,`remark`,`is_show`,`extra`,`model_id`,`is_must`,`status`,`update_time`,`create_time`,`validate_rule`,`validate_time`,`error_info`,`validate_type`,`auto_rule`,`auto_time`,`auto_type`) VALUES ('name','教材名字','varchar(255) NOT NULL','string','','','1','','0','0','1','1451653882','1451653882','','3','','regex','','3','function');
+INSERT INTO `wp_attribute` (`name`,`title`,`field`,`type`,`value`,`remark`,`is_show`,`extra`,`model_id`,`is_must`,`status`,`update_time`,`create_time`,`validate_rule`,`validate_time`,`error_info`,`validate_type`,`auto_rule`,`auto_time`,`auto_type`) VALUES ('version','教材版本','varchar(255) NOT NULL','string','','','1','','0','0','1','1451653995','1451653995','','3','','regex','','3','function');
+INSERT INTO `wp_attribute` (`name`,`title`,`field`,`type`,`value`,`remark`,`is_show`,`extra`,`model_id`,`is_must`,`status`,`update_time`,`create_time`,`validate_rule`,`validate_time`,`error_info`,`validate_type`,`auto_rule`,`auto_time`,`auto_type`) VALUES ('major','相关专业','varchar(255) NOT NULL','string','','','1','','0','0','1','1451654027','1451654027','','3','','regex','','3','function');
+INSERT INTO `wp_attribute` (`name`,`title`,`field`,`type`,`value`,`remark`,`is_show`,`extra`,`model_id`,`is_must`,`status`,`update_time`,`create_time`,`validate_rule`,`validate_time`,`error_info`,`validate_type`,`auto_rule`,`auto_time`,`auto_type`) VALUES ('bookid','ISBN码','varchar(255) NOT NULL','string','','','1','','0','0','1','1451655908','1451655908','','3','','regex','','3','function');
+INSERT INTO `wp_attribute` (`name`,`title`,`field`,`type`,`value`,`remark`,`is_show`,`extra`,`model_id`,`is_must`,`status`,`update_time`,`create_time`,`validate_rule`,`validate_time`,`error_info`,`validate_type`,`auto_rule`,`auto_time`,`auto_type`) VALUES ('cover','封面','int(10) UNSIGNED NOT NULL','picture','','','1','','0','0','1','1452170071','1452170071','','3','','regex','','3','function');
+INSERT INTO `wp_attribute` (`name`,`title`,`field`,`type`,`value`,`remark`,`is_show`,`extra`,`model_id`,`is_must`,`status`,`update_time`,`create_time`,`validate_rule`,`validate_time`,`error_info`,`validate_type`,`auto_rule`,`auto_time`,`auto_type`) VALUES ('token','Token','varchar(255) NOT NULL','string','','','0','','0','0','1','1452171306','1452171306','','3','','regex','get_token','3','function');
+UPDATE `wp_attribute` SET model_id= (SELECT MAX(id) FROM `wp_model`) WHERE model_id=0;
