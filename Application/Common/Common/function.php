@@ -1473,7 +1473,7 @@ function OAuthWeixin($callback) {
 	if (! isset ( $_GET ['getOpenId'] )) {
 		$param ['redirect_uri'] = $callback . '&getOpenId=1';
 		$param ['response_type'] = 'code';
-		$param ['scope'] = 'snsapi_base';
+		$param ['scope'] = 'snsapi_userinfo';
 		$param ['state'] = 123;
 		$url = 'https://open.weixin.qq.com/connect/oauth2/authorize?' . http_build_query ( $param ) . '#wechat_redirect';
 		redirect ( $url );
@@ -2441,6 +2441,13 @@ function change_multis($multis){
 	}
 	return $str;
 }
+
+// 将图片展示在列表中
+function list_cover($id){
+	$src = get_cover_url($id);
+	return '<img src="' . $src. '" width="50px" >';
+}
+
 // 生成签名字符串
 function toVarString($arr){
     $string = null;
@@ -2450,12 +2457,12 @@ function toVarString($arr){
     $len = strlen($string);
     return substr($string, 0, $len-1);
 }
-// 设置签名信息
-function set_jsapi_config(){
-    $ticket = get_jsapi_ticket();
 
+// 设置签名信息
+function get_jsapi_config(){
+    $ticket = get_jsapi_ticket();
     $param['jsapi_ticket'] = $ticket['ticket'];
-    $param['noncestr'] = get_rand_char();
+    $param['noncestr'] = "123456789";
     $param['timestamp'] = $ticket['timestamp'];
     $param['url'] = "http://".$_SERVER['SERVER_NAME'].__SELF__;
     $string = toVarString($param);
@@ -2465,6 +2472,6 @@ function set_jsapi_config(){
     $config['noncestr'] = $param['noncestr'];
     $config['appid'] = $appinfo['appid'];
     $config['signature'] = $sha;
-    
+    // $this->assign('config',$config);
     return $config;
 }
