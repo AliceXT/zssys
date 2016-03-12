@@ -25,7 +25,7 @@ class WeixinAddonModel extends WeixinModel{
 
 		//dump($config);
 		if($keywordArr['keyword'] == "我要赠书"){
-			$url = addons_url("Book://Book/scan",$param);
+			$url = addons_url("Book://Book/mobileForm",$param);
 
 			$articles [0] = array (
 				'Url'=>$url,

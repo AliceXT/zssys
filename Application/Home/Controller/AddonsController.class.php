@@ -202,7 +202,7 @@ class AddonsController extends Controller {
 			$this->assign ( 'fields', $fields );
 			$this->assign ( 'data', $data );
 			$this->meta_title = '编辑' . $model ['title'];
-			$this->display ( './Application/Home/View/default/Addons/mobileForm.html' );
+			$this->display ( 'mobileForm' );
 		}
 	}
 	// WAP页面的通用分页HTML
