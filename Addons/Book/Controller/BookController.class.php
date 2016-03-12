@@ -18,4 +18,10 @@ class BookController extends BaseController{
 	public function detail(){
 		echo diyPage( '赠书详情' );
 	}
+	public function scan(){
+
+		$this->assign("config",set_jsapi_config());
+
+		$this->display();
+	}
 }

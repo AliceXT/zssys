@@ -57,7 +57,7 @@ rel="shortcut icon" href="http://121.201.110.152/favicon.ico">
  </notempty>
  <notempty name="message">
 <DIV>
-<H3>公司链接</H3>
+<H3>名片留言</H3>
 <UL>
   <volist name="message" id="info">
   <LI>
@@ -67,13 +67,17 @@ rel="shortcut icon" href="http://121.201.110.152/favicon.ico">
  </UL>
  </DIV>
  </notempty>
- <if condition="empty($company_info) and empty($company_link) and empty($message)">
-  <h3>暂无公司信息及留言</h3>
+ <!-- <if condition="empty($company_info) and empty($company_link)">
+  <h3>暂无公司信息</h3>
+ </if> -->
+ <if condition="empty($message)">
+  <h3>暂无留言</h3>
  </if>
 </DIV>
 
  <DIV id="next-step-out">
-  <A href="{:addons_url('HcCard://HcCard/addCard')}" id="next-step">编辑个人及添加公司信息</A> 
+  <!-- <A href="{:addons_url('HcCard://HcCard/addCard')}" id="next-step">编辑个人及添加公司信息</A>  -->
+  <A href="{:addons_url('HcCard://HcCard/addCard')}" id="next-step">编辑个人信息</A> 
  </DIV>
  <section class="footer"><span class="logo">Copyright 2008-2015 昌佳科技 版权所有</span></section>
 </DIV>

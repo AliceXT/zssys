@@ -122,9 +122,9 @@ class HcCardController extends BaseController{
 
             if(I('id') != ""){
                 //修改链接，如果没有http://则加上
-                if(substr($_POST['company_url'],0,7) != "http://" && substr($_POST['company_url'],0,8) != "https://" ){
-                    $_POST['company_url'] = "http://".$_POST['company_url'];
-                }
+                // if(substr($_POST['company_url'],0,7) != "http://" && substr($_POST['company_url'],0,8) != "https://" ){
+                //     $_POST['company_url'] = "http://".$_POST['company_url'];
+                // }
                 // 修改
                 $Model = D ( parse_name ( get_table_name ( $this->model ['id'] ), 1 ) );
                 // 获取模型的字段信息
@@ -179,7 +179,7 @@ class HcCardController extends BaseController{
             $forms['intro'] = "第一步：填写个人信息，请认真填写个人资料";
             $this->assign("forms",$forms);
 
-            $this->assign("next_url",addons_url("HcCard://HcCard/nextStep"));
+            // $this->assign("next_url",addons_url("HcCard://HcCard/nextStep"));
 
             $this->display ( T ( 'Addons://HcCard@HcCard/addCard' ) );
         }
@@ -191,25 +191,25 @@ class HcCardController extends BaseController{
         $hccard = M('hccard')->where($card_map)->find();
         $hccard_id = $hccard['id'];
 
-        // 公司介绍
-        $Model = M ( 'Model' )->getByName ( 'hccard_company' );
-        $map['hccard_id'] = strval($hccard_id);
-        $opts = M($Model['name'])->where($map)->select();
-        foreach($opts as &$opt){
-            $opt['url'] = addons_url('HcCard://Company/edit?id='.$opt['id']);//编辑地址
-            $opt['del_url'] = addons_url('HcCard://Company/del?id='.$opt['id']."&model=".$Model['id']);//删除地址
-        }
-        $this->assign("company_info",$opts);
-
-        // 公司链接
-        $Model = M ( 'Model' )->getByName ( 'hccard_link' );
+        // // 公司介绍
+        // $Model = M ( 'Model' )->getByName ( 'hccard_company' );
         // $map['hccard_id'] = strval($hccard_id);
-        $opts = M($Model['name'])->where($map)->select();
-        foreach($opts as &$opt){
-            $opt['url'] = addons_url('HcCard://Link/edit?id='.$opt['id']);//编辑地址
-            $opt['del_url'] = addons_url('HcCard://Link/del?id='.$opt['id']."&model=".$Model['id']);//删除地址
-        }
-        $this->assign("company_link",$opts);
+        // $opts = M($Model['name'])->where($map)->select();
+        // foreach($opts as &$opt){
+        //     $opt['url'] = addons_url('HcCard://Company/edit?id='.$opt['id']);//编辑地址
+        //     $opt['del_url'] = addons_url('HcCard://Company/del?id='.$opt['id']."&model=".$Model['id']);//删除地址
+        // }
+        // $this->assign("company_info",$opts);
+
+        // // 公司链接
+        // $Model = M ( 'Model' )->getByName ( 'hccard_link' );
+        // // $map['hccard_id'] = strval($hccard_id);
+        // $opts = M($Model['name'])->where($map)->select();
+        // foreach($opts as &$opt){
+        //     $opt['url'] = addons_url('HcCard://Link/edit?id='.$opt['id']);//编辑地址
+        //     $opt['del_url'] = addons_url('HcCard://Link/del?id='.$opt['id']."&model=".$Model['id']);//删除地址
+        // }
+        // $this->assign("company_link",$opts);
 
         //名片留言
         $Model = M ( 'Model' )->getByName ( 'hccard_message' );

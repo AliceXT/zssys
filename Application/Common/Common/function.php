@@ -2441,3 +2441,30 @@ function change_multis($multis){
 	}
 	return $str;
 }
+// 生成签名字符串
+function toVarString($arr){
+    $string = null;
+    foreach($arr as $key=>$value){
+        $string .= $key."=".$value."&";
+    }
+    $len = strlen($string);
+    return substr($string, 0, $len-1);
+}
+// 设置签名信息
+function set_jsapi_config(){
+    $ticket = get_jsapi_ticket();
+
+    $param['jsapi_ticket'] = $ticket['ticket'];
+    $param['noncestr'] = get_rand_char();
+    $param['timestamp'] = $ticket['timestamp'];
+    $param['url'] = "http://".$_SERVER['SERVER_NAME'].__SELF__;
+    $string = toVarString($param);
+    $sha = sha1($string);
+    $appinfo = get_token_appinfo();
+    $config['timestamp'] = $param['timestamp'];
+    $config['noncestr'] = $param['noncestr'];
+    $config['appid'] = $appinfo['appid'];
+    $config['signature'] = $sha;
+    
+    return $config;
+}

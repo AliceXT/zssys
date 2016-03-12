@@ -54,46 +54,39 @@ body{
 <div class="preview_con">
 <div class="scr_con">
   <div class="box4">
-    <h1>{$info.ownername}<span>{$info.post}</span></h1>
+    <h1>{$info.ownername}<span>{$info.school_name|default=''}</span></h1>
   </div>
   <ol class="box1 box2">
+  <if condition="$info['company_name']">
     <li><i class="icon-briefcase" style="content:url({:ADDON_PUBLIC_PATH}/image/Company.png);"></i>{$info.company_name}</li>
+    </if>
+  <if condition="$info['tel']">
+    <li><i class="icon-phone" style="content:url({:ADDON_PUBLIC_PATH}/image/Number.png);"></i> <a href="tel:{$info.tel}" data-ignore="true">电话（短号）：{$info.tel}</a></li> 
+      </if>
+  <if condition="$info['phone']">
     <li>
       <i class="icon-user" style="content:url({:ADDON_PUBLIC_PATH}/image/Mobile-phone.png);" ></i> 
       <a href="tel:{$info.phone}">手机：{$info.phone}</a>
-    </li>		
-    <li><i class="icon-comments" style="content:url({:ADDON_PUBLIC_PATH}/image/WeChat.png);" ></i> 微信：{$info.wechat}</li>	
-    <li><i class="icon-envelope" style="content:url({:ADDON_PUBLIC_PATH}/image/Mailbox.png);" ></i> <a href="mailto:{$info.email}" data-ignore="true">邮箱：{$info.email}</a></li>		
+    </li>   
+    </if>
+  <if condition="$info['wechat']">
+    <li><i class="icon-comments" style="content:url({:ADDON_PUBLIC_PATH}/image/WeChat.png);" ></i> 微信：{$info.wechat}</li> 
+    </if>
+  <if condition="$info['email']">
+    <li><i class="icon-envelope" style="content:url({:ADDON_PUBLIC_PATH}/image/Mailbox.png);" ></i> <a href="mailto:{$info.email}" data-ignore="true">邮箱：{$info.email}</a></li>   
+    </if>
     <!-- <li><i class="icon-comment" style="content:url({:ADDON_PUBLIC_PATH}/image/qq.png);" ></i> <a href="tencent://message/?uin={$info.QQ}&amp;Site=有事Q我&amp;Menu=yes" data-ignore="true">QQ：{$info.QQ}</a></li>    -->
-    <li><i class="icon-comment" style="content:url({:ADDON_PUBLIC_PATH}/image/qq.png);" ></i> <a href="http://wpa.qq.com/msgrd?v=3&uin={$info.QQ}&site=qq&menu=yes" data-ignore="true">QQ：{$info.QQ}</a></li>		
-    <li><i class="icon-phone" style="content:url({:ADDON_PUBLIC_PATH}/image/Number.png);"></i> <a href="tel:{$info.tel}" data-ignore="true">电话：{$info.tel}</a></li>		
-    <li><i class="icon-desktop" style="content:url({:ADDON_PUBLIC_PATH}/image/Website.png);"></i> <a href="{$info.company_url}" target="_blank" data-ignore="true">官网：{$info.company_url}</a></li>		
+
+  <if condition="$info['QQ']">
+    <li><i class="icon-comment" style="content:url({:ADDON_PUBLIC_PATH}/image/qq.png);" ></i> <a href="http://wpa.qq.com/msgrd?v=3&uin={$info.QQ}&site=qq&menu=yes" data-ignore="true">QQ：{$info.QQ}</a></li>   
+</if>
+  <if condition="$info['company_url']">
+    <li><i class="icon-desktop" style="content:url({:ADDON_PUBLIC_PATH}/image/Website.png);"></i> <a href="{$info.company_url}" target="_blank" data-ignore="true">官网：{$info.company_url}</a></li>    
+    </if>
+  <if condition="$info['company_addr']">
     <li style="line-height:100%"><i class="icon-flag" style="content:url({:ADDON_PUBLIC_PATH}/image/Address.png);"></i> 地址：{$info.company_addr}</li>	
+    </if>
   </ol>
-  <volist name="attrs" id="attr">
-  <div class="informe">
-    <h1>{$attr.title}</h1>
-    <div class="contdes">{$attr.desc}</div>
-    <div class="content"> 
-    <p>
-      <img src="{$attr.pic|get_cover_url}" alt="{$attr.title}"> 
-    </p>
-    <p>
-      <!-- <div class="essay" style="font-size:18px;">{$attr.content}</div> -->
-      <span class="essay" style="font-size:18px;">{$attr.content}</span>
-    </p>  
-    </div>
-  </div>
-  </volist>
-	<div class="inav">
-    <ul>
-      <volist name="links" id="link">
-        <li><a href="{$link.url}">{$link.title}</a></li>
-      </volist>
-    </ul>
-  </div>
-				
-							
 		 
   <div class="informe">
     <h1>给我留言</h1>
