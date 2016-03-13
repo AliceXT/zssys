@@ -13,7 +13,7 @@ class BookController extends BaseController{
 		parent::lists($this->model);
 	}
 	public function index(){
-		echo diyPage( '赠书' );
+		echo diyPage( '我要借书' );
 	}
 	public function detail(){
 		echo diyPage( '赠书详情' );
