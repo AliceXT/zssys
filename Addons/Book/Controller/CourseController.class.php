@@ -28,7 +28,7 @@ class CourseController extends BaseController{
 			// 获取模型的字段信息
 			$Model = $this->checkAttr ( $Model, $model ['id'] );
 			if ($Model->create () && $Model->add ()) {
-				$this->success ( '保存' . $model ['title'] . '成功！', U ( 'lists?model=' . $model ['name'] ) );
+				$this->success ( '保存' . $model ['title'] . '成功！' );
 			} else {
 				$this->error ( $Model->getError () );
 			}

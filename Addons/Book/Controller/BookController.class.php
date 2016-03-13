@@ -37,7 +37,7 @@ class BookController extends BaseController{
 				$this->error("该教材还没被录入，你将成为第一个录入的人~",$url);
 			}
 			if ($Model->create () && $Model->add ()) {
-				$this->success ( '保存' . $model ['title'] . '成功！', U ( 'lists?model=' . $model ['name'] ) );
+				$this->success ( '保存' . $model ['title'] . '成功！' );
 			} else {
 				$this->error ( $Model->getError () );
 			}
