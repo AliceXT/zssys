@@ -23,22 +23,24 @@
         <div  class="goods_detail_content">
         <p class="price_p">书名：<span class="price">{$course.name|default="暂无"}</span></p>
         <if condition='$jsuser'>
-            <p class="price_p">借书人：<span class="price">{$jsuser.nickname|default="暂无"}</span></p>
+            <p class="price_p">借书人：<span class="price_black">{$jsuser.ownername|default="暂无"}</span></p>
         </if>
         <if condition='$zsuser'>
-            <p class="price_p">赠书人：<span class="price">{$zsuser.nickname|default="暂无"}</span></p>
-            <p class="price_p">所在学校：<span class="price">{$zsuser.school|default="暂无"}</span></p>
+            <p class="price_p">赠书人：<span class="price_black">{$zsuser.ownername|default="暂无"}<a href="tel:{$zsuser.phone}" style="font-size: 0.5em">电话联系</a></span></p>
+            <p class="price_p">所在学校：<span class="price_black">{$zsuser.school_name|default="暂无"}</span></p>
+            <p class="price_p">学校地址：<span class="price_black">{$zsuser.company_addr|default="暂无"}</span></p>
         </if>
         </div>
         <!-- 购买按钮 -->
         <div class="goods_action">
             <span class="left-Bigbox">
-            <a href="javascript:history.go(-1);" class="home-box">
+            <a href="{:addons_url('Book://Book/index')  }" class="home-box">
               <img src="/Addons/Diy/View/default/Public/img/home-iocn.png">
               <p>首页</p>
             </a>
-            <a id="to_cart" href="javascript:void(0)" class="add_cart_small btnCart" onclick="addCart({$product['id']})">
-            <em class="cart_icon"></em>加入收藏夹</a>
+            <a id="to_cart" href="{:addons_url('HcCard://HcCard/show',array('id'=>$zsuser['id']))}" class="add_cart_small btnCart">
+            <!-- <em class="cart_icon"></em> -->
+            查看资料</a>
             <style type="text/css">
             .fly_item{width:38px;height:38px;overflow:hidden;position:absolute;visibility:hidden;opacity:.5;filter:alpha(opacity=50);}
             .Shopping-Cart{position:relative;}
@@ -49,7 +51,7 @@
              </div>
             </span>
             <span class="right-Bigbox">
-            <a id="to_buy" href="javascript:void(0)" onclick="Detail.buyNow({$product.id})" style="margin:0; margin-top:10px; margin-left:10px;"><em class="heart_icon"></em>立即联系</a> 
+            <a id="to_buy" href="{:addons_url('Book://Book/reg',array('id'=>$book['id'],'js'=>$js))}" style="margin:0; margin-top:10px; margin-left:10px;"><em class="heart_icon"></em>申请借书</a> 
             <a href="/index.php?s=/addon/Shop/Shop/cartList.html" id="Shopping-Cart" class="shopCart">
             <img src="/Addons/Diy/View/default/Public/img/shopp-iocn.png">
             <p>收藏夹</p>

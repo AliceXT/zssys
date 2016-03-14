@@ -16,32 +16,6 @@ class DealController extends WidgetController {
 	}
 	// 模块解析
 	function show($widget) {
-		if ($widget ['data_param'] == '[id]') {
-			$widget ['data_param'] = $_REQUEST ['id'];
-			if (isset ( $_REQUEST ['product_id'] )) {
-				$widget ['data_param'] = $_REQUEST ['product_id'];
-			}
-		}
-		$Course = M('book_course');
-		$Book = M('book');
-		$map ['id'] = intval ( $widget ['data_param'] );
-		$book = $Book->where($map)->find();
-		$map = null;
-		$map['bookid'] = $book['course_id'];
-		$course = $Course->where($map)->find();
-		// dump($book);
-		// dump($course);
-		$map = null;
-		$map['openid'] = $book['zs_openid'];
-		$zsuser = M("Follow")->where($map)->find();
-		empty($zsuser) || $this->assign('zsuser',$zsuser);
-
-		$map = null;
-		$map['openid'] = $book['js_openid'];
-		$jsuser = M("Follow")->where($map)->find();
-		empty($jsuser) || $this->assign('jsuser',$jsuser);
-		$this->assign ( 'book', $book );
-		$this->assign ( 'course', $course );
 		return $this->getWidgetHtml ( $widget );
 	}
 }

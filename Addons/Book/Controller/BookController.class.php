@@ -16,6 +16,32 @@ class BookController extends BaseController{
 		echo diyPage( '我要借书' );
 	}
 	public function detail(){
+		$id = I('id');
+
+		$Course = M('book_course');
+		$Book = M('book');
+		$map ['id'] = $id;
+		$book = $Book->where($map)->find();
+		$map = null;
+		$map['bookid'] = $book['course_id'];
+		$course = $Course->where($map)->find();
+
+		// 用户信息
+		$HcCard = M('hccard');
+		$map = null;
+		$map['openid'] = $book['zs_openid'];
+		$zsuser = $HcCard->where($map)->find();
+		empty($zsuser) || $this->assign('zsuser',$zsuser);
+
+		$map = null;
+		$map['openid'] = $book['js_openid'];
+		$jsuser = $HcCard->where($map)->find();
+		empty($jsuser) || $this->assign('jsuser',$jsuser);
+		$this->assign ( 'book', $book );
+		$this->assign ( 'course', $course );
+
+		$this->assign( 'js' ,get_openid());
+
 		echo diyPage( '赠书详情' );
 	}
 	public function mobileForm(){
@@ -84,5 +110,8 @@ class BookController extends BaseController{
 		$this->assign ( 'list', $books );
 
 		echo diyPage("赠书列表");
+	}
+	public function reg(){
+		
 	}
 }
