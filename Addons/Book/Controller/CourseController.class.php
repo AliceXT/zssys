@@ -52,4 +52,23 @@ class CourseController extends BaseController{
 			$this->display ( T ( 'Addons://Book@Book/mobileForm' ) );
 		}
 	}
+	public function search(){
+		$keyword = I('keyword');
+
+		// 判断搜索类型
+		if(is_numeric($keyword) && strlen($keyword) == 13 || strlen($keyword) == 10){
+			// 纯数字且长度等于书号长度
+			$map['bookid'] = $keyword;
+		}else{
+			$map['name'] = array('like','%'.$keyword.'%');
+		}
+
+		$map['token'] = get_token();
+
+		$course = M('book_course')->where($map)->select();
+
+		$this->assign ( 'list', $course );
+
+		echo diyPage("教材列表");
+	}
 }

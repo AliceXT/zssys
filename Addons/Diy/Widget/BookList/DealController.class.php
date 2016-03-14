@@ -16,18 +16,7 @@ class DealController extends WidgetController {
 	}
 	// 模块解析
 	function show($widget) {
-		$course_map['token'] = $map['token'] = get_token();
-		$map['give_time'] = '';
-		$books = M("book")->where($map)->select();
-		foreach($books as &$book){
-			$course_map['bookid'] = $book['course_id'];
-			$course = M('book_course')->field('cover,name,version,major')->where($course_map)->find();
-			$book['cover'] = $course['cover'];
-			$book['name'] = $course['name'];
-			$book['version'] = $course['version'];
-			$book['major'] = $course['major'];
-		}
-		$this->assign ( 'list', $books );
+
 		return $this->getWidgetHtml ( $widget );
 	}
 }

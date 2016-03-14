@@ -11,17 +11,17 @@
     <ul>
 
     <volist name="list" id="product">
-    	<li>
+    	<li class="owner-message">
 
-        	<a href="{:addons_url('Book://Book/search',array('id'=>$product[bookid]))}">
+        	<a href="{:addons_url('Book://Book/detail',array('id'=>$product[bookid]))}">
 
-            	{$product.cover|get_img_html}
+            	<!-- {$product.cover|get_img_html} -->
 
-                <h6>{$product.name}</h6>
+                <h6>{$product.school_name}</h6>
 
-                <p class="price" style="font-size:15px; color:gray;">{$product.version}</p>
+                <p class="price" style="font-size:15px; color:gray;">{$product.addr}</p>
 
-				<p class="price">{$product.major}</p>
+				<p class="price">{$product.ctime|time_format}</p>
 
                 <!-- <p class="info">浏览：{$product.view_count} |  购买：{$product.bug_count}</p> -->
 

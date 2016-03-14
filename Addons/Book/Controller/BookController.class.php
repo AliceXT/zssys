@@ -9,7 +9,7 @@ class BookController extends BaseController{
 	public function lists(){
 		$param['token'] = get_token();
 		$url = addons_url ( 'Book://Book/index', $param );
-		$this->assign("normal_tips",'在微信里回复教材赠送或者通过地址访问商店：' . $url . ' ，也可点击<a target="_blank" href="' . $url . '">这里</a>在预览');
+		$this->assign("normal_tips",'在微信里回复“我要借书”或者通过地址访问：' . $url . ' ，也可点击<a target="_blank" href="' . $url . '">这里</a>在预览');
 		parent::lists($this->model);
 	}
 	public function index(){
@@ -60,5 +60,29 @@ class BookController extends BaseController{
 			$this->meta_title = '编辑' . $model ['title'];
 			$this->display ( 'mobileForm' );
 		}
+	}
+	public function search(){
+		$keyword = I('id');
+
+		$map['course_id'] = $keyword;
+
+		$map['token'] = get_token();
+		$map['give_time'] = '';
+
+		$books = M('book')->where($map)->order('ctime desc')->select();
+
+		$HcCard = M('hccard');
+
+		$hccard_map['token'] = get_token();
+		foreach($books as &$book){
+			$hccard_map['openid'] = $book['zs_openid'];
+			$hccard = $HcCard->where($hccard_map)->find();
+			$book['addr'] = $hccard['company_addr'];
+			$book['school_name'] = $hccard['school_name'];
+		}
+
+		$this->assign ( 'list', $books );
+
+		echo diyPage("赠书列表");
 	}
 }
