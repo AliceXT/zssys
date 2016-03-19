@@ -26,7 +26,7 @@
             <p class="price_p">借书人：<span class="price_black">{$jsuser.ownername|default="暂无"}</span></p>
         </if>
         <if condition='$zsuser'>
-            <p class="price_p">赠书人：<span class="price_black">{$zsuser.ownername|default="暂无"}<a href="tel:{$zsuser.phone}" style="font-size: 0.5em">电话联系</a></span></p>
+            <p class="price_p">赠书人：<span class="price_black">{$zsuser.ownername|default="暂无"}<!-- <a href="tel:{$zsuser.phone}" style="font-size: 0.5em">电话联系</a> --></span></p>
             <p class="price_p">所在学校：<span class="price_black">{$zsuser.school_name|default="暂无"}</span></p>
             <p class="price_p">学校地址：<span class="price_black">{$zsuser.company_addr|default="暂无"}</span></p>
         </if>
@@ -51,11 +51,11 @@
              </div>
             </span>
             <span class="right-Bigbox">
-            <a id="to_buy" href="{:addons_url('Book://Book/reg',array('id'=>$book['id'],'js'=>$js))}" style="margin:0; margin-top:10px; margin-left:10px;"><em class="heart_icon"></em>申请借书</a> 
+            <a id="to_buy" href="{:addons_url('Book://Book/reg',array('id'=>$book['id']))}" style="margin:0; margin-top:10px; margin-left:10px;"><em class="heart_icon"></em>预约</a> 
             <a href="/index.php?s=/addon/Shop/Shop/cartList.html" id="Shopping-Cart" class="shopCart">
             <img src="/Addons/Diy/View/default/Public/img/shopp-iocn.png">
             <p>收藏夹</p>
-            <span class="cart_num">0</span>
+            <!-- <span class="cart_num">0</span> -->
             </a>
             </span>
         </div>

@@ -112,6 +112,41 @@ class BookController extends BaseController{
 		echo diyPage("赠书列表");
 	}
 	public function reg(){
-		
+		$map['id'] = $id = I('id');
+		$book = M('book')->where($map)->find();
+		if(empty($book['js_openid'])){
+			$data['js_openid'] = get_openid();
+			$result = M('book')->where($map)->setField($data);
+			if($result){
+				$this->success("预定成功");
+			}else{
+				$this->error("预定失败");
+			}
+		}else{
+			$this->error("该书已被别人预定走了");
+		}
+	}
+	public function my(){
+		$Book = M('book');
+		$map['zs_openid'] = get_openid();
+		// 所有书本
+		$fields = 'wp_book.id as id,wp_book_course.name as name';
+		$books = $Book->join('__BOOK_COURSE__ ON __BOOK_COURSE__.bookid = __BOOK__.course_id')
+		->field($fields)->where($map)->select();
+		$this->assign("books",$books);
+
+		$map['js_openid'] = array('neq','');
+		$map['give_time'] = array('eq','');
+
+		$fields = 'wp_book.id as id,wp_hccard.id as card_id,wp_hccard.ownername as ownername,wp_hccard.school_name as school_name,wp_book_course.name as name';
+
+		// 预约中
+		$booking = 
+		$Book->join('__HCCARD__ ON __HCCARD__.openid = __BOOK__.js_openid')
+		->join('__BOOK_COURSE__ ON __BOOK_COURSE__.bookid = __BOOK__.course_id')
+		->field($fields)->where($map)->select();
+		$this->assign("booking",$booking);
+
+		$this->display('my');
 	}
 }

@@ -1,0 +1,36 @@
+<include file="Public/mobile_head"/>  
+<body>
+<div class="booking">
+  <h2 class="div-title">书本预约</h2>
+  <volist name="booking" id="info">
+    <div class="a-booking">
+      <p>来自{$info.school_name|default="某校"}的
+      <a href="{:addons_url('HcCard://HcCard/show',array('id'=>$info['card_id']))}">{$info.ownername|default="学生"}</a>
+      预定了您的《{$info.name}》</p>
+      <a href="{:addons_url('Book://Book/pass',array('id'=>$info['id']))}" class="mini-btn">通过</a>
+      <a href="{:addons_url('Book://Book/ignore',array('id'=>$info['id']))}" class="mini-btn confirm">忽略</a>
+    </div>
+  </volist>
+</div>
+<div class="books">
+  <h2 class="div-title">我的书</h2>
+  <volist name="books" id="info">
+    <div class="book">
+      <p>{$info.name}</p>
+      <a href="{:addons_url('Book://Book/edit',array('id'=>$info['id']))}" class="mini-btn">编辑</a>
+      <a href="{:addons_url('Book://Book/del',array('id'=>$info['id']))}" class="mini-btn confirm">删除</a>
+      <!-- <a href="#" class="confirm">测试</a> -->
+    </div>
+  </volist>
+</div>
+<script type="text/javascript">
+  $(".confirm").click(function(){
+  	if(window.confirm("确认要执行删除操作吗？")){
+	    return true;
+	  }else{
+	    return false;
+	  }
+  })
+</script>
+</body>
+</html>

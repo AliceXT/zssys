@@ -42,6 +42,15 @@ class WeixinAddonModel extends WeixinModel{
 				'Description' => "查看赠书列表",
 			);
 			$res = $this->replyNews ( $articles );
+		}elseif($keywordArr['keyword'] == "我的教材"){
+			$url = addons_url("Book://Book/my",$param);
+
+			$articles [0] = array (
+				'Url'=>$url,
+				'Title' => "我的教材",
+				'Description' => "管理我的教材",
+			);
+			$res = $this->replyNews ( $articles );
 		}else{
 			$res = $this->replyText("系统错误");
 		}
