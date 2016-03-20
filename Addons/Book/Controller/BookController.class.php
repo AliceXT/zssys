@@ -94,6 +94,7 @@ class BookController extends BaseController{
 
 		$map['token'] = get_token();
 		$map['give_time'] = '';
+		$map['js_openid'] = '';
 
 		$books = M('book')->where($map)->order('ctime desc')->select();
 
