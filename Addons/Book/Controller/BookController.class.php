@@ -150,4 +150,26 @@ class BookController extends BaseController{
 
 		$this->display('my');
 	}
+	public function pass(){
+		$data['give_time'] = time();
+		$map['id'] = I('id');
+		$map['zs_openid'] = get_openid();
+		$result = M('Book')->where($map)->setField($data);
+		if($result){
+			$this->success("赠送成功");
+		}else{
+			$this->error("赠送失败");
+		}
+	}
+	public function ignore(){
+		$data['js_openid'] = '';
+		$map['id'] = I('id');
+		$map['zs_openid'] = get_openid();
+		$result = M('Book')->where($map)->setField($data);
+		if($result){
+			$this->success("忽略成功，该书重新上架");
+		}else{
+			$this->error("忽略失败");
+		}
+	}
 }
