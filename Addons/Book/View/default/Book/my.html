@@ -1,28 +1,102 @@
-<include file="Public/mobile_head"/>  
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+
+    <link rel="stylesheet" type="text/css" href="__CSS__/font-awesome.css?v={:SITE_VERSION}" media="all">
+
+  <link rel="stylesheet" type="text/css" href="__CSS__/mobile_module.css?v={:SITE_VERSION}" media="all">
+
+    <script type="text/javascript" src="__STATIC__/jquery-2.0.3.min.js"></script>
+
+    <script type="text/javascript" src="__JS__/prefixfree.min.js"></script>
+
+    <script type="text/javascript" src="__JS__/m/dialog.js?v={:SITE_VERSION}"></script>
+
+    <script type="text/javascript" src="__JS__/m/flipsnap.min.js"></script>
+
+    <script type="text/javascript" src="__JS__/m/mobile_module.js?v={:SITE_VERSION}"></script>
+
+    <script type="text/javascript" src="__JS__/admin_common.js?v={:SITE_VERSION}"></script>
+
+  <title><php>echo empty($page_title) ? C('WEB_SITE_TITLE') : $page_title;</php></title>
+
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+
+    <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+
+    <meta content="no-cache" http-equiv="pragma">
+
+    <meta content="0" http-equiv="expires">
+
+    <meta content="telephone=no, address=no" name="format-detection">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" href="{:SITE_URL}/favicon.ico">
+
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="__PUBLIC__/static/bootstrap3/css/bootstrap.min.css">
+
+<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+<link rel="stylesheet" href="__PUBLIC__/static/bootstrap3/css/bootstrap-theme.min.css">
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="__PUBLIC__/static/jquery-2.0.3.min.js"></script>
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="__PUBLIC__/static/bootstrap3/js/bootstrap.min.js"></script>
+</head>
 <body>
-<div class="booking">
-  <h2 class="div-title">书本预约</h2>
+<div class="container">
+<h2 class="div-title">书本预约</h2>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>预约信息</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
   <volist name="booking" id="info">
-    <div class="a-booking">
-      <p>来自{$info.school_name|default="某校"}的
+    <tr>
+      <td>来自{$info.school_name|default="某校"}的
       <a href="{:addons_url('HcCard://HcCard/show',array('id'=>$info['card_id']))}">{$info.ownername|default="学生"}</a>
-      预定了您的《{$info.name}》</p>
-      <a href="{:addons_url('Book://Book/pass',array('id'=>$info['id']))}" class="mini-btn">通过</a>
-      <a href="{:addons_url('Book://Book/ignore',array('id'=>$info['id']))}" class="mini-btn confirm">忽略</a>
-    </div>
+      预定了您的《{$info.name}》</td>
+      <td><a href="{:addons_url('Book://Book/pass',array('id'=>$info['id']))}" class="mini-btn">通过</a>
+      <a href="{:addons_url('Book://Book/ignore',array('id'=>$info['id']))}" class="mini-btn confirm">忽略</a></td>
+    </tr>
   </volist>
-</div>
-<div class="line"></div>
-<div class="books">
-  <h2 class="div-title">我的书</h2>
+  </tbody>
+</table>
+
+<h2 class="div-title">我的书</h2>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>书名</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
   <volist name="books" id="info">
-    <div class="book">
-      <p>{$info.name}</p>
-      <!-- <a href="{:addons_url('Book://Book/edit',array('id'=>$info['id']))}" class="mini-btn">编辑</a> -->
-      <a href="{:addons_url('Book://Book/del',array('id'=>$info['id']))}" class="mini-btn confirm">删除</a>
-      <!-- <a href="#" class="confirm">测试</a> -->
-    </div>
+    <tr>
+      <td>{$info.name}</td>
+      <td><a href="{:addons_url('Book://Book/del',array('id'=>$info['id']))}" class="mini-btn confirm">删除</a></td>
+    </tr>
   </volist>
+  </tbody>
+</table>
+
+
 </div>
 <script type="text/javascript">
   $(".confirm").click(function(){
